@@ -4,7 +4,9 @@
 $gutter: 20px;
 
 //breakpoints: defined using SASS list
-$breakpoints: "medium" "min-width:600px", "large" "min-width:1000px";
+// the first item defines the prefix of your namespaced classes and the second your media query parameter
+// You can then use the namespaced classes in sccs: %medium-span-1of2
+$breakpoints: "medium" "min-width:37.5em", "large" "min-width:71.25em";
 
 // =box sizing
 // #####################################

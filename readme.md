@@ -18,7 +18,41 @@ I wanted a simple and quick way to design responsive grids in SASS so I built th
 
 [Here is a small demo](http://jeromecoupe.github.com/sassgrids/) of a grid in action.
 
-The scss file is in the gh-pages branch of this repo where the demo lives.
+A sample scss file is included in the gh-pages branch of this repo where the demo lives.
+
+1. Import _grid.scss in your scss file
+2. Define your gutter and breakpoints
+3. Use silent classes in your scss
+
+## Example of a simple grid
+
+### HTML
+
+	<div class="page">
+		<div class="content-primary">
+			<p>Primary Content</p>
+		</div><!--
+
+	 --><div class="content-secondary">
+	 		<p>Secondary Content</p>
+		</div>
+	</div>
+
+### SCSS
+
+	.content-primary
+	{
+		@extend %grid-module; // define as grid module
+		@extend %medium-span-2of3; // span two third at medium screen sizes
+		@extend %large-span-7of12; // span seven twelfths at large screen sizes
+	}
+
+	.content-secondary
+	{
+		@extend %grid-module; // define as grid module
+		@extend %medium-span-1of3; // span two third at medium screen sizes
+		@extend %large-span-5of12; // span seven twelfths at large screen sizes
+	}
 
 # References
 
