@@ -65,11 +65,11 @@ $breakpoints: "medium" "min-width:37.5em", "large" "min-width:71.25em";
 
 	%grid-module
 	{
-		width:100%;                         //[1]
-		@include box-sizing(border-box);    //[2]
-		padding:0 ($gutter / 2);            //[3]
-		display:inline-block;               //[4]
-		vertical-align:top;                 //[5]
+		width:100%;                         /*[1]*/
+		@include box-sizing(border-box);    /*[2]*/
+		padding:0 ($gutter / 2);            /*[3]*/
+		display:inline-block;               /*[4]*/
+		vertical-align:top;                 /*[5]*/
 	}
 
 	%#{$namespace}span-full
