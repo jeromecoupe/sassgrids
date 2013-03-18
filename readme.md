@@ -1,6 +1,6 @@
-# SASS grid framework
+# SASS grids
 
-Simple experiement to create a grid module in SASS
+Simple experiment to create grids in SASS
 
 # Goals
 
@@ -16,7 +16,7 @@ I wanted a simple and quick way to design responsive grids in SASS so I built th
 
 # Demo
 
-Here is a small demo of the "framework"
+[Here is a small demo](http://jeromecoupe.github.com/sassgrids/) of a grid in action
 
 # References
 
