@@ -4,7 +4,7 @@ Simple experiment to create grids in SASS
 
 # Goals
 
-I wanted a simple and quick way to design responsive grids in SASS so I built this little set of mixins that allow you to use namespaced classes and silent SASS selectors to create a modile first grid very rapidly. My goals were to:
+I wanted a simple and quick way to design responsive grids in SASS so I built this little set of mixins that allow you to use namespaced classes and silent SASS selectors to create a mobile first grid very rapidly. Set goals:
 
 - Responsive
 - Mobile First
@@ -22,11 +22,11 @@ I wanted a simple and quick way to design responsive grids in SASS so I built th
 
 ## Harry Roberts
 
-If you need a solid SASS framework, check out [inuit.css](http://inuitcss.com/) and [csswizardry-grids](https://github.com/csswizardry/csswizardry-grids). These were a huge inspiration for this and I share a lot of Harry's views on proportional grids and namespaced classes.
+If you need a solid SASS framework, check out [inuit.css](http://inuitcss.com/) and [csswizardry-grids](https://github.com/csswizardry/csswizardry-grids). These were a huge inspiration for this and I share a lot of [Harry's views on proportional grids and namespaced classes](http://csswizardry.com/2013/02/responsive-grid-systems-a-solution/).
 
 However, there were two things that didn't quite suit my workflow:
 
-- use nested elements to apply backgrounds to grid modules
+- you have to use nested elements to apply backgrounds to grid modules
 - the grid layout (gutters = number columns - 1) was not inuitive to me, I prefer to have even padding on each side of my modules.
 
 ## Chris Coyier
