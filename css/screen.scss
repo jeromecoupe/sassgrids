@@ -19,18 +19,18 @@ html
 
 .header
 {
-	background:yellow;
+	background:#898E2F;
 	@extend %grid-module;
 }
 
 .content
 {
-	background:purple;
+	background:#DFC89F;
 }
 
 .content-primary
 {
-	background:red;
+	background:#AEB43C;
 	@extend %grid-module;
 	@extend %medium-span-2of3;
 	@extend %large-span-7of12;
@@ -38,7 +38,7 @@ html
 
 .content-secondary
 {
-	background:gray;
+	background:#C4C04F;
 	@extend %grid-module;
 	@extend %medium-span-1of3;
 	@extend %large-span-5of12;
@@ -51,7 +51,7 @@ html
 
 .nestedmodule
 {
-	background:green;
+	background:#C4A74F;
 	@extend %grid-module;
 	@extend %medium-span-1of2;
 	@extend %large-span-1of2;
@@ -59,7 +59,7 @@ html
 
 .footerblock1, .footerblock2, .footerblock3, .footerblock4, .footerblock5, .footerblock6, .footerblock7
 {
-	background:silver;
+	background:#91B83D;
 	@extend %grid-module;
 	@extend %medium-span-1of3;
 	@extend %large-span-1of6;

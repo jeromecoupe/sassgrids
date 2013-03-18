@@ -63,19 +63,19 @@ html {
   margin: 0 auto; }
 
 .header {
-  background: yellow; }
+  background: #898E2F; }
 
 .content {
-  background: purple; }
+  background: #DFC89F; }
 
 .content-primary {
-  background: red; }
+  background: #AEB43C; }
 
 .content-secondary {
-  background: gray; }
+  background: #C4C04F; }
 
 .nestedmodule {
-  background: green; }
+  background: #C4A74F; }
 
 .footerblock1, .footerblock2, .footerblock3, .footerblock4, .footerblock5, .footerblock6, .footerblock7 {
-  background: silver; }
+  background: #91B83D; }
