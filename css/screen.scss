@@ -1,0 +1,66 @@
+// =imports
+// #####################################
+@import "imports/grid";
+
+// =Typography
+// #####################################
+html
+{
+	font:normal 87.5%/1.5 Helvetica, Arial, sans-serif;
+}
+
+// =Layout
+// #####################################
+.page
+{
+	max-width:1500px;
+	margin:0 auto;
+}
+
+.header
+{
+	background:yellow;
+	@extend %grid-module;
+}
+
+.content
+{
+	background:purple;
+}
+
+.content-primary
+{
+	background:red;
+	@extend %grid-module;
+	@extend %medium-span-2of3;
+	@extend %large-span-7of12;
+}
+
+.content-secondary
+{
+	background:gray;
+	@extend %grid-module;
+	@extend %medium-span-1of3;
+	@extend %large-span-5of12;
+}
+
+.nestedgrid
+{
+	@extend %grid-nested;
+}
+
+.nestedmodule
+{
+	background:green;
+	@extend %grid-module;
+	@extend %medium-span-1of2;
+	@extend %large-span-1of2;
+}
+
+.footerblock1, .footerblock2, .footerblock3, .footerblock4, .footerblock5, .footerblock6, .footerblock7
+{
+	background:silver;
+	@extend %grid-module;
+	@extend %medium-span-1of3;
+	@extend %large-span-1of6;
+}

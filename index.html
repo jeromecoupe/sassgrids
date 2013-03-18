@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+
+	<title>Grid Test</title>
+
+	<!-- CSS -->
+	<link rel="stylesheet" media="screen" href="css/screen.css" />
+
+</head>
+<body>
+
+	<!--
+		This grid framework uses inline-block to create grid modules
+		Since inline-block is white-space sensitive in some browsers,
+		we get rid of white space using comments between grid modules.
+
+		Other possibilities are detailed here by Chris Coyier
+		http://css-tricks.com/fighting-the-space-between-inline-block-elements/
+
+		One day, we will all be able to switch to flexbox and there will be much rejoicing ;o)
+	-->
+	<div class="page">
+
+		<div class="header">
+			<h1>header</h1>
+		</div>
+
+		<div class="content">
+			<div class="content-primary">
+				<h1>Primary Content</h1>
+				<p>Lorem ipsum dolor sit amet</p>
+			</div><!--
+
+		 --><div class="content-secondary">
+		 		<p>Pellentesque habitant.</p>
+
+		 		<div class="nestedgrid">
+			 		<div class="nestedmodule">
+				 		<p>module (nested)</p>
+			 		</div><!--
+
+			 	 --><div class="nestedmodule">
+			 			<p>module (nested)</p>
+			 		</div>
+		 		</div>
+
+			</div>
+		</div>
+		<div class="footer">
+			<div class="footerblock1">
+				<p>Pellentesque habitant morbi tristique senectus et netus</p>
+			</div><!--
+
+		 --><div class="footerblock2">
+		 		<p>Pellentesque habitant morbi tristique senectus et netus</p>
+		 	</div><!--
+
+		 --><div class="footerblock3">
+				<p>Pellentesque habitant morbi tristique senectus et netus</p>
+			</div><!--
+
+		 --><div class="footerblock4">
+		 		<p>Pellentesque habitant morbi tristique senectus et netus</p>
+		 	</div><!--
+
+		 --><div class="footerblock5">
+		 		<p>Pellentesque habitant morbi tristique senectus et netus</p>
+		 	</div><!--
+
+		 --><div class="footerblock6">
+				<p>Pellentesque habitant morbi tristique senectus et netus</p>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

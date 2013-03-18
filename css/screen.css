@@ -1,0 +1,81 @@
+.nestedgrid {
+  margin: auto -10px; }
+
+.header, .content-primary, .content-secondary, .nestedmodule, .footerblock1, .footerblock2, .footerblock3, .footerblock4, .footerblock5, .footerblock6, .footerblock7 {
+  width: 100%;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 10px;
+  display: inline-block;
+  vertical-align: top; }
+
+@media only screen and (min-width: 600px) {
+  .nestedgrid {
+    margin: auto -10px; }
+
+  .header, .content-primary, .content-secondary, .nestedmodule, .footerblock1, .footerblock2, .footerblock3, .footerblock4, .footerblock5, .footerblock6, .footerblock7 {
+    width: 100%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 10px;
+    display: inline-block;
+    vertical-align: top; }
+
+  .nestedmodule {
+    width: 50%; }
+
+  .content-secondary, .footerblock1, .footerblock2, .footerblock3, .footerblock4, .footerblock5, .footerblock6, .footerblock7 {
+    width: 33.33333%; }
+
+  .content-primary {
+    width: 66.66667%; } }
+@media only screen and (min-width: 1000px) {
+  .nestedgrid {
+    margin: auto -10px; }
+
+  .header, .content-primary, .content-secondary, .nestedmodule, .footerblock1, .footerblock2, .footerblock3, .footerblock4, .footerblock5, .footerblock6, .footerblock7 {
+    width: 100%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 10px;
+    display: inline-block;
+    vertical-align: top; }
+
+  .nestedmodule {
+    width: 50%; }
+
+  .footerblock1, .footerblock2, .footerblock3, .footerblock4, .footerblock5, .footerblock6, .footerblock7 {
+    width: 16.66667%; }
+
+  .content-secondary {
+    width: 41.66667%; }
+
+  .content-primary {
+    width: 58.33333%; } }
+html {
+  font: normal 87.5%/1.5 Helvetica, Arial, sans-serif; }
+
+.page {
+  max-width: 1500px;
+  margin: 0 auto; }
+
+.header {
+  background: yellow; }
+
+.content {
+  background: purple; }
+
+.content-primary {
+  background: red; }
+
+.content-secondary {
+  background: gray; }
+
+.nestedmodule {
+  background: green; }
+
+.footerblock1, .footerblock2, .footerblock3, .footerblock4, .footerblock5, .footerblock6, .footerblock7 {
+  background: silver; }
