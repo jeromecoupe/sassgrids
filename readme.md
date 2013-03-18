@@ -50,8 +50,8 @@ A **sample scss** file is included in the gh-pages branch of this repo where the
 	.content-secondary
 	{
 		@extend %grid-module; // define as grid module
-		@extend %medium-span-1of3; // span two third at medium screen sizes
-		@extend %large-span-5of12; // span seven twelfths at large screen sizes
+		@extend %medium-span-1of3; // span one third at medium screen sizes
+		@extend %large-span-5of12; // span five twelfths at large screen sizes
 	}
 
 # References
