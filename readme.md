@@ -60,13 +60,17 @@ Provided you have defined two breakpoints and prefixed / namespaced one as "medi
 
 The following silent classes are created for each media queries and namespaces you have created
 
-	%{$namespace}-span1of3
-	%{$namespace}-span2of3
-	%{$namespace}-span1of4
-	%{$namespace}-span2of4
-	%{$namespace}-span3of4
+	%{$namespace}-span-1of3
+	%{$namespace}-span-2of3
+	%{$namespace}-span-1of4
+	%{$namespace}-span-2of4
+	%{$namespace}-span-3of4
 	...
-	%{$namespace}-span11of12
+	%{$namespace}-span-11of12
+
+The %span-full class is also available should you need a grid module to span the full width of your grid at any given breakpoint
+
+	%{$namespace}-span-11of12
 
 # References
 
