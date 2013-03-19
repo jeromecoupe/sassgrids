@@ -1,10 +1,11 @@
 // =grid configuration
 // #####################################
+
 //gutter: only use fixed values (px and rem)
 $gutter: 20px;
 
 //breakpoints: defined using SASS list
-$breakpoints: "medium" "min-width:600px", "large" "min-width:1000px";
+$breakpoints: "medium" "min-width:37.5em", "large" "min-width:62.5em";
 
 // =box sizing
 // #####################################

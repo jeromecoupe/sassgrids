@@ -9,6 +9,17 @@ html
 	font:normal 87.5%/1.5 Helvetica, Arial, sans-serif;
 }
 
+.button
+{
+	display:inline-block;
+	padding:.8em 1em;
+	background:#ccc;
+	color:#333;
+	font:600 90%/1 Helvetica, Arial, sans-serif;
+	text-decoration:none;
+	border-radius:.3em;
+}
+
 // =Layout
 // #####################################
 .page
@@ -25,7 +36,7 @@ html
 
 .content
 {
-	background:#DFC89F;
+	background:#91B83D;
 }
 
 .content-primary
@@ -53,13 +64,13 @@ html
 {
 	background:#C4A74F;
 	@extend %grid-module;
-	@extend %medium-span-1of2;
+	@extend %medium-span-full;
 	@extend %large-span-1of2;
 }
 
 .footerblock1, .footerblock2, .footerblock3, .footerblock4, .footerblock5, .footerblock6, .footerblock7
 {
-	background:#91B83D;
+	background:#898E2F;
 	@extend %grid-module;
 	@extend %medium-span-1of3;
 	@extend %large-span-1of6;
