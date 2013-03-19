@@ -93,4 +93,4 @@ Using box-sizing:border-box; on elements [allows you to use percentage width cou
 
 ## Trent Walton
 
-The concept of [content choreography](http://trentwalton.com/2011/07/14/content-choreography/) is important with RWD projects. The demo inlcudes a small example in the footer, with the first "column" beeing above the five others at large screen sizes.
+The concept of [content choreography](http://trentwalton.com/2011/07/14/content-choreography/) is important with RWD projects. The demo inlcudes a small example in the footer, with the first module beeing above the five others at large screen sizes.
