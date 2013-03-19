@@ -70,7 +70,7 @@ The following silent classes are created for each media queries and namespaces y
 
 The %span-full class is also available should you need a grid module to span the full width of your grid at any given breakpoint
 
-	%{$namespace}-span-11of12
+	%{$namespace}-span-full
 
 # References
 
