@@ -90,3 +90,7 @@ Nice article on [how to handle white-space when using inline-block](http://css-t
 ## Paul Irish
 
 Using box-sizing:border-box; on elements [allows you to use percentage width coupled with fixed value padding / margins](http://paulirish.com/2012/box-sizing-border-box-ftw/).
+
+## Trent Walton
+
+The concept of [content choreography](http://trentwalton.com/2011/07/14/content-choreography/) is important with RWD projects. The demo inlcudes a small example in the footer, with the first "column" beeing above the five others at large screen sizes.
