@@ -21,8 +21,8 @@ I wanted a simple and quick way to design responsive grids in SASS so I built th
 A **sample scss** file is included in the gh-pages branch of this repo where the demo lives.
 
 1. Import _grid.scss in your scss file
-2. Define your gutter and breakpoints
-3. Use silent classes in your scss
+2. Define your gutter, breakpoints and namespaces
+3. Use namespaced silent classes in your scss
 
 ## Example of a simple grid
 
@@ -40,6 +40,8 @@ A **sample scss** file is included in the gh-pages branch of this repo where the
 
 ### SCSS
 
+Provided you have defined two breakpoints and prefixed / namespaced one as "medium" and the other one as "large"
+
 	.content-primary
 	{
 		@extend %grid-module; // define as grid module
@@ -53,6 +55,12 @@ A **sample scss** file is included in the gh-pages branch of this repo where the
 		@extend %medium-span-1of3; // span one third at medium screen sizes
 		@extend %large-span-5of12; // span five twelfths at large screen sizes
 	}
+
+### Available silent classes and proportions
+
+The following silent classes are created for each media queries contexts
+
+%{$namespace}-span1of3 up to %{$namespace}-span11of12
 
 # References
 
