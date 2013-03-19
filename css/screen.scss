@@ -68,10 +68,18 @@ html
 	@extend %large-span-1of2;
 }
 
-.footerblock1, .footerblock2, .footerblock3, .footerblock4, .footerblock5, .footerblock6, .footerblock7
+.footerblock1
 {
 	background:#898E2F;
 	@extend %grid-module;
 	@extend %medium-span-1of3;
-	@extend %large-span-1of6;
+	@extend %large-span-full;
+}
+
+.footerblock2, .footerblock3, .footerblock4, .footerblock5, .footerblock6, .footerblock7
+{
+	background:#898E2F;
+	@extend %grid-module;
+	@extend %medium-span-1of3;
+	@extend %large-span-1of5;
 }
