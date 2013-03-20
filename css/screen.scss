@@ -9,6 +9,17 @@ html
 	font:normal 87.5%/1.5 Helvetica, Arial, sans-serif;
 }
 
+// you can also use the defined breakpoints and media queries in your SCSS "normally"
+// TODO: might have to create a _mixin.scss file now that I think about it
+body
+{
+	background:#fff;
+	@include mq(large)
+	{
+		background:#ccc;
+	}
+}
+
 .button
 {
 	display:inline-block;
@@ -83,3 +94,4 @@ html
 	@extend %medium-span-1of3;
 	@extend %large-span-1of5;
 }
+

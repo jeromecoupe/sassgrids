@@ -61,6 +61,12 @@
 html {
   font: normal 87.5%/1.5 Helvetica, Arial, sans-serif; }
 
+body {
+  background: #fff; }
+  @media only screen and (min-width: 62.5em) {
+    body {
+      background: #ccc; } }
+
 .button {
   display: inline-block;
   padding: 0.8em 1em;
