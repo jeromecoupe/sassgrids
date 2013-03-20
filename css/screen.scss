@@ -20,6 +20,8 @@ body
 	}
 }
 
+// =Links
+// #####################################
 .button
 {
 	display:inline-block;
@@ -77,6 +79,11 @@ body
 	@extend %grid-module;
 	@extend %medium-span-full;
 	@extend %large-span-1of2;
+}
+
+.footer
+{
+	background:#898E2F;
 }
 
 .footerblock1
