@@ -45,20 +45,21 @@ Provided you have defined two breakpoints and prefixed / namespaced one as "medi
 	.content-primary
 	{
 		@extend %grid-module; // define as grid module
-		@extend %medium-span-2of3; // span two third at medium screen sizes
-		@extend %large-span-7of12; // span seven twelfths at large screen sizes
+		@extend %medium-span-2of3; // span two third of its parent's width at medium screen sizes
+		@extend %large-span-7of12; // span seven twelfths of its parent's width at large screen sizes
 	}
 
 	.content-secondary
 	{
 		@extend %grid-module; // define as grid module
-		@extend %medium-span-1of3; // span one third at medium screen sizes
-		@extend %large-span-5of12; // span five twelfths at large screen sizes
+		@extend %medium-span-1of3; // span one third of its parent's width at medium screen sizes
+		@extend %large-span-5of12; // span five twelfths of its parent's width at large screen sizes
 	}
 
 ### Available silent classes and proportions
 
-The following silent classes are created for each media queries and namespaces you have created
+The following silent classes are created for each media queries and namespaces you have created.
+Remember that we are talking about proportional grids. Each of these classes mean "spanning one third of its parent's width"
 
 	%{$namespace}-span-1of3
 	%{$namespace}-span-2of3
