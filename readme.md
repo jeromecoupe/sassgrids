@@ -29,6 +29,8 @@ A **sample scss** file is included in the gh-pages branch of this repo where the
 
 ### HTML
 
+Since this is using inline-block and not floats, comments must be in there to alleviate the fact that [many browsers account for white-space between inline-block elements](http://css-tricks.com/fighting-the-space-between-inline-block-elements/).
+
 	<div class="page">
 		<div class="content-primary">
 			<p>Primary Content</p>
