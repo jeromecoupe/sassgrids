@@ -69,7 +69,7 @@ Remember that we are talking about proportional grids. Each of these classes mea
 	...
 	%{$namespace}-span-11of12
 
-The %span-full class is also available should you need a grid module to span the full width of your grid at any given breakpoint
+Grid modules have a default width of 100%. The %span-full class is also available should you need a grid module to span the full width of your grid at any given breakpoint
 
 	%{$namespace}-span-full
 
