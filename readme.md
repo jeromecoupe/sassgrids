@@ -59,7 +59,7 @@ Provided you have defined two breakpoints and prefixed / namespaced one as "medi
 ### Available silent classes and proportions
 
 The following silent classes are created for each media queries and namespaces you have created.
-Remember that we are talking about proportional grids. Each of these classes mean "spanning one third of its parent's width"
+Remember that we are talking about proportional grids. Each of these classes mean "spanning [proportion] of its parent's width"
 
 	%{$namespace}-span-1of3
 	%{$namespace}-span-2of3
