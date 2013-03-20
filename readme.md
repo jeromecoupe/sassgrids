@@ -23,6 +23,7 @@ A **sample scss** file is included in the gh-pages branch of this repo where the
 1. Import _grid.scss in your scss file
 2. Define your gutter, breakpoints and namespaces
 3. Use namespaced silent classes in your scss
+4. Defined media queries and breakpoints can also be used "normally" in your SASS file
 
 ## Example of a simple grid
 
@@ -72,6 +73,19 @@ Remember that we are talking about proportional grids. Each of these classes mea
 Grid modules have a default width of 100%. The %span-full class is also available should you need a grid module to span the full width of your grid at any given breakpoint
 
 	%{$namespace}-span-full
+
+### Using defined breakpoints and media-queries in your SCSS
+
+Obviously, you can also use defined breakpoints and media-queries in your SCSS files for something else than layout / grids
+
+	body
+	{
+		background:#fff;
+		@include mq(large)
+		{
+			background:#ccc;
+		}
+	}
 
 # References
 
