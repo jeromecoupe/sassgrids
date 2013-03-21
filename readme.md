@@ -88,7 +88,7 @@ Obviously, you can also use defined breakpoints and media-queries in your SCSS f
 		}
 	}
 
-## References
+## Shoutouts
 
 ### Harry Roberts
 
