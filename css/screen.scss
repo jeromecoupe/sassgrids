@@ -1,4 +1,4 @@
-// =imports
+// =Imports
 // #####################################
 @import "imports/variables";
 @import "imports/mixins";
@@ -8,17 +8,16 @@
 // #####################################
 html
 {
-	font:normal 87.5%/1.5 Helvetica, Arial, sans-serif;
+	font:normal 87.5%/1.5 "Lucida Grande",Helvetica, Arial, sans-serif;
 }
 
 // Obviously, you can also use the defined breakpoints and media queries in your SCSS
-// Only the grid silent classes are namespaced
 body
 {
 	background:#fff;
 	@include mq(large)
 	{
-		background:#f4f4f4;
+		background:#D4D4D4;
 	}
 }
 
@@ -27,15 +26,21 @@ body
 .button
 {
 	display:inline-block;
-	padding:.8em 1em;
-	background:#ccc;
-	color:#333;
-	font:600 90%/1 Helvetica, Arial, sans-serif;
+	padding:1em 1.5em;
+	background:#404040;
+	color:#d9d9d9;
+	font:600 85%/1 Helvetica, Arial, sans-serif;
 	text-decoration:none;
+	text-transform:uppercase;
 	border-radius:.3em;
+
+	&:hover
+	{
+		background:#1f1f1f;
+	}
 }
 
-// =Layout
+// =Grid Layout
 // #####################################
 .page
 {
@@ -45,18 +50,18 @@ body
 
 .header
 {
-	background:#898E2F;
+	background:#BF5940;
 	@extend %grid-module;
 }
 
 .content
 {
-	background:#91B83D;
+	background:#D28C79;
 }
 
 .content-primary
 {
-	background:#AEB43C;
+	background:#C4744F;
 	@extend %grid-module;
 	@extend %medium-span-2of3;
 	@extend %large-span-7of12;
@@ -64,7 +69,7 @@ body
 
 .content-secondary
 {
-	background:#C4C04F;
+	background:#9D5034;
 	@extend %grid-module;
 	@extend %medium-span-1of3;
 	@extend %large-span-5of12;
@@ -77,7 +82,7 @@ body
 
 .nestedmodule
 {
-	background:#C4A74F;
+	background:#DD442C;
 	@extend %grid-module;
 	@extend %medium-span-full;
 	@extend %large-span-1of2;
@@ -85,12 +90,12 @@ body
 
 .footer
 {
-	background:#898E2F;
+	background:#BF5940;
 }
 
 .footerblock1
 {
-	background:#898E2F;
+	background:#BF5940;
 	@extend %grid-module;
 	@extend %medium-span-1of3;
 	@extend %large-span-full;
@@ -98,7 +103,7 @@ body
 
 .footerblock2, .footerblock3, .footerblock4, .footerblock5, .footerblock6, .footerblock7
 {
-	background:#898E2F;
+	background:#BF5940;
 	@extend %grid-module;
 	@extend %medium-span-1of3;
 	@extend %large-span-1of5;

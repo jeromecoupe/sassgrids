@@ -1,25 +1,25 @@
 .nestedgrid {
-  margin: auto -10px; }
+  margin: auto -20px; }
 
 .header, .content-primary, .content-secondary, .nestedmodule, .footerblock1, .footerblock2, .footerblock3, .footerblock4, .footerblock5, .footerblock6, .footerblock7 {
   width: 100%;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 0 10px;
+  padding: 0 20px;
   display: inline-block;
   vertical-align: top; }
 
 @media only screen and (min-width: 37.5em) {
   .nestedgrid {
-    margin: auto -10px; }
+    margin: auto -20px; }
 
   .header, .content-primary, .content-secondary, .nestedmodule, .footerblock1, .footerblock2, .footerblock3, .footerblock4, .footerblock5, .footerblock6, .footerblock7 {
     width: 100%;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    padding: 0 10px;
+    padding: 0 20px;
     display: inline-block;
     vertical-align: top; }
 
@@ -33,14 +33,14 @@
     width: 66.66667%; } }
 @media only screen and (min-width: 62.5em) {
   .nestedgrid {
-    margin: auto -10px; }
+    margin: auto -20px; }
 
   .header, .content-primary, .content-secondary, .nestedmodule, .footerblock1, .footerblock2, .footerblock3, .footerblock4, .footerblock5, .footerblock6, .footerblock7 {
     width: 100%;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    padding: 0 10px;
+    padding: 0 20px;
     display: inline-block;
     vertical-align: top; }
 
@@ -59,47 +59,50 @@
   .content-primary {
     width: 58.33333%; } }
 html {
-  font: normal 87.5%/1.5 Helvetica, Arial, sans-serif; }
+  font: normal 87.5%/1.5 "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 body {
   background: #fff; }
   @media only screen and (min-width: 62.5em) {
     body {
-      background: #f4f4f4; } }
+      background: #D4D4D4; } }
 
 .button {
   display: inline-block;
-  padding: 0.8em 1em;
-  background: #ccc;
-  color: #333;
-  font: 600 90%/1 Helvetica, Arial, sans-serif;
+  padding: 1em 1.5em;
+  background: #404040;
+  color: #d9d9d9;
+  font: 600 85%/1 Helvetica, Arial, sans-serif;
   text-decoration: none;
+  text-transform: uppercase;
   border-radius: .3em; }
+  .button:hover {
+    background: #1f1f1f; }
 
 .page {
   max-width: 1500px;
   margin: 0 auto; }
 
 .header {
-  background: #898E2F; }
+  background: #BF5940; }
 
 .content {
-  background: #91B83D; }
+  background: #D28C79; }
 
 .content-primary {
-  background: #AEB43C; }
+  background: #C4744F; }
 
 .content-secondary {
-  background: #C4C04F; }
+  background: #9D5034; }
 
 .nestedmodule {
-  background: #C4A74F; }
+  background: #DD442C; }
 
 .footer {
-  background: #898E2F; }
+  background: #BF5940; }
 
 .footerblock1 {
-  background: #898E2F; }
+  background: #BF5940; }
 
 .footerblock2, .footerblock3, .footerblock4, .footerblock5, .footerblock6, .footerblock7 {
-  background: #898E2F; }
+  background: #BF5940; }
