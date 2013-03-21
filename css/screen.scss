@@ -1,5 +1,7 @@
 // =imports
 // #####################################
+@import "imports/variables";
+@import "imports/mixins";
 @import "imports/grid";
 
 // =Typography
@@ -9,14 +11,14 @@ html
 	font:normal 87.5%/1.5 Helvetica, Arial, sans-serif;
 }
 
-// you can also use the defined breakpoints and media queries in your SCSS "normally"
-// TODO: might have to create a _mixin.scss file now that I think about it
+// Obviously, you can also use the defined breakpoints and media queries in your SCSS
+// Only the grid silent classes are namespaced
 body
 {
 	background:#fff;
 	@include mq(large)
 	{
-		background:#ccc;
+		background:#f4f4f4;
 	}
 }
 
@@ -101,4 +103,3 @@ body
 	@extend %medium-span-1of3;
 	@extend %large-span-1of5;
 }
-

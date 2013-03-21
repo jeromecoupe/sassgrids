@@ -1,113 +1,83 @@
-// =grid configuration
-// #####################################
-
-//gutter: only use fixed values (px and rem)
-$gutter: 20px;
-
-//breakpoints: defined using SASS list
-$breakpoints: "medium" "min-width:37.5em", "large" "min-width:62.5em";
-
-// =box sizing
-// #####################################
-@mixin box-sizing($type:border-box)
-{
-    -moz-box-sizing: $type;
-    -webkit-box-sizing: $type;
-    box-sizing: $type;
-}
-
-// =media-queries
-// #####################################
-@mixin mq($media-query)
-{
-	@each $breakpoint in $breakpoints
-	{
-		$prefix:	nth($breakpoint, 1);
-		$param: 	nth($breakpoint, 2);
-
-		@if ($prefix != "") and ($param !="")
-		{
-			@if ($media-query == $prefix)
-			{
-				@media only screen and (#{$param}) { @content; }
-			}
-		}
-		@else
-		{
-			@warn "media queries parameters not defined";
-		}
-	}
-}
-
-
 // =grid
 // #####################################
 @mixin mygrid($namespace:"")
 {
-	//create namespace
-	@if ($namespace != "")
-	{
-		$namespace:"#{$namespace}-";
-	}
+    //create namespace from the media-queries mixin
+    @if ($namespace != "")
+    {
+        $namespace:"#{$namespace}-";
+    }
 
-	// use negative margins to reset margins on nested grids
-	%grid-nested
-	{
-		margin:auto (-($gutter / 2));
-	}
+    // use negative margins to reset margins on nested grids
+    %grid-nested
+    {
+        margin:auto (-($gutter / 2));
+    }
 
-	// - 1. grid modules are 100% by default (you have to specify desired width in all media queries, otherwise it will not work)
-	// - 2. allow for paddings using pixels and rems
-	// - 3. gutters created using padding
-	// - 4. using inline-block to stack the modules side by side
-	// - 5. align top of modules
+    // - 1. grid modules are 100% by default (you have to specify desired width in all media queries, otherwise it will not work)
+    // - 2. allows for paddings using pixels and rems
+    // - 3. gutters created using padding
+    // - 4. using inline-block to stack the modules side by side (comment out white space in html)
+    // - 5. align top of modules
 
-	%grid-module
-	{
-		width:100%;							// [1]
-		@include box-sizing(border-box);	// [2]
-		padding:0 ($gutter / 2);			// [3]
-		display:inline-block;				// [4]
-		vertical-align:top;					// [5]
-	}
+    %grid-module
+    {
+        width:100%;                         // [1]
+        @include box-sizing(border-box);    // [2]
+        padding:0 ($gutter / 2);            // [3]
+        display:inline-block;               // [4]
+        vertical-align:top;                 // [5]
+    }
 
-	%#{$namespace}span-full
-	{
-		width:100%;
-	}
+    // use when you want your module to span the whole width of its container
 
-	@for $i from 1 through 12
-	{
-		@for $j from 1 to ($i)
-		{
-			%#{$namespace}span-#{$j}of#{$i}
-			{
-				width:(100% / $i) * $j;
-			}
-		}
-	}
+    %#{$namespace}span-full
+    {
+        width:100%;
+    }
+
+    // creates namespaced silent classes (namespace is defined in _variables.scss)
+    // %namespace-span-1of2
+    // %namespace-span-1of3
+    // %namespace-span-2of3
+    // %namespace-span-1of4
+    // %namespace-span-2of4
+    // %namespace-span-3of4
+    // ...
+    // %namespace-span-11of12
+
+    @for $i from 1 through 12
+    {
+        @for $j from 1 to ($i)
+        {
+            %#{$namespace}span-#{$j}of#{$i}
+            {
+                width:(100% / $i) * $j;
+            }
+        }
+    }
 }
 
 // =export grid in all media-queries
 // #####################################
 // the order is important here as it determines the order of CSS rules in generated file
-// note that, in your SCSS, you need to define a width for each media queries
+// NOTE: in your SCSS, you need to define a width for each media queries for it to work properly
 
 @include mygrid();
 
 @each $breakpoint in $breakpoints
 {
-	$prefix: nth($breakpoint, 1);
+    $prefix: nth($breakpoint, 1);
 
-	@if ($prefix != "")
-	{
-		@include mq($prefix)
-		{
-			@include mygrid("#{$prefix}");
-		}
-	}
-	@else
-	{
-		@warn "media queries prefixes not defined";
-	}
+    @if ($prefix != "")
+    {
+        @include mq($prefix)
+        {
+            @include mygrid("#{$prefix}");
+        }
+    }
+    @else
+    {
+        @warn "media queries prefixes not defined";
+    }
 }

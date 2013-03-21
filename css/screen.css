@@ -65,7 +65,7 @@ body {
   background: #fff; }
   @media only screen and (min-width: 62.5em) {
     body {
-      background: #ccc; } }
+      background: #f4f4f4; } }
 
 .button {
   display: inline-block;
