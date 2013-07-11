@@ -16,7 +16,7 @@ I wanted a simple and quick way to design responsive grids in SASS so I built th
 
 ## Demo
 
-[Here is a small demo](http://jeromecoupe.github.com/sassgrids/) of a grid in action.
+[Here is a small demo](http://jeromecoupe.github.io/sassgrids/) of a grid in action.
 
 A **sample scss** file is included in the gh-pages branch of this repo where the demo lives.
 
