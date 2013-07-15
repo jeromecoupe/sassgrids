@@ -1,61 +1,169 @@
-// =grid
+// =grid general silent classes
 // #####################################
-@mixin mygrid($namespace:"")
+
+// use negative margins to reset margins on nested grids
+%grid-nested
 {
-    //create namespace from the media-queries mixin
+    margin:auto (-($gutter / 2));
+}
+
+// - 1. grid modules are 100% by default (you have to specify desired width in all media queries, otherwise it will not work)
+// - 2. allows for paddings using pixels and rems
+// - 3. gutters created using padding
+// - 4. using inline-block to stack the modules side by side (comment out white space in html)
+// - 5. align top of modules
+
+%grid-module
+{
+    width:100%;                         // [1]
+    @include box-sizing(border-box);    // [2]
+    padding:0 ($gutter / 2);            // [3]
+    display:inline-block;               // [4]
+    vertical-align:top;                 // [5]
+}
+
+// =main grid Mixin
+// #####################################
+@mixin maingrid($namespace:"")
+{
+    //@for $i from 1 through 12
+    //{
+    //    @for $j from 1 to ($i)
+    //    {
+    //        %#{$namespace}span-#{$j}of#{$i}
+    //        {
+    //            width:(100% / $i) * $j;
+    //        }
+    //    }
+    //}
+
     @if ($namespace != "")
     {
-        $namespace:"#{$namespace}-";
+        $namespace: $namespace + "-";
     }
 
-    // use negative margins to reset margins on nested grids
-    %grid-nested
+    %#{$namespace}span-full            { width:100%; }
+
+    %#{$namespace}span-1of2            { width:50%; }
+
+    %#{$namespace}span-1of3            { width:33.333%; }
+    %#{$namespace}span-2of3            { width:66.666%; }
+
+    %#{$namespace}span-1of4            { width:25%; }
+    %#{$namespace}span-2of4            { @extend %#{$namespace}span-1of2; }
+    %#{$namespace}span-3of4            { width:75%; }
+
+    %#{$namespace}span-1of5            { width:20%; }
+    %#{$namespace}span-2of5            { width:40%; }
+    %#{$namespace}span-3of5            { width:60%; }
+    %#{$namespace}span-4of5            { width:80%; }
+
+    %#{$namespace}span-1of6            { width:16.666%; }
+    %#{$namespace}span-2of6            { @extend %#{$namespace}span-1of2; }
+    %#{$namespace}span-3of6            { @extend %#{$namespace}span-1of3; }
+    %#{$namespace}span-4of6            { @extend %#{$namespace}span-2of3; }
+    %#{$namespace}span-5of6            { width:83.333%; }
+
+    %#{$namespace}span-1of8            { width:12.5%; }
+    %#{$namespace}span-2of8            { @extend %#{$namespace}span-1of4; }
+    %#{$namespace}span-3of8            { width:37.5%; }
+    %#{$namespace}span-4of8            { @extend %#{$namespace}span-1of2; }
+    %#{$namespace}span-5of8            { width:62.5%; }
+    %#{$namespace}span-6of8            { @extend %#{$namespace}span-3of4; }
+    %#{$namespace}span-7of8            { width:87.5%; }
+
+    %#{$namespace}span-1of10            { width:10%; }
+    %#{$namespace}span-2of10            { @extend %#{$namespace}span-1of5; }
+    %#{$namespace}span-3of10            { width:30%; }
+    %#{$namespace}span-4of10            { @extend %#{$namespace}span-2of5; }
+    %#{$namespace}span-5of10            { @extend %#{$namespace}span-1of2; }
+    %#{$namespace}span-6of10            { @extend %#{$namespace}span-3of5; }
+    %#{$namespace}span-7of10            { width:70%; }
+    %#{$namespace}span-8of10            { @extend %#{$namespace}span-4of5; }
+    %#{$namespace}span-9of10            { width:90%; }
+
+    %#{$namespace}span-1of12            { width:8.333%; }
+    %#{$namespace}span-2of12            { @extend %#{$namespace}span-1of6; }
+    %#{$namespace}span-3of12            { @extend %#{$namespace}span-1of4; }
+    %#{$namespace}span-4of12            { @extend %#{$namespace}span-1of3; }
+    %#{$namespace}span-5of12            { width:41.666% }
+    %#{$namespace}span-6of12            { @extend %#{$namespace}span-1of2; }
+    %#{$namespace}span-7of12            { width:58.333%; }
+    %#{$namespace}span-8of12            { @extend %#{$namespace}span-2of3; }
+    %#{$namespace}span-9of12            { @extend %#{$namespace}span-3of4; }
+    %#{$namespace}span-10of12           { @extend %#{$namespace}span-5of6; }
+    %#{$namespace}span-11of12           { width:91.666%; }
+}
+
+@mixin pushclasses($namespace:"")
+{
+    //@for $i from 1 through 12
+    //{
+    //    @for $j from 1 to ($i)
+    //    {
+    //        %#{$namespace}span-#{$j}of#{$i}
+    //        {
+    //            width:(100% / $i) * $j;
+    //        }
+    //    }
+    //}
+
+    @if ($namespace != "")
     {
-        margin:auto (-($gutter / 2));
+        $namespace: $namespace + "-";
     }
 
-    // - 1. grid modules are 100% by default (you have to specify desired width in all media queries, otherwise it will not work)
-    // - 2. allows for paddings using pixels and rems
-    // - 3. gutters created using padding
-    // - 4. using inline-block to stack the modules side by side (comment out white space in html)
-    // - 5. align top of modules
+    %#{$namespace}push-full            { position:relative; left:100%; }
 
-    %grid-module
-    {
-        width:100%;                         // [1]
-        @include box-sizing(border-box);    // [2]
-        padding:0 ($gutter / 2);            // [3]
-        display:inline-block;               // [4]
-        vertical-align:top;                 // [5]
-    }
+    %#{$namespace}push-1of2            { position:relative; left:50%; }
 
-    // use when you want your module to span the whole width of its container
+    %#{$namespace}push-1of3            { position:relative; left:33.333%; }
+    %#{$namespace}push-2of3            { position:relative; left:66.666%; }
 
-    %#{$namespace}span-full
-    {
-        width:100%;
-    }
+    %#{$namespace}push-1of4            { position:relative; left:25%; }
+    %#{$namespace}push-2of4            { @extend %#{$namespace}push-1of2; }
+    %#{$namespace}push-3of4            { position:relative; left:75%; }
 
-    // creates namespaced silent classes
-    // %namespace-span-1of2
-    // %namespace-span-1of3
-    // %namespace-span-2of3
-    // %namespace-span-1of4
-    // %namespace-span-2of4
-    // %namespace-span-3of4
-    // ...
-    // %namespace-span-11of12
+    %#{$namespace}push-1of5            { position:relative; left:20%; }
+    %#{$namespace}push-2of5            { position:relative; left:40%; }
+    %#{$namespace}push-3of5            { position:relative; left:60%; }
+    %#{$namespace}push-4of5            { position:relative; left:80%; }
 
-    @for $i from 1 through 12
-    {
-        @for $j from 1 to ($i)
-        {
-            %#{$namespace}span-#{$j}of#{$i}
-            {
-                width:(100% / $i) * $j;
-            }
-        }
-    }
+    %#{$namespace}push-1of6            { position:relative; left:16.666%; }
+    %#{$namespace}push-2of6            { @extend %#{$namespace}push-1of2; }
+    %#{$namespace}push-3of6            { @extend %#{$namespace}push-1of3; }
+    %#{$namespace}push-4of6            { @extend %#{$namespace}push-2of3; }
+    %#{$namespace}push-5of6            { position:relative; left:83.333%; }
+
+    %#{$namespace}push-1of8            { position:relative; left:12.5%; }
+    %#{$namespace}push-2of8            { @extend %#{$namespace}push-1of4; }
+    %#{$namespace}push-3of8            { position:relative; left:37.5%; }
+    %#{$namespace}push-4of8            { @extend %#{$namespace}push-1of2; }
+    %#{$namespace}push-5of8            { position:relative; left:62.5%; }
+    %#{$namespace}push-6of8            { @extend %#{$namespace}push-3of4; }
+    %#{$namespace}push-7of8            { position:relative; left:87.5%; }
+
+    %#{$namespace}push-1of10            { position:relative; left:10%; }
+    %#{$namespace}push-2of10            { @extend %#{$namespace}push-1of5; }
+    %#{$namespace}push-3of10            { position:relative; left:30%; }
+    %#{$namespace}push-4of10            { @extend %#{$namespace}push-2of5; }
+    %#{$namespace}push-5of10            { @extend %#{$namespace}push-1of2; }
+    %#{$namespace}push-6of10            { @extend %#{$namespace}push-3of5; }
+    %#{$namespace}push-7of10            { position:relative; left:70%; }
+    %#{$namespace}push-8of10            { @extend %#{$namespace}push-4of5; }
+    %#{$namespace}push-9of10            { position:relative; left:90%; }
+
+    %#{$namespace}push-1of12            { position:relative; left:8.333%; }
+    %#{$namespace}push-2of12            { @extend %#{$namespace}push-1of6; }
+    %#{$namespace}push-3of12            { @extend %#{$namespace}push-1of4; }
+    %#{$namespace}push-4of12            { @extend %#{$namespace}push-1of3; }
+    %#{$namespace}push-5of12            { position:relative; left:41.666% }
+    %#{$namespace}push-6of12            { @extend %#{$namespace}push-1of2; }
+    %#{$namespace}push-7of12            { position:relative; left:58.333%; }
+    %#{$namespace}push-8of12            { @extend %#{$namespace}push-2of3; }
+    %#{$namespace}push-9of12            { @extend %#{$namespace}push-3of4; }
+    %#{$namespace}push-10of12           { @extend %#{$namespace}push-5of6; }
+    %#{$namespace}push-11of12           { position:relative; left:91.666%; }
 }
 
 // =export grid in all media-queries
@@ -63,7 +171,8 @@
 // the order is important here as it determines the order of CSS rules in generated file
 // NOTE: in your SCSS, you need to define a width for each media queries for it to work properly
 
-@include mygrid();
+@include maingrid();
+@include pushclasses();
 
 @each $breakpoint in $breakpoints
 {
@@ -73,7 +182,8 @@
     {
         @include mq($prefix)
         {
-            @include mygrid("#{$prefix}");
+            @include maingrid("#{$prefix}");
+            @include pushclasses();
         }
     }
     @else

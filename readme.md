@@ -63,11 +63,16 @@ Provided you have defined two breakpoints and prefixed / namespaced one as "medi
 
 The following silent classes are created for each media queries and namespaces you have created. We are talking about proportional grids so these classes mean "spanning [proportion] of its parent's width".
 
+	%{$namespace}-span-1of2
 	%{$namespace}-span-1of3
 	%{$namespace}-span-2of3
 	%{$namespace}-span-1of4
 	%{$namespace}-span-2of4
 	%{$namespace}-span-3of4
+	%{$namespace}-span-1of5
+	%{$namespace}-span-2of5
+	%{$namespace}-span-3of5
+	%{$namespace}-span-4of5
 	...
 	%{$namespace}-span-11of12
 
@@ -94,10 +99,10 @@ Obviously, you can also use defined breakpoints and media-queries in your SCSS f
 
 If you need a solid SASS framework, check out [inuit.css](http://inuitcss.com/) and [csswizardry-grids](https://github.com/csswizardry/csswizardry-grids). These were a huge inspiration for this and I share a lot of [Harry's views on proportional grids and namespaced classes](http://csswizardry.com/2013/02/responsive-grid-systems-a-solution/).
 
-However, there were two things that didn't quite suit my workflow:
+However, there were two things that didn't quite suit me:
 
-- you have to use nested elements to apply backgrounds to grid modules
 - the grid layout (gutters = number columns - 1) was not inuitive to me, I prefer to have even padding on each side of my modules.
+- Harry's system, albeit simpler than many others I have seen, is already quite complex because it caters for many use cases (silent classes or not, etc.). Buy developing my own thing, I could make it simpler.
 
 ### Chris Coyier
 
