@@ -1,13 +1,21 @@
+// -------------------------------------
 // =grid configuration
-// #####################################
+// -------------------------------------
 
-//gutter: only use fixed values (px and rem)
-$gutter: 20px;
+// gutter: only use fixed values (px and rem)
+$gutter: 40px!default;
 
-//breakpoints: defined using SASS list: "namespace" "params"
-//used to create media queries that you can reference using mq(namespace) in your SCSS
-$breakpoints:   "medium" "(min-width:37.5em)",
-                "large" "(min-width:62.5em)";
+// breakpoints: defined using SASS list: "namespace" "params"
+// used to create media queries that you can reference using mq(namespace) in your SCSS
+$breakpoints:(
+			"medium" "(min-width:37.5em)",
+            "large" "(min-width:62.5em)"
+            )!default;
 
+// switch to false if you do not want to use push and pull classes
+$use-push-classes: true!default;
+$use-pull-classes: true!default;
+
+// -------------------------------------
 // =Other variables
-// #####################################
+// -------------------------------------
