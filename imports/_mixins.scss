@@ -18,7 +18,7 @@
 	@each $breakpoint in $breakpoints
 	{
 		$namespace:		nth($breakpoint, 1);
-		$parameters: 	nth($breakpoint, 2);
+		$parameters:	nth($breakpoint, 2);
 
 		@if ($namespace != "") and ($parameters !="")
 		{
