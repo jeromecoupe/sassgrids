@@ -65,7 +65,8 @@ body
 	background:#C4744F;
 	@extend %grid-module;
 	@extend %medium-span-2of3;
-	@extend %large-span-7of12;
+	@extend %large-span-6of12;
+	@extend %large-push-1of12;
 }
 
 .content-secondary
