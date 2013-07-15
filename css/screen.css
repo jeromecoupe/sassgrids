@@ -51,36 +51,24 @@ body {
     body {
       background: #D4D4D4; } }
 
-.button {
-  display: inline-block;
-  padding: 1em 1.5em;
-  background: #404040;
-  color: #d9d9d9;
-  font: 600 85%/1 Helvetica, Arial, sans-serif;
-  text-decoration: none;
-  text-transform: uppercase;
-  border-radius: .3em; }
-  .button:hover {
-    background: #1f1f1f; }
-
 .page {
   max-width: 1500px;
   margin: 0 auto; }
 
 .header {
-  background: #BF5940; }
+  background: #7F0000; }
 
 .content {
-  background: #D28C79; }
+  background: #FF4C4C; }
 
 .content-primary {
-  background: green; }
+  background: #FF0000; }
 
 .content-secondary {
-  background: #9D5034; }
+  background: #CC0000; }
 
 .nestedmodule {
-  background: #DD442C; }
+  background: #B20000; }
 
 .footer {
   background: #BF5940; }

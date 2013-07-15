@@ -4,8 +4,6 @@
 
 // 1. SASS Imports
 // 2. Typography
-// 		2.1. Main styles
-//		2.2. Links
 // 3. Grid Layout
 
 
@@ -20,9 +18,6 @@
 
 // -------------------------------------
 // =Typography
-// -------------------------------------
-
-// =Main styles
 // -------------------------------------
 
 html
@@ -42,27 +37,6 @@ body
 }
 
 
-// =Links
-// -------------------------------------
-
-.button
-{
-	display:inline-block;
-	padding:1em 1.5em;
-	background:#404040;
-	color:#d9d9d9;
-	font:600 85%/1 Helvetica, Arial, sans-serif;
-	text-decoration:none;
-	text-transform:uppercase;
-	border-radius:.3em;
-
-	&:hover
-	{
-		background:#1f1f1f;
-	}
-}
-
-
 // -------------------------------------
 // =Grid Layout
 // -------------------------------------
@@ -75,18 +49,18 @@ body
 
 .header
 {
-	background:#BF5940;
+	background:#7F0000;
 	@extend %grid-module; //takes 100% of the available space in the parent (all breakpoints)
 }
 
 .content
 {
-	background:#D28C79;
+	background:#FF4C4C;
 }
 
 .content-primary
 {
-	background:green;
+	background:#FF0000;
 	@extend %grid-module;		// takes 100% of the available space in the parent (default small screens)
 	@extend %medium-span-2of3;	// takes 2/3 of the available space in the parent (medium breakpoint)
 	@extend %large-span-7of12;	// takes 7/12 of the available space in the parent (large breakpoint)
@@ -95,7 +69,7 @@ body
 
 .content-secondary
 {
-	background:#9D5034;
+	background:#CC0000;
 	@extend %grid-module;		// takes 100% of the available space in the parent (default small screens)
 	@extend %medium-span-1of3;	// takes 1/3 of the available space in the parent (medium breakpoint)
 	@extend %large-span-5of12;	// takes 5/12 of the available space in the parent (large breakpoint)
@@ -109,7 +83,7 @@ body
 
 .nestedmodule
 {
-	background:#DD442C;
+	background:#B20000;
 	@extend %grid-module;
 	@extend %medium-span-full;
 	@extend %large-span-1of2;
