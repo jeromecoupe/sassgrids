@@ -8,7 +8,7 @@ $gutter: 40px!default;
 // breakpoints: defined using SASS list: "namespace" "params"
 // used to create media queries that you can reference using mq(namespace) in your SCSS
 $breakpoints:(
-			"medium" "(min-width:37.5em)",
+            "medium" "(min-width:37.5em)",
             "large" "(min-width:62.5em)"
             )!default;
 
