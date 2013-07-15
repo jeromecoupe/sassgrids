@@ -1,10 +1,10 @@
-# SASS grids
+# Sass grids
 
-Simple experiment to create grids in SASS
+Simple experiment to create grids in Sass
 
 ## Goals
 
-I wanted a simple and quick way to design responsive grids in SASS so I built this little set of mixins that allow you to use namespaced classes and silent SASS selectors to create a mobile first grid very rapidly. Set goals:
+I wanted a simple and quick way to design responsive grids in Sass so I built this little set of mixins that allow you to use namespaced classes and silent Sass selectors to create a mobile first grid very rapidly. Set goals:
 
 - Responsive
 - Mobile First
@@ -26,7 +26,7 @@ You can have a look at a sample SCSS file in the [gh-pages branch](https://githu
 1. Import SCSS files
 2. Define your gutters, breakpoints and namespaces
 3. Use namespaced silent classes in your SCSS
-4. Defined media queries and breakpoints can also be used "normally" in your SASS file
+4. Defined media queries and breakpoints can also be used "normally" in your Sass file
 
 ## Example: simple grid
 
@@ -169,13 +169,13 @@ Obviously, you can also use defined breakpoints and media-queries in your SCSS f
 
 ### Harry Roberts
 
-If you need a solid SASS framework, check out [inuit.css](http://inuitcss.com/) and [csswizardry-grids](https://github.com/csswizardry/csswizardry-grids). These were a huge inspiration for this and I share a lot of [Harry's views on proportional grids and namespaced classes](http://csswizardry.com/2013/02/responsive-grid-systems-a-solution/).
+If you need a solid Sass framework, check out [inuit.css](http://inuitcss.com/) and [csswizardry-grids](https://github.com/csswizardry/csswizardry-grids). These were a huge inspiration for this and I share a lot of [Harry's views on proportional grids and namespaced classes](http://csswizardry.com/2013/02/responsive-grid-systems-a-solution/).
 
 However, there were a few things that prompted me to create my own thing:
 
 - the grid layout (gutters = number columns - 1) was not inuitive to me, I prefer to have even padding on each side of my modules.
 - Harry's system, albeit simpler than many others I have seen, caters for many use cases that I don't need (silent classes or not, etc.). Buy developing my own thing, I could make it simpler and adapt it more easily to each project
-- I wanted to understand this fully and it was a good excuse to learn some SASS
+- I wanted to understand this fully and it was a good excuse to learn some Sass
 
 ### Chris Coyier
 
