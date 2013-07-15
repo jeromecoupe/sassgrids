@@ -62,11 +62,11 @@ body
 
 .content-primary
 {
-	background:#C4744F;
+	background:green;
 	@extend %grid-module;
 	@extend %medium-span-2of3;
-	@extend %large-span-6of12;
-	@extend %large-push-1of12;
+	@extend %large-span-7of12;
+	@extend %large-push-5of12;
 }
 
 .content-secondary
@@ -75,6 +75,7 @@ body
 	@extend %grid-module;
 	@extend %medium-span-1of3;
 	@extend %large-span-5of12;
+	@extend %large-pull-7of12;
 }
 
 .nestedgrid

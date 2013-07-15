@@ -15,6 +15,9 @@
 	<!-- CSS -->
 	<link rel="stylesheet" media="screen" href="css/screen.css" />
 
+	<!-- Modernizr (all other scripts at the end of <body>) -->
+	<script src="/js/libs/modernizr.custom.262.js"></script>
+
 </head>
 <body>
 
@@ -36,7 +39,7 @@
 
 		<div class="content">
 			<div class="content-primary">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque alias tempora ratione assumenda quis laboriosam iure sapiente tempore perspiciatis rem quisquam eius nobis. Praesentium in earum illum ex eius. Explicabo.</p>
+				<p>Using pull and pull silent classes on .content-primary and .content-secondary to change the visual order in which they appear at large screen sizes.</p>
 				<p><a href="css/screen.scss" class="button">sample scss file</a></p>
 			</div><!--
 
@@ -82,5 +85,10 @@
 		</div>
 	</div>
 
+	<!--[if (lt IE 9) & (gte IE 7)]>
+		<script src="/js/libs/domassistant.min.js"></script>
+		<script src="/js/libs/selectivizr.min.js"></script>
+		<script src="/js/libs/respond.min.js"></script>
+	<![endif]-->
 </body>
 </html>
