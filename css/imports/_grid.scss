@@ -1,5 +1,6 @@
-// =grid general silent classes
-// #####################################
+// -------------------------------------
+// =grid: general silent classes
+// -------------------------------------
 
 // use negative margins to reset margins on nested grids
 %grid-nested
@@ -22,8 +23,11 @@
     vertical-align:top;                 // [5]
 }
 
-// =main grid Mixin
-// #####################################
+
+// -------------------------------------
+// =grid: main mixin (defining grid proportions)
+// -------------------------------------
+
 @mixin maingrid($namespace:"")
 {
     // add dash at the end of namespace to construct classnames
@@ -85,6 +89,12 @@
     %#{$namespace}span-11of12           { width:91.666%; }
 }
 
+
+// -------------------------------------
+// =add push classes
+// -------------------------------------
+// * using relative positioning and left positions to proportionnaly nudge things to the left
+// * combined with pull classes, these allow for more complex content choreography
 @mixin pushclasses($namespace:"")
 {
     // add dash at the end of namespace to construct classnames
@@ -146,6 +156,12 @@
     %#{$namespace}push-11of12           { position:relative; left:91.666%; }
 }
 
+
+// -------------------------------------
+// =add pull classes
+// -------------------------------------
+// * using relative positioning and right positions to proportionnaly nudge things to the right
+// * combined with push classes, these allow for more complex content choreography
 @mixin pullclasses($namespace:"")
 {
     @if ($namespace != "")
@@ -206,30 +222,36 @@
     %#{$namespace}pull-11of12           { position:relative; right:91.666%; }
 }
 
+
+// -------------------------------------
 // =export grid in all media-queries
-// #####################################
-// the order is important here as it determines the order of CSS rules in generated file
-// NOTE: in your SCSS, you need to define a width for each media queries for it to work properly
+// -------------------------------------
+// In SASS, you cannot extend classes that are not in the same media queries / context
+// * The code belows generate silent classes for all the defined media queries breakpoints
+// * These media-queries and silent classes are generated in a mobile-first order
+// * The breakpoints you define in _variables.scss should follow that modile-first pattern
 
+// include silent classes without any media queries
 @include maingrid();
-@include pushclasses();
-@include pullclasses();
+@if ($use-push-classes == true) { @include pushclasses(); }
+@if ($use-pull-classes == true) { @include pullclasses(); }
 
+// inlude silent classes in all breakpoint defined media-queries
 @each $breakpoint in $breakpoints
 {
-    $prefix: nth($breakpoint, 1);
+    $namespace: nth($breakpoint, 1);
 
-    @if ($prefix != "")
+    @if ($namespace != "")
     {
-        @include mq($prefix)
+        @include mq($namespace)
         {
-            @include maingrid("#{$prefix}");
-            @include pushclasses("#{$prefix}");
-            @include pullclasses("#{$prefix}");
+            @include maingrid("#{$namespace}");
+            @if ($use-push-classes == true) { @include pushclasses("#{$namespace}"); }
+            @if ($use-pull-classes == true) { @include pullclasses("#{$namespace}"); }
         }
     }
     @else
     {
-        @warn "media queries prefixes not defined";
+        @warn "media queries namespaces not defined";
     }
 }

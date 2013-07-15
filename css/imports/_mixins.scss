@@ -1,6 +1,7 @@
+// -------------------------------------
 // =box sizing
-// #####################################
-// used by grids, please do not remove
+// -------------------------------------
+// used by grids: do not remove
 @mixin box-sizing($type:border-box)
 {
     -moz-box-sizing: $type;
@@ -8,29 +9,31 @@
     box-sizing: $type;
 }
 
+// -------------------------------------
 // =media-queries
-// #####################################
-// creates media queries based on breakpoints defined in _variables.scss
+// -------------------------------------
+// creates media queries based on breakpoints list in _variables.scss
 @mixin mq($media-query)
 {
 	@each $breakpoint in $breakpoints
 	{
-		$prefix:	nth($breakpoint, 1);
-		$param: 	nth($breakpoint, 2);
+		$namespace:		nth($breakpoint, 1);
+		$parameters: 	nth($breakpoint, 2);
 
-		@if ($prefix != "") and ($param !="")
+		@if ($namespace != "") and ($parameters !="")
 		{
-			@if ($media-query == $prefix)
+			@if ($media-query == $namespace)
 			{
-				@media only screen and #{$param} { @content; }
+				@media only screen and #{$parameters} { @content; }
 			}
 		}
 		@else
 		{
-			@warn "media queries parameters not defined";
+			@warn "media queries parameters or namespaces not defined";
 		}
 	}
 }
 
+// -------------------------------------
 // =Other mixins
-// #####################################
+// -------------------------------------
