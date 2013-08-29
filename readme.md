@@ -28,6 +28,14 @@ You can have a look at a sample SCSS file in the [gh-pages branch](https://githu
 3. Use namespaced silent classes in your SCSS
 4. Defined media queries and breakpoints can also be used "normally" in your Sass file
 
+## Browser Support
+
+Tested with:
+
+- latest versions of Opera / Firefox / Chrome / Safari
+- IE8 and above
+- IE7 does not support box-sizing nor display:inline-block. I generally serve a linearised version of the page to IE7 and IE6 users.
+
 ## Example: simple grid
 
 ### HTML
