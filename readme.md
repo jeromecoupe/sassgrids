@@ -187,7 +187,7 @@ You can also use defined breakpoints and media-queries in your SCSS files for so
         }
     }
 
-When defining a breakpoint, you can choose if that breakpoint has to be used for grids and if namespaces (silent) grid classes are to be created for it using the third parameter in the sass list defintion in `_variables.scss`
+When defining a breakpoint, you can choose if that breakpoint has to be used for grids and if namespaced (silent) grid classes are to be created for it using the third parameter in the sass list defintion in `_variables.scss`
 
     $breakpoints:(
         "below-medium"   "(min-width:1em) and (max-width:46.875em)"   false,
