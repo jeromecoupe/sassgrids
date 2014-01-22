@@ -174,7 +174,7 @@ Proportional "push" and "pull" classes are availble.
 
 Used in conjuction with grid classes, these allow for more complex content choreography. Your layout can diverge a little bit more from source order at non default screen sizes. The demo uses "push" an "pull" classes in conjucntion with one another.
 
-## Using defined breakpoints and media-queries in your SCSS
+## Using defined breakpoints and media-queries for something else than grids
 
 You can also use defined breakpoints and media-queries in your SCSS files for something else than layout / grids
 
@@ -187,7 +187,7 @@ You can also use defined breakpoints and media-queries in your SCSS files for so
         }
     }
 
-When defining a breakpoint, you can choose if that breakpoint has to be used for grids and if namespaced (silent) grid classes are to be created for it using the third parameter in the sass list defintion in `_variables.scss`
+When defining a breakpoint, you can prevent it from beeing used to generate grids and namespaced (silent) grid classes. Just set the third parameter in the sass list defintion in `_variables.scss` to `false`
 
     $breakpoints:(
         "below-medium"   "(min-width:1em) and (max-width:46.875em)"   false,
