@@ -21,22 +21,7 @@ I wanted a simple and quick way to design responsive grids in Sass so I built th
 - The grid in the demo uses a nested grid along with "push" and "pull" classes
 - The demo makes use of [modernizr.js](http://www.modernizr.com) / [respond.js](https://github.com/scottjehl/Respond) / [selectivizr.js](https://github.com/keithclark/selectivizr) to support IE8
 
-## Usage
-
-1. Import SCSS files
-2. Define your gutters, breakpoints and namespaces
-3. Use namespaced (silent) classes in your SCSS
-4. Defined media queries and breakpoints can also be used "normally" in your Sass file
-
-## Browser Support
-
-Tested with:
-
-- latest versions of Opera / Firefox / Chrome / Safari
-- IE8 and above
-- IE7 does not support box-sizing nor display:inline-block. I generally serve a linearised version of the page to IE7 and IE6 users.
-
-## HTML
+## Use classes in HTML
 
 Since this is using inline-block and not floats, comments must be in there to alleviate the fact that [many browsers account for white-space between inline-block elements](http://css-tricks.com/fighting-the-space-between-inline-block-elements/).
 
@@ -45,8 +30,6 @@ Benefits of using inline-block
 - more flexible than floats in a responsive grid context
 - no clearing to worry about
 - no float drops
-
-### Simple grid
 
 Every `.grid__module` has to live within a `.grid`.
 
@@ -59,8 +42,6 @@ Every `.grid__module` has to live within a `.grid`.
             <p>Content</p>
         </div>
     </div>
-
-### Nested grid
 
 You can nest those grids to your heart's content.
 
@@ -91,6 +72,41 @@ You can nest those grids to your heart's content.
 ## Use Sass silent classes
 
 If you don't like classes in your HTML and want to use Sass silent classes and `@extend`, there is a simple true or false switch in the variables you can turn on or off.
+
+### HTML
+
+    <div class="content">
+        <div class="content__primary">
+            <p>Content</p>
+        </div><!--
+
+     --><div class="content__secondary">
+            <p>Content</p>
+        </div>
+    </div>
+
+### Sass
+
+Provided that you have defined `medium` and `large` breakpoints
+
+    .content
+    {
+        @extend %grid;
+    }
+
+    .content__primary
+    {
+        @extend %grid__module;
+        @extend %medium-span-1of2;
+        @extend %large-span-2of3;
+    }
+
+    .content__secondary
+    {
+        @extend %grid__module;
+        @extend %medium-span-1of2;
+        @extend %large-span-1of3;
+    }
 
 ## Available classes and proportions
 
@@ -178,6 +194,14 @@ When defining a breakpoint, you can choose if that breakpoint has to be used for
         "medium"         "(min-width:46.875em)"                       true,
         "large"          "(min-width:71.25em)"                        true
     )!default;
+
+## Browser Support
+
+Tested with:
+
+- latest versions of Opera / Firefox / Chrome / Safari
+- IE8 and above
+- IE7 does not support box-sizing nor display:inline-block. I generally serve a linearised version of the page to IE7 and IE6 users.
 
 ## Shoutouts
 
