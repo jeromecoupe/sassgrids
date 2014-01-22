@@ -2,19 +2,49 @@
 // =grid configuration
 // -------------------------------------
 
-// gutter: only use fixed values (px and rem)
-$gutter: 40px!default;
 
-// breakpoints: defined using SASS list: "namespace" "params"
-// used to create media queries that you can reference using mq(namespace) in your SCSS
+/*
+ * Gutter between grid units
+ *
+ * Use only fixed value (em, rem, px)
+*/
+
+$grid-gutter: 40px!default;
+
+
+/*
+ * Breakpoints using nested SASS list
+ *
+ * - First parameter: name of the breakpoint (also used to namespace grid classes)
+ * - Second parameter: content of media query for defined breakpoint
+ * - Third parameter: generate namespaced grid classes based on breakpoint or not
+ *   (you might want to define media queries but not use them for grids)
+*/
+
 $breakpoints:(
-			"medium" "(min-width:37.5em)",
-            "large" "(min-width:62.5em)"
-            )!default;
+	"medium"	"(min-width:46.875em)"	true,
+	"large"		"(min-width:71.25em)"	true
+)!default;
 
-// switch to false if you do not want to use push and pull classes
-$use-push-classes: true!default;
-$use-pull-classes: true!default;
+
+/*
+ * Push and Pull classes
+ *
+ * switch to "false" if you don't need them
+*/
+
+$grid-push-classes: true!default;
+$grid-pull-classes: true!default;
+
+
+/*
+ * Use silent classes
+ *
+ * switch to "true" if you want to use @extend and silent classes
+*/
+
+$grid-silent-classes: false!default;
+
 
 // -------------------------------------
 // =Other variables

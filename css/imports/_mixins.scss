@@ -1,36 +1,30 @@
 // -------------------------------------
-// =box sizing
-// -------------------------------------
-// used by grids: do not remove
-@mixin box-sizing($type:border-box)
-{
-    -moz-box-sizing: $type;
-    -webkit-box-sizing: $type;
-    box-sizing: $type;
-}
-
-// -------------------------------------
 // =media-queries
 // -------------------------------------
-// creates media queries based on breakpoints list in _variables.scss
+
+/*
+ * Allows you to use named media queries based on breakpoints list in _variables.scss
+*/
+
 @mixin mq($media-query)
 {
+	$isdefined:false;
+
 	@each $breakpoint in $breakpoints
 	{
-		$namespace:		nth($breakpoint, 1);
-		$parameters: 	nth($breakpoint, 2);
+		$mq-name:	nth($breakpoint, 1);
+		$mq-param: 	nth($breakpoint, 2);
 
-		@if ($namespace != "") and ($parameters !="")
+		@if ( (unquote($media-query) == $mq-name) and ($mq-param != "") )
 		{
-			@if ($media-query == $namespace)
-			{
-				@media only screen and #{$parameters} { @content; }
-			}
+			@media only screen and #{$mq-param} { @content; }
+			$isdefined:true;
 		}
-		@else
-		{
-			@warn "media queries parameters or namespaces not defined";
-		}
+	}
+
+	@if ($isdefined == false)
+	{
+		@warn "Breakpoint ‘#{$media-query}’ is not defined";
 	}
 }
 

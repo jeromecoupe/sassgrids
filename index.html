@@ -31,60 +31,91 @@
 
 		We will soon all be able to switch to flexbox and there will be much rejoicing
 	-->
-	<div class="page">
+	<div class="l-page">
 
-		<div class="header">
-			<h1>Sample Grid</h1>
-		</div>
+		<header class="l-pageheader">
+			<p>Header</p>
+		</header>
 
-		<div class="content">
-			<div class="content-primary">
-				<h2>Primary Content</h2>
-				<p>Using pull and pull silent classes on .content-primary and .content-secondary to change the visual order in which they appear at large screen sizes.</p>
-				<p><a href="https://github.com/jeromecoupe/sassgrids/tree/gh-pages">Demo code and files on Github</a></p>
-			</div><!--
+		<main role="maincontent" class="l-pagecontent">
+			<div class="grid">
 
-		 --><div class="content-secondary">
-				<h2>Secondary Content</h2>
-		 		<p>Pellentesque habitant.</p>
+				<div class="grid__module  medium-span-6of10  large-span-7of12  large-push-5of12">
 
-		 		<div class="nestedgrid">
-			 		<div class="nestedmodule">
-				 		<p>module (in nested grid)</p>
-			 		</div><!--
+					<h1>Primary Content</h1>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae, sapiente maiores voluptate porro aut inventore incidunt! Deleniti, veniam, error laborum eos modi illo tenetur! Ipsa, atque aliquam excepturi expedita iste.</p>
+					<p>Iste, magnam tempore quidem ipsa repellendus laboriosam at suscipit numquam. Vel, itaque, quisquam molestias quae quaerat beatae ratione deleniti dolorum ipsam debitis mollitia modi optio! Nam, iure illum necessitatibus nihil.</p>
+					<p><a href="http://github.com/jeromecoupe/sassgrids">View on Github</a></p>
 
-			 	 --><div class="nestedmodule">
-			 			<p>module (in nested grid)</p>
+					<ul class="grid">
+				 		<li class="grid__module  medium-span-1of2  large-span-1of4">
+					 		<p class="island">List item as grid unit</p>
+				 		</li><!--
+				 	 --><li class="grid__module  medium-span-1of2  large-span-1of4">
+				 			<p class="island">List item as grid unit</p>
+				 		</li><!--
+				 	 --><li class="grid__module  medium-span-1of2  large-span-1of4">
+				 			<p class="island">List item as grid unit</p>
+				 		</li><!--
+				 	 --><li class="grid__module  medium-span-1of2  large-span-1of4">
+				 			<p class="island">List item as grid unit</p>
+				 		</li>
+			 		</ul>
+
+				</div><!--
+
+			 --><div class="grid__module  medium-span-4of10  large-span-5of12  large-pull-7of12">
+
+					<h2>Secondary Content</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae, sapiente maiores voluptate porro aut inventore incidunt! Deleniti, veniam, error laborum eos modi illo tenetur! Ipsa, atque aliquam excepturi expedita iste.</p>
+
+			 		<div class="grid">
+				 		<div class="grid__module  large-span-1of2">
+					 		<p class="island">Nested Grid</p>
+				 		</div><!--
+
+				 	 --><div class="grid__module  large-span-1of2">
+				 			<p class="island">Nested Grid</p>
+				 		</div>
 			 		</div>
-		 		</div>
+
+				</div>
 
 			</div>
-		</div>
-		<div class="footer">
-			<div class="footerblock1">
-				<p>An example of "content choreography" that you can do with inline block and such an approach: this block is stacked above the others by default, in a 3 columns grid at medium size and above the 5 others at large screen sizes.</p>
-			</div><!--
+		</main>
 
-		 --><div class="footerblock2">
-		 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium sed magnam quo necessitatibus alias consequuntur officia veritatis tempore recusandae saepe impedit itaque ab illum.</p>
-		 	</div><!--
+		<footer class="l-pagefooter">
 
-		 --><div class="footerblock3">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium sed magnam quo necessitatibus alias consequuntur officia veritatis tempore recusandae saepe impedit itaque ab illum.</p>
-			</div><!--
+			<div class="grid">
 
-		 --><div class="footerblock4">
-		 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium sed magnam quo necessitatibus alias consequuntur officia veritatis tempore recusandae saepe impedit itaque ab illum.</p>
-		 	</div><!--
+				<div class="grid__module  medium-span-1of3  large-span-full">
+					<p>Example of content choreography made possible by using inline block and a namespaced classes grid approach. This div is in a 1 by 3 grid at medium screen sizes and occupies the full with above the 5 others at large screen sizes</p>
+				</div><!--
 
-		 --><div class="footerblock5">
-		 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium sed magnam quo necessitatibus alias consequuntur officia veritatis tempore recusandae saepe impedit itaque ab illum.</p>
-		 	</div><!--
+			 --><div class="grid__module  medium-span-1of3  large-span-1of5">
+			 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium sed magnam quo necessitatibus alias consequuntur officia veritatis tempore recusandae saepe impedit itaque ab illum.</p>
+			 	</div><!--
 
-		 --><div class="footerblock6">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium sed magnam quo necessitatibus alias consequuntur officia veritatis tempore recusandae saepe impedit itaque ab illum.</p>
+			 --><div class="grid__module  medium-span-1of3  large-span-1of5">
+					<p >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium sed magnam quo necessitatibus alias consequuntur officia veritatis tempore recusandae saepe impedit itaque ab illum.</p>
+				</div><!--
+
+			 --><div class="grid__module  medium-span-1of3  large-span-1of5">
+			 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium sed magnam quo necessitatibus alias consequuntur officia veritatis tempore recusandae saepe impedit itaque ab illum.</p>
+			 	</div><!--
+
+			 --><div class="grid__module  medium-span-1of3  large-span-1of5">
+			 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium sed magnam quo necessitatibus alias consequuntur officia veritatis tempore recusandae saepe impedit itaque ab illum.</p>
+			 	</div><!--
+
+			 --><div class="grid__module  medium-span-1of3  large-span-1of5">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium sed magnam quo necessitatibus alias consequuntur officia veritatis tempore recusandae saepe impedit itaque ab illum.</p>
+				</div>
+
 			</div>
-		</div>
+
+		</footer>
+
 	</div>
 
 	<!--[if (lt IE 9) & (gte IE 7)]>

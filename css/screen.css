@@ -1,80 +1,913 @@
-.nestedgrid {
-  margin: auto -20px; }
+/*
+ * Gutter between grid units
+ *
+ * Use only fixed value (em, rem, px)
+*/
+/*
+ * Breakpoints using nested SASS list
+ *
+ * - First parameter: name of the breakpoint (also used to namespace grid classes)
+ * - Second parameter: content of media query for defined breakpoint
+ * - Third parameter: generate namespaced grid classes based on breakpoint or not
+ *   (you might want to define media queries but not use them for grids)
+*/
+/*
+ * Push and Pull classes
+ *
+ * switch to "false" if you don't need them
+*/
+/*
+ * Use silent classes
+ *
+ * switch to "true" if you want to use @extend and silent classes
+*/
+/*
+ * Allows you to use named media queries based on breakpoints list in _variables.scss
+*/
+/*
+ * Use silent classes or not
+*/
+/*
+ * Define grid
+ *
+ * compensating left and right margins of left and rightmost grid_modules in grid
+*/
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-left: -40px; }
 
-.header, .content-primary, .content-secondary, .nestedmodule, .footerblock1, .footerblock2, .footerblock3, .footerblock4, .footerblock5, .footerblock6, .footerblock7 {
+/*
+ * Grid units
+ *
+ * - 1. grid modules are 100% by default
+ * - 2. allows for padding without modifying the box width
+ * - 3. gutters created using padding
+ * - 4. using inline-block to stack the modules side by side (comment out white space in html)
+ * - 5. align top of modules
+*/
+.grid__module {
   width: 100%;
-  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 0 20px;
+  padding-left: 40px;
   display: inline-block;
   vertical-align: top; }
 
-@media only screen and (min-width: 37.5em) {
-  .nestedmodule {
+/*
+ * proportionnaly nudge things to the left
+ *
+ * - using relative positioning and left positions
+ * - combined with pull classes, this allows for more complex content choreography
+*/
+/*
+ * proportionnaly nudge things to the right
+ *
+ * - using relative positioning and right positions
+ * - combined with pull classes, this allows for more complex content choreography
+*/
+/*
+ * In SASS, you cannot extend classes that are not in the same media queries / context
+ *
+ * - The code belows generate (silent) classes for all the defined media queries breakpoints
+ * - This imply that you are using a mobile first approach
+*/
+/*
+ * include basic non-namespaced (silent) classes without any media queries
+*/
+.span-full {
+  width: 100%; }
+
+.span-1of2, .span-2of4, .span-2of6, .span-4of8, .span-5of10, .span-6of12 {
+  width: 50%; }
+
+.span-1of3, .span-3of6, .span-4of12 {
+  width: 33.333%; }
+
+.span-2of3, .span-4of6, .span-8of12 {
+  width: 66.666%; }
+
+.span-1of4, .span-2of8, .span-3of12 {
+  width: 25%; }
+
+.span-3of4, .span-6of8, .span-9of12 {
+  width: 75%; }
+
+.span-1of5, .span-2of10 {
+  width: 20%; }
+
+.span-2of5, .span-4of10 {
+  width: 40%; }
+
+.span-3of5, .span-6of10 {
+  width: 60%; }
+
+.span-4of5, .span-8of10 {
+  width: 80%; }
+
+.span-1of6, .span-2of12 {
+  width: 16.666%; }
+
+.span-5of6, .span-10of12 {
+  width: 83.333%; }
+
+.span-1of8 {
+  width: 12.5%; }
+
+.span-3of8 {
+  width: 37.5%; }
+
+.span-5of8 {
+  width: 62.5%; }
+
+.span-7of8 {
+  width: 87.5%; }
+
+.span-1of10 {
+  width: 10%; }
+
+.span-3of10 {
+  width: 30%; }
+
+.span-7of10 {
+  width: 70%; }
+
+.span-9of10 {
+  width: 90%; }
+
+.span-1of12 {
+  width: 8.333%; }
+
+.span-5of12 {
+  width: 41.666%; }
+
+.span-7of12 {
+  width: 58.333%; }
+
+.span-11of12 {
+  width: 91.666%; }
+
+.push-full {
+  position: relative;
+  left: 100%; }
+
+.push-1of2, .push-2of4, .push-2of6, .push-4of8, .push-5of10, .push-6of12 {
+  position: relative;
+  left: 50%; }
+
+.push-1of3, .push-3of6, .push-4of12 {
+  position: relative;
+  left: 33.333%; }
+
+.push-2of3, .push-4of6, .push-8of12 {
+  position: relative;
+  left: 66.666%; }
+
+.push-1of4, .push-2of8, .push-3of12 {
+  position: relative;
+  left: 25%; }
+
+.push-3of4, .push-6of8, .push-9of12 {
+  position: relative;
+  left: 75%; }
+
+.push-1of5, .push-2of10 {
+  position: relative;
+  left: 20%; }
+
+.push-2of5, .push-4of10 {
+  position: relative;
+  left: 40%; }
+
+.push-3of5, .push-6of10 {
+  position: relative;
+  left: 60%; }
+
+.push-4of5, .push-8of10 {
+  position: relative;
+  left: 80%; }
+
+.push-1of6, .push-2of12 {
+  position: relative;
+  left: 16.666%; }
+
+.push-5of6, .push-10of12 {
+  position: relative;
+  left: 83.333%; }
+
+.push-1of8 {
+  position: relative;
+  left: 12.5%; }
+
+.push-3of8 {
+  position: relative;
+  left: 37.5%; }
+
+.push-5of8 {
+  position: relative;
+  left: 62.5%; }
+
+.push-7of8 {
+  position: relative;
+  left: 87.5%; }
+
+.push-1of10 {
+  position: relative;
+  left: 10%; }
+
+.push-3of10 {
+  position: relative;
+  left: 30%; }
+
+.push-7of10 {
+  position: relative;
+  left: 70%; }
+
+.push-9of10 {
+  position: relative;
+  left: 90%; }
+
+.push-1of12 {
+  position: relative;
+  left: 8.333%; }
+
+.push-5of12 {
+  position: relative;
+  left: 41.666%; }
+
+.push-7of12 {
+  position: relative;
+  left: 58.333%; }
+
+.push-11of12 {
+  position: relative;
+  left: 91.666%; }
+
+.pull-full {
+  position: relative;
+  right: 100%; }
+
+.pull-1of2, .pull-2of4, .pull-2of6, .pull-4of8, .pull-5of10, .pull-6of12 {
+  position: relative;
+  right: 50%; }
+
+.pull-1of3, .pull-3of6, .pull-4of12 {
+  position: relative;
+  right: 33.333%; }
+
+.pull-2of3, .pull-4of6, .pull-8of12 {
+  position: relative;
+  right: 66.666%; }
+
+.pull-1of4, .pull-2of8, .pull-3of12 {
+  position: relative;
+  right: 25%; }
+
+.pull-3of4, .pull-6of8, .pull-9of12 {
+  position: relative;
+  right: 75%; }
+
+.pull-1of5, .pull-2of10 {
+  position: relative;
+  right: 20%; }
+
+.pull-2of5, .pull-4of10 {
+  position: relative;
+  right: 40%; }
+
+.pull-3of5, .pull-6of10 {
+  position: relative;
+  right: 60%; }
+
+.pull-4of5, .pull-8of10 {
+  position: relative;
+  right: 80%; }
+
+.pull-1of6, .pull-2of12 {
+  position: relative;
+  right: 16.666%; }
+
+.pull-5of6, .pull-10of12 {
+  position: relative;
+  right: 83.333%; }
+
+.pull-1of8 {
+  position: relative;
+  right: 12.5%; }
+
+.pull-3of8 {
+  position: relative;
+  right: 37.5%; }
+
+.pull-5of8 {
+  position: relative;
+  right: 62.5%; }
+
+.pull-7of8 {
+  position: relative;
+  right: 87.5%; }
+
+.pull-1of10 {
+  position: relative;
+  right: 10%; }
+
+.pull-3of10 {
+  position: relative;
+  right: 30%; }
+
+.pull-7of10 {
+  position: relative;
+  right: 70%; }
+
+.pull-9of10 {
+  position: relative;
+  right: 90%; }
+
+.pull-1of12 {
+  position: relative;
+  right: 8.333%; }
+
+.pull-5of12 {
+  position: relative;
+  right: 41.666%; }
+
+.pull-7of12 {
+  position: relative;
+  right: 58.333%; }
+
+.pull-11of12 {
+  position: relative;
+  right: 91.666%; }
+
+/*
+ * include namespaced (silent) classes for all media queries
+ *
+ * - the use "with grids" parameter must be set to true when defining breakpoints in variables.scss
+*/
+@media only screen and (min-width: 46.875em) {
+  .medium-span-full {
     width: 100%; }
 
-  .content-secondary, .footerblock1, .footerblock2, .footerblock3, .footerblock4, .footerblock5, .footerblock6, .footerblock7 {
-    width: 33.333%; }
-
-  .content-primary {
-    width: 66.666%; } }
-@media only screen and (min-width: 62.5em) {
-  .footerblock1 {
-    width: 100%; }
-
-  .nestedmodule {
+  .medium-span-1of2, .medium-span-2of4, .medium-span-2of6, .medium-span-4of8, .medium-span-5of10, .medium-span-6of12 {
     width: 50%; }
 
-  .footerblock2, .footerblock3, .footerblock4, .footerblock5, .footerblock6, .footerblock7 {
+  .medium-span-1of3, .medium-span-3of6, .medium-span-4of12 {
+    width: 33.333%; }
+
+  .medium-span-2of3, .medium-span-4of6, .medium-span-8of12 {
+    width: 66.666%; }
+
+  .medium-span-1of4, .medium-span-2of8, .medium-span-3of12 {
+    width: 25%; }
+
+  .medium-span-3of4, .medium-span-6of8, .medium-span-9of12 {
+    width: 75%; }
+
+  .medium-span-1of5, .medium-span-2of10 {
     width: 20%; }
 
-  .content-secondary {
+  .medium-span-2of5, .medium-span-4of10 {
+    width: 40%; }
+
+  .medium-span-3of5, .medium-span-6of10 {
+    width: 60%; }
+
+  .medium-span-4of5, .medium-span-8of10 {
+    width: 80%; }
+
+  .medium-span-1of6, .medium-span-2of12 {
+    width: 16.666%; }
+
+  .medium-span-5of6, .medium-span-10of12 {
+    width: 83.333%; }
+
+  .medium-span-1of8 {
+    width: 12.5%; }
+
+  .medium-span-3of8 {
+    width: 37.5%; }
+
+  .medium-span-5of8 {
+    width: 62.5%; }
+
+  .medium-span-7of8 {
+    width: 87.5%; }
+
+  .medium-span-1of10 {
+    width: 10%; }
+
+  .medium-span-3of10 {
+    width: 30%; }
+
+  .medium-span-7of10 {
+    width: 70%; }
+
+  .medium-span-9of10 {
+    width: 90%; }
+
+  .medium-span-1of12 {
+    width: 8.333%; }
+
+  .medium-span-5of12 {
     width: 41.666%; }
 
-  .content-primary {
+  .medium-span-7of12 {
     width: 58.333%; }
 
-  .content-primary {
+  .medium-span-11of12 {
+    width: 91.666%; }
+
+  .medium-push-full {
+    position: relative;
+    left: 100%; }
+
+  .medium-push-1of2, .medium-push-2of4, .medium-push-2of6, .medium-push-4of8, .medium-push-5of10, .medium-push-6of12 {
+    position: relative;
+    left: 50%; }
+
+  .medium-push-1of3, .medium-push-3of6, .medium-push-4of12 {
+    position: relative;
+    left: 33.333%; }
+
+  .medium-push-2of3, .medium-push-4of6, .medium-push-8of12 {
+    position: relative;
+    left: 66.666%; }
+
+  .medium-push-1of4, .medium-push-2of8, .medium-push-3of12 {
+    position: relative;
+    left: 25%; }
+
+  .medium-push-3of4, .medium-push-6of8, .medium-push-9of12 {
+    position: relative;
+    left: 75%; }
+
+  .medium-push-1of5, .medium-push-2of10 {
+    position: relative;
+    left: 20%; }
+
+  .medium-push-2of5, .medium-push-4of10 {
+    position: relative;
+    left: 40%; }
+
+  .medium-push-3of5, .medium-push-6of10 {
+    position: relative;
+    left: 60%; }
+
+  .medium-push-4of5, .medium-push-8of10 {
+    position: relative;
+    left: 80%; }
+
+  .medium-push-1of6, .medium-push-2of12 {
+    position: relative;
+    left: 16.666%; }
+
+  .medium-push-5of6, .medium-push-10of12 {
+    position: relative;
+    left: 83.333%; }
+
+  .medium-push-1of8 {
+    position: relative;
+    left: 12.5%; }
+
+  .medium-push-3of8 {
+    position: relative;
+    left: 37.5%; }
+
+  .medium-push-5of8 {
+    position: relative;
+    left: 62.5%; }
+
+  .medium-push-7of8 {
+    position: relative;
+    left: 87.5%; }
+
+  .medium-push-1of10 {
+    position: relative;
+    left: 10%; }
+
+  .medium-push-3of10 {
+    position: relative;
+    left: 30%; }
+
+  .medium-push-7of10 {
+    position: relative;
+    left: 70%; }
+
+  .medium-push-9of10 {
+    position: relative;
+    left: 90%; }
+
+  .medium-push-1of12 {
+    position: relative;
+    left: 8.333%; }
+
+  .medium-push-5of12 {
     position: relative;
     left: 41.666%; }
 
-  .content-secondary {
+  .medium-push-7of12 {
     position: relative;
-    right: 58.333%; } }
-html {
-  font: normal 87.5%/1.5 "Lucida Grande",Helvetica, Arial, sans-serif; }
+    left: 58.333%; }
 
+  .medium-push-11of12 {
+    position: relative;
+    left: 91.666%; }
+
+  .medium-pull-full {
+    position: relative;
+    right: 100%; }
+
+  .medium-pull-1of2, .medium-pull-2of4, .medium-pull-2of6, .medium-pull-4of8, .medium-pull-5of10, .medium-pull-6of12 {
+    position: relative;
+    right: 50%; }
+
+  .medium-pull-1of3, .medium-pull-3of6, .medium-pull-4of12 {
+    position: relative;
+    right: 33.333%; }
+
+  .medium-pull-2of3, .medium-pull-4of6, .medium-pull-8of12 {
+    position: relative;
+    right: 66.666%; }
+
+  .medium-pull-1of4, .medium-pull-2of8, .medium-pull-3of12 {
+    position: relative;
+    right: 25%; }
+
+  .medium-pull-3of4, .medium-pull-6of8, .medium-pull-9of12 {
+    position: relative;
+    right: 75%; }
+
+  .medium-pull-1of5, .medium-pull-2of10 {
+    position: relative;
+    right: 20%; }
+
+  .medium-pull-2of5, .medium-pull-4of10 {
+    position: relative;
+    right: 40%; }
+
+  .medium-pull-3of5, .medium-pull-6of10 {
+    position: relative;
+    right: 60%; }
+
+  .medium-pull-4of5, .medium-pull-8of10 {
+    position: relative;
+    right: 80%; }
+
+  .medium-pull-1of6, .medium-pull-2of12 {
+    position: relative;
+    right: 16.666%; }
+
+  .medium-pull-5of6, .medium-pull-10of12 {
+    position: relative;
+    right: 83.333%; }
+
+  .medium-pull-1of8 {
+    position: relative;
+    right: 12.5%; }
+
+  .medium-pull-3of8 {
+    position: relative;
+    right: 37.5%; }
+
+  .medium-pull-5of8 {
+    position: relative;
+    right: 62.5%; }
+
+  .medium-pull-7of8 {
+    position: relative;
+    right: 87.5%; }
+
+  .medium-pull-1of10 {
+    position: relative;
+    right: 10%; }
+
+  .medium-pull-3of10 {
+    position: relative;
+    right: 30%; }
+
+  .medium-pull-7of10 {
+    position: relative;
+    right: 70%; }
+
+  .medium-pull-9of10 {
+    position: relative;
+    right: 90%; }
+
+  .medium-pull-1of12 {
+    position: relative;
+    right: 8.333%; }
+
+  .medium-pull-5of12 {
+    position: relative;
+    right: 41.666%; }
+
+  .medium-pull-7of12 {
+    position: relative;
+    right: 58.333%; }
+
+  .medium-pull-11of12 {
+    position: relative;
+    right: 91.666%; } }
+@media only screen and (min-width: 71.25em) {
+  .large-span-full {
+    width: 100%; }
+
+  .large-span-1of2, .large-span-2of4, .large-span-2of6, .large-span-4of8, .large-span-5of10, .large-span-6of12 {
+    width: 50%; }
+
+  .large-span-1of3, .large-span-3of6, .large-span-4of12 {
+    width: 33.333%; }
+
+  .large-span-2of3, .large-span-4of6, .large-span-8of12 {
+    width: 66.666%; }
+
+  .large-span-1of4, .large-span-2of8, .large-span-3of12 {
+    width: 25%; }
+
+  .large-span-3of4, .large-span-6of8, .large-span-9of12 {
+    width: 75%; }
+
+  .large-span-1of5, .large-span-2of10 {
+    width: 20%; }
+
+  .large-span-2of5, .large-span-4of10 {
+    width: 40%; }
+
+  .large-span-3of5, .large-span-6of10 {
+    width: 60%; }
+
+  .large-span-4of5, .large-span-8of10 {
+    width: 80%; }
+
+  .large-span-1of6, .large-span-2of12 {
+    width: 16.666%; }
+
+  .large-span-5of6, .large-span-10of12 {
+    width: 83.333%; }
+
+  .large-span-1of8 {
+    width: 12.5%; }
+
+  .large-span-3of8 {
+    width: 37.5%; }
+
+  .large-span-5of8 {
+    width: 62.5%; }
+
+  .large-span-7of8 {
+    width: 87.5%; }
+
+  .large-span-1of10 {
+    width: 10%; }
+
+  .large-span-3of10 {
+    width: 30%; }
+
+  .large-span-7of10 {
+    width: 70%; }
+
+  .large-span-9of10 {
+    width: 90%; }
+
+  .large-span-1of12 {
+    width: 8.333%; }
+
+  .large-span-5of12 {
+    width: 41.666%; }
+
+  .large-span-7of12 {
+    width: 58.333%; }
+
+  .large-span-11of12 {
+    width: 91.666%; }
+
+  .large-push-full {
+    position: relative;
+    left: 100%; }
+
+  .large-push-1of2, .large-push-2of4, .large-push-2of6, .large-push-4of8, .large-push-5of10, .large-push-6of12 {
+    position: relative;
+    left: 50%; }
+
+  .large-push-1of3, .large-push-3of6, .large-push-4of12 {
+    position: relative;
+    left: 33.333%; }
+
+  .large-push-2of3, .large-push-4of6, .large-push-8of12 {
+    position: relative;
+    left: 66.666%; }
+
+  .large-push-1of4, .large-push-2of8, .large-push-3of12 {
+    position: relative;
+    left: 25%; }
+
+  .large-push-3of4, .large-push-6of8, .large-push-9of12 {
+    position: relative;
+    left: 75%; }
+
+  .large-push-1of5, .large-push-2of10 {
+    position: relative;
+    left: 20%; }
+
+  .large-push-2of5, .large-push-4of10 {
+    position: relative;
+    left: 40%; }
+
+  .large-push-3of5, .large-push-6of10 {
+    position: relative;
+    left: 60%; }
+
+  .large-push-4of5, .large-push-8of10 {
+    position: relative;
+    left: 80%; }
+
+  .large-push-1of6, .large-push-2of12 {
+    position: relative;
+    left: 16.666%; }
+
+  .large-push-5of6, .large-push-10of12 {
+    position: relative;
+    left: 83.333%; }
+
+  .large-push-1of8 {
+    position: relative;
+    left: 12.5%; }
+
+  .large-push-3of8 {
+    position: relative;
+    left: 37.5%; }
+
+  .large-push-5of8 {
+    position: relative;
+    left: 62.5%; }
+
+  .large-push-7of8 {
+    position: relative;
+    left: 87.5%; }
+
+  .large-push-1of10 {
+    position: relative;
+    left: 10%; }
+
+  .large-push-3of10 {
+    position: relative;
+    left: 30%; }
+
+  .large-push-7of10 {
+    position: relative;
+    left: 70%; }
+
+  .large-push-9of10 {
+    position: relative;
+    left: 90%; }
+
+  .large-push-1of12 {
+    position: relative;
+    left: 8.333%; }
+
+  .large-push-5of12 {
+    position: relative;
+    left: 41.666%; }
+
+  .large-push-7of12 {
+    position: relative;
+    left: 58.333%; }
+
+  .large-push-11of12 {
+    position: relative;
+    left: 91.666%; }
+
+  .large-pull-full {
+    position: relative;
+    right: 100%; }
+
+  .large-pull-1of2, .large-pull-2of4, .large-pull-2of6, .large-pull-4of8, .large-pull-5of10, .large-pull-6of12 {
+    position: relative;
+    right: 50%; }
+
+  .large-pull-1of3, .large-pull-3of6, .large-pull-4of12 {
+    position: relative;
+    right: 33.333%; }
+
+  .large-pull-2of3, .large-pull-4of6, .large-pull-8of12 {
+    position: relative;
+    right: 66.666%; }
+
+  .large-pull-1of4, .large-pull-2of8, .large-pull-3of12 {
+    position: relative;
+    right: 25%; }
+
+  .large-pull-3of4, .large-pull-6of8, .large-pull-9of12 {
+    position: relative;
+    right: 75%; }
+
+  .large-pull-1of5, .large-pull-2of10 {
+    position: relative;
+    right: 20%; }
+
+  .large-pull-2of5, .large-pull-4of10 {
+    position: relative;
+    right: 40%; }
+
+  .large-pull-3of5, .large-pull-6of10 {
+    position: relative;
+    right: 60%; }
+
+  .large-pull-4of5, .large-pull-8of10 {
+    position: relative;
+    right: 80%; }
+
+  .large-pull-1of6, .large-pull-2of12 {
+    position: relative;
+    right: 16.666%; }
+
+  .large-pull-5of6, .large-pull-10of12 {
+    position: relative;
+    right: 83.333%; }
+
+  .large-pull-1of8 {
+    position: relative;
+    right: 12.5%; }
+
+  .large-pull-3of8 {
+    position: relative;
+    right: 37.5%; }
+
+  .large-pull-5of8 {
+    position: relative;
+    right: 62.5%; }
+
+  .large-pull-7of8 {
+    position: relative;
+    right: 87.5%; }
+
+  .large-pull-1of10 {
+    position: relative;
+    right: 10%; }
+
+  .large-pull-3of10 {
+    position: relative;
+    right: 30%; }
+
+  .large-pull-7of10 {
+    position: relative;
+    right: 70%; }
+
+  .large-pull-9of10 {
+    position: relative;
+    right: 90%; }
+
+  .large-pull-1of12 {
+    position: relative;
+    right: 8.333%; }
+
+  .large-pull-5of12 {
+    position: relative;
+    right: 41.666%; }
+
+  .large-pull-7of12 {
+    position: relative;
+    right: 58.333%; }
+
+  .large-pull-11of12 {
+    position: relative;
+    right: 91.666%; } }
 body {
+  margin: 0;
+  padding: 0;
+  background: #ccc;
+  color: #000; }
+
+html {
+  font: normal 87.5%/1.5 "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+.l-page {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0; }
+  @media only screen and (min-width: 71.25em) {
+    .l-page {
+      margin-top: 1em;
+      margin-bottom: 1em; } }
+
+.l-pageheader {
+  padding: 1em 2em;
+  background: #333;
+  color: #ccc; }
+
+.l-pagecontent {
+  padding: 1em 2em;
   background: #fff; }
-  @media only screen and (min-width: 62.5em) {
-    body {
-      background: #D4D4D4; } }
 
-.page {
-  max-width: 1500px;
-  margin: 0 auto; }
+.l-pagefooter {
+  padding: 1em 2em;
+  background: #333;
+  color: #ccc; }
 
-.header {
-  background: #7F0000; }
-
-.content {
-  background: #FF4C4C; }
-
-.content-primary {
-  background: #FF0000; }
-
-.content-secondary {
-  background: #CC0000; }
-
-.nestedmodule {
-  background: #B20000; }
-
-.footer {
-  background: #BF5940; }
-
-.footerblock1 {
-  background: #BF5940; }
-
-.footerblock2, .footerblock3, .footerblock4, .footerblock5, .footerblock6, .footerblock7 {
-  background: #BF5940; }
+.island {
+  margin: 0;
+  padding: 1em;
+  background: #ccc;
+  margin-bottom: 1em; }

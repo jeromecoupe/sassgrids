@@ -17,95 +17,69 @@
 
 
 // -------------------------------------
+// =Base styles
+// -------------------------------------
+
+body
+{
+	margin:0;
+	padding:0;
+	background:#ccc;
+	color:#000;
+}
+
+
+// -------------------------------------
 // =Typography
 // -------------------------------------
 
 html
 {
-	font:normal 87.5%/1.5 "Lucida Grande",Helvetica, Arial, sans-serif;
+	font:normal 87.5%/1.5 "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-// You can also use the defined breakpoints and media queries in your SCSS
-// without using namespaced grid classes
-body
+
+// -------------------------------------
+// =Layout classes
+// -------------------------------------
+
+.l-page
 {
-	background:#fff;
+	max-width:1140px;
+	margin:0 auto;
+	padding:0;
+
 	@include mq(large)
 	{
-		background:#D4D4D4;
+		margin-top:1em;
+		margin-bottom:1em;
 	}
 }
 
-
-// -------------------------------------
-// =Grid Layout
-// -------------------------------------
-
-.page
+.l-pageheader
 {
-	max-width:1500px;
-	margin:0 auto;
+	padding:1em 2em;
+	background:#333;
+	color:#ccc;
 }
 
-.header
+.l-pagecontent
 {
-	background:#7F0000;
-	@extend %grid-module; //takes 100% of the available space in the parent (all breakpoints)
+	padding:1em 2em;
+	background:#fff;
 }
 
-.content
+.l-pagefooter
 {
-	background:#FF4C4C;
+	padding:1em 2em;
+	background:#333;
+	color:#ccc;
 }
 
-.content-primary
+.island
 {
-	background:#FF0000;
-	@extend %grid-module;		// takes 100% of the available space in the parent (default small screens)
-	@extend %medium-span-2of3;	// takes 2/3 of the available space in the parent (medium breakpoint)
-	@extend %large-span-7of12;	// takes 7/12 of the available space in the parent (large breakpoint)
-	@extend %large-push-5of12;	// push by the same proportion as the width of .content-secondary (large breakpoint)
-}
-
-.content-secondary
-{
-	background:#CC0000;
-	@extend %grid-module;		// takes 100% of the available space in the parent (default small screens)
-	@extend %medium-span-1of3;	// takes 1/3 of the available space in the parent (medium breakpoint)
-	@extend %large-span-5of12;	// takes 5/12 of the available space in the parent (large breakpoint)
-	@extend %large-pull-7of12;	// pull by the same proportion as the width of .content-primary (large breakpoint)
-}
-
-.nestedgrid
-{
-	@extend %grid-nested;	   // nested grid (uses negative margins to align to parent grid)
-}
-
-.nestedmodule
-{
-	background:#B20000;
-	@extend %grid-module;
-	@extend %medium-span-full;
-	@extend %large-span-1of2;
-}
-
-.footer
-{
-	background:#BF5940;
-}
-
-.footerblock1
-{
-	background:#BF5940;
-	@extend %grid-module;
-	@extend %medium-span-1of3;
-	@extend %large-span-full;
-}
-
-.footerblock2, .footerblock3, .footerblock4, .footerblock5, .footerblock6, .footerblock7
-{
-	background:#BF5940;
-	@extend %grid-module;
-	@extend %medium-span-1of3;
-	@extend %large-span-1of5;
+	margin:0;
+	padding:1em;
+	background:#ccc;
+	margin-bottom:1em;
 }
