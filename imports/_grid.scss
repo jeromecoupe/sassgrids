@@ -1,4 +1,51 @@
 // -------------------------------------
+// =grid configuration
+// -------------------------------------
+
+/*
+ * Gutter between grid units
+ *
+ * Use only fixed value (em, rem, px)
+*/
+
+$grid-gutter: 40px !default;
+
+
+/*
+ * Breakpoints using nested SASS list
+ *
+ * - First parameter: name of the breakpoint (also used to namespace grid classes)
+ * - Second parameter: content of media query for defined breakpoint
+ * - Third parameter: generate namespaced grid classes based on breakpoint or not
+ *   (you might want to define media queries but not use them for grids)
+*/
+
+$breakpoints:(
+    "medium"    "(min-width:46.875em)"  true,
+    "large"     "(min-width:71.25em)"   true
+)!default;
+
+
+/*
+ * Push and Pull classes
+ *
+ * switch to "false" if you don't need them
+*/
+
+$grid-push-classes: true !default;
+$grid-pull-classes: true !default;
+
+
+/*
+ * Use silent classes
+ *
+ * switch to "true" if you want to use @extend and silent classes
+*/
+
+$grid-silent-classes: false !default;
+
+
+// -------------------------------------
 // =grid building
 // -------------------------------------
 
@@ -6,17 +53,15 @@
  * Use silent classes or not
 */
 
-$class-type:unquote(".");
-@if ($grid-silent-classes == true)
-{
-    $class-type:unquote("%");
-}
+$class-type: if($use-silent-classes, unquote("%"), unquote("."));
 
 
 /*
  * Define grid
  *
- * compensating left and right margins of left and rightmost grid_modules in grid
+ * [1] grid usable on lists
+ * [2] kill default padding and margin
+ * [3] compensating left and right margins of left and rightmost grid_modules in grid
 */
 
 #{$class-type}grid
@@ -26,6 +71,28 @@ $class-type:unquote(".");
     padding:0;                          // [2]
     margin-left:($grid-gutter * -1);
 }
+
+    // variation: centered grid
+    #{$class-type}grid--center
+    {
+        text-align:center;
+
+        & > #{$class-type}grid__module
+        {
+            text-align:left;
+        }
+    }
+
+    // variation: right aligned grid
+    #{$class-type}grid--center
+    {
+        text-align:right;
+
+        & > #{$class-type}grid__module
+        {
+            text-align:left;
+        }
+    }
 
 
 /*
@@ -49,6 +116,12 @@ $class-type:unquote(".");
     vertical-align:top;                 // [5]
 }
 
+    //variabtion to add bottom margin equals to grid gutter
+    #{$class-type}grid__module--mb
+    {
+        margin-bottom:$grid-gutter;
+    }
+
 
 // -------------------------------------
 // =Default proportional grid
@@ -59,60 +132,60 @@ $class-type:unquote(".");
     // add dash at the end of namespace to construct classnames
     @if ($namespace != "")
     {
-        $namespace: "#{$namespace}-";
+        $prefix: $class-type + $namespace + "-";
     }
 
-    #{$class-type}#{$namespace}span-full            { width:100%; }
+    #{$prefix}span-full            { width:100%; }
 
-    #{$class-type}#{$namespace}span-1of2            { width:50%; }
+    #{$prefix}span-1of2            { width:50%; }
 
-    #{$class-type}#{$namespace}span-1of3            { width:33.333%; }
-    #{$class-type}#{$namespace}span-2of3            { width:66.666%; }
+    #{$prefix}span-1of3            { width:33.333%; }
+    #{$prefix}span-2of3            { width:66.666%; }
 
-    #{$class-type}#{$namespace}span-1of4            { width:25%; }
-    #{$class-type}#{$namespace}span-2of4            { @extend #{$class-type}#{$namespace}span-1of2; }
-    #{$class-type}#{$namespace}span-3of4            { width:75%; }
+    #{$prefix}span-1of4            { width:25%; }
+    #{$prefix}span-2of4            { @extend #{$prefix}span-1of2; }
+    #{$prefix}span-3of4            { width:75%; }
 
-    #{$class-type}#{$namespace}span-1of5            { width:20%; }
-    #{$class-type}#{$namespace}span-2of5            { width:40%; }
-    #{$class-type}#{$namespace}span-3of5            { width:60%; }
-    #{$class-type}#{$namespace}span-4of5            { width:80%; }
+    #{$prefix}span-1of5            { width:20%; }
+    #{$prefix}span-2of5            { width:40%; }
+    #{$prefix}span-3of5            { width:60%; }
+    #{$prefix}span-4of5            { width:80%; }
 
-    #{$class-type}#{$namespace}span-1of6            { width:16.666%; }
-    #{$class-type}#{$namespace}span-2of6            { @extend #{$class-type}#{$namespace}span-1of2; }
-    #{$class-type}#{$namespace}span-3of6            { @extend #{$class-type}#{$namespace}span-1of3; }
-    #{$class-type}#{$namespace}span-4of6            { @extend #{$class-type}#{$namespace}span-2of3; }
-    #{$class-type}#{$namespace}span-5of6            { width:83.333%; }
+    #{$prefix}span-1of6            { width:16.666%; }
+    #{$prefix}span-2of6            { @extend #{$prefix}span-1of2; }
+    #{$prefix}span-3of6            { @extend #{$prefix}span-1of3; }
+    #{$prefix}span-4of6            { @extend #{$prefix}span-2of3; }
+    #{$prefix}span-5of6            { width:83.333%; }
 
-    #{$class-type}#{$namespace}span-1of8            { width:12.5%; }
-    #{$class-type}#{$namespace}span-2of8            { @extend #{$class-type}#{$namespace}span-1of4; }
-    #{$class-type}#{$namespace}span-3of8            { width:37.5%; }
-    #{$class-type}#{$namespace}span-4of8            { @extend #{$class-type}#{$namespace}span-1of2; }
-    #{$class-type}#{$namespace}span-5of8            { width:62.5%; }
-    #{$class-type}#{$namespace}span-6of8            { @extend #{$class-type}#{$namespace}span-3of4; }
-    #{$class-type}#{$namespace}span-7of8            { width:87.5%; }
+    #{$prefix}span-1of8            { width:12.5%; }
+    #{$prefix}span-2of8            { @extend #{$prefix}span-1of4; }
+    #{$prefix}span-3of8            { width:37.5%; }
+    #{$prefix}span-4of8            { @extend #{$prefix}span-1of2; }
+    #{$prefix}span-5of8            { width:62.5%; }
+    #{$prefix}span-6of8            { @extend #{$prefix}span-3of4; }
+    #{$prefix}span-7of8            { width:87.5%; }
 
-    #{$class-type}#{$namespace}span-1of10           { width:10%; }
-    #{$class-type}#{$namespace}span-2of10           { @extend #{$class-type}#{$namespace}span-1of5; }
-    #{$class-type}#{$namespace}span-3of10           { width:30%; }
-    #{$class-type}#{$namespace}span-4of10           { @extend #{$class-type}#{$namespace}span-2of5; }
-    #{$class-type}#{$namespace}span-5of10           { @extend #{$class-type}#{$namespace}span-1of2; }
-    #{$class-type}#{$namespace}span-6of10           { @extend #{$class-type}#{$namespace}span-3of5; }
-    #{$class-type}#{$namespace}span-7of10           { width:70%; }
-    #{$class-type}#{$namespace}span-8of10           { @extend #{$class-type}#{$namespace}span-4of5; }
-    #{$class-type}#{$namespace}span-9of10           { width:90%; }
+    #{$prefix}span-1of10           { width:10%; }
+    #{$prefix}span-2of10           { @extend #{$prefix}span-1of5; }
+    #{$prefix}span-3of10           { width:30%; }
+    #{$prefix}span-4of10           { @extend #{$prefix}span-2of5; }
+    #{$prefix}span-5of10           { @extend #{$prefix}span-1of2; }
+    #{$prefix}span-6of10           { @extend #{$prefix}span-3of5; }
+    #{$prefix}span-7of10           { width:70%; }
+    #{$prefix}span-8of10           { @extend #{$prefix}span-4of5; }
+    #{$prefix}span-9of10           { width:90%; }
 
-    #{$class-type}#{$namespace}span-1of12           { width:8.333%; }
-    #{$class-type}#{$namespace}span-2of12           { @extend #{$class-type}#{$namespace}span-1of6; }
-    #{$class-type}#{$namespace}span-3of12           { @extend #{$class-type}#{$namespace}span-1of4; }
-    #{$class-type}#{$namespace}span-4of12           { @extend #{$class-type}#{$namespace}span-1of3; }
-    #{$class-type}#{$namespace}span-5of12           { width:41.666% }
-    #{$class-type}#{$namespace}span-6of12           { @extend #{$class-type}#{$namespace}span-1of2; }
-    #{$class-type}#{$namespace}span-7of12           { width:58.333%; }
-    #{$class-type}#{$namespace}span-8of12           { @extend #{$class-type}#{$namespace}span-2of3; }
-    #{$class-type}#{$namespace}span-9of12           { @extend #{$class-type}#{$namespace}span-3of4; }
-    #{$class-type}#{$namespace}span-10of12          { @extend #{$class-type}#{$namespace}span-5of6; }
-    #{$class-type}#{$namespace}span-11of12          { width:91.666%; }
+    #{$prefix}span-1of12           { width:8.333%; }
+    #{$prefix}span-2of12           { @extend #{$prefix}span-1of6; }
+    #{$prefix}span-3of12           { @extend #{$prefix}span-1of4; }
+    #{$prefix}span-4of12           { @extend #{$prefix}span-1of3; }
+    #{$prefix}span-5of12           { width:41.666% }
+    #{$prefix}span-6of12           { @extend #{$prefix}span-1of2; }
+    #{$prefix}span-7of12           { width:58.333%; }
+    #{$prefix}span-8of12           { @extend #{$prefix}span-2of3; }
+    #{$prefix}span-9of12           { @extend #{$prefix}span-3of4; }
+    #{$prefix}span-10of12          { @extend #{$prefix}span-5of6; }
+    #{$prefix}span-11of12          { width:91.666%; }
 }
 
 
@@ -132,60 +205,60 @@ $class-type:unquote(".");
     // add dash at the end of namespace to construct classnames
     @if ($namespace != "")
     {
-        $namespace: "#{$namespace}-";
+        $prefix: $class-type + $namespace + "-";
     }
 
-    #{$class-type}#{$namespace}push-full            { position:relative; left:100%; }
+    #{$prefix}push-full            { position:relative; left:100%; }
 
-    #{$class-type}#{$namespace}push-1of2            { position:relative; left:50%; }
+    #{$prefix}push-1of2            { position:relative; left:50%; }
 
-    #{$class-type}#{$namespace}push-1of3            { position:relative; left:33.333%; }
-    #{$class-type}#{$namespace}push-2of3            { position:relative; left:66.666%; }
+    #{$prefix}push-1of3            { position:relative; left:33.333%; }
+    #{$prefix}push-2of3            { position:relative; left:66.666%; }
 
-    #{$class-type}#{$namespace}push-1of4            { position:relative; left:25%; }
-    #{$class-type}#{$namespace}push-2of4            { @extend #{$class-type}#{$namespace}push-1of2; }
-    #{$class-type}#{$namespace}push-3of4            { position:relative; left:75%; }
+    #{$prefix}push-1of4            { position:relative; left:25%; }
+    #{$prefix}push-2of4            { @extend #{$prefix}push-1of2; }
+    #{$prefix}push-3of4            { position:relative; left:75%; }
 
-    #{$class-type}#{$namespace}push-1of5            { position:relative; left:20%; }
-    #{$class-type}#{$namespace}push-2of5            { position:relative; left:40%; }
-    #{$class-type}#{$namespace}push-3of5            { position:relative; left:60%; }
-    #{$class-type}#{$namespace}push-4of5            { position:relative; left:80%; }
+    #{$prefix}push-1of5            { position:relative; left:20%; }
+    #{$prefix}push-2of5            { position:relative; left:40%; }
+    #{$prefix}push-3of5            { position:relative; left:60%; }
+    #{$prefix}push-4of5            { position:relative; left:80%; }
 
-    #{$class-type}#{$namespace}push-1of6            { position:relative; left:16.666%; }
-    #{$class-type}#{$namespace}push-2of6            { @extend #{$class-type}#{$namespace}push-1of2; }
-    #{$class-type}#{$namespace}push-3of6            { @extend #{$class-type}#{$namespace}push-1of3; }
-    #{$class-type}#{$namespace}push-4of6            { @extend #{$class-type}#{$namespace}push-2of3; }
-    #{$class-type}#{$namespace}push-5of6            { position:relative; left:83.333%; }
+    #{$prefix}push-1of6            { position:relative; left:16.666%; }
+    #{$prefix}push-2of6            { @extend #{$prefix}push-1of2; }
+    #{$prefix}push-3of6            { @extend #{$prefix}push-1of3; }
+    #{$prefix}push-4of6            { @extend #{$prefix}push-2of3; }
+    #{$prefix}push-5of6            { position:relative; left:83.333%; }
 
-    #{$class-type}#{$namespace}push-1of8            { position:relative; left:12.5%; }
-    #{$class-type}#{$namespace}push-2of8            { @extend #{$class-type}#{$namespace}push-1of4; }
-    #{$class-type}#{$namespace}push-3of8            { position:relative; left:37.5%; }
-    #{$class-type}#{$namespace}push-4of8            { @extend #{$class-type}#{$namespace}push-1of2; }
-    #{$class-type}#{$namespace}push-5of8            { position:relative; left:62.5%; }
-    #{$class-type}#{$namespace}push-6of8            { @extend #{$class-type}#{$namespace}push-3of4; }
-    #{$class-type}#{$namespace}push-7of8            { position:relative; left:87.5%; }
+    #{$prefix}push-1of8            { position:relative; left:12.5%; }
+    #{$prefix}push-2of8            { @extend #{$prefix}push-1of4; }
+    #{$prefix}push-3of8            { position:relative; left:37.5%; }
+    #{$prefix}push-4of8            { @extend #{$prefix}push-1of2; }
+    #{$prefix}push-5of8            { position:relative; left:62.5%; }
+    #{$prefix}push-6of8            { @extend #{$prefix}push-3of4; }
+    #{$prefix}push-7of8            { position:relative; left:87.5%; }
 
-    #{$class-type}#{$namespace}push-1of10           { position:relative; left:10%; }
-    #{$class-type}#{$namespace}push-2of10           { @extend #{$class-type}#{$namespace}push-1of5; }
-    #{$class-type}#{$namespace}push-3of10           { position:relative; left:30%; }
-    #{$class-type}#{$namespace}push-4of10           { @extend #{$class-type}#{$namespace}push-2of5; }
-    #{$class-type}#{$namespace}push-5of10           { @extend #{$class-type}#{$namespace}push-1of2; }
-    #{$class-type}#{$namespace}push-6of10           { @extend #{$class-type}#{$namespace}push-3of5; }
-    #{$class-type}#{$namespace}push-7of10           { position:relative; left:70%; }
-    #{$class-type}#{$namespace}push-8of10           { @extend #{$class-type}#{$namespace}push-4of5; }
-    #{$class-type}#{$namespace}push-9of10           { position:relative; left:90%; }
+    #{$prefix}push-1of10           { position:relative; left:10%; }
+    #{$prefix}push-2of10           { @extend #{$prefix}push-1of5; }
+    #{$prefix}push-3of10           { position:relative; left:30%; }
+    #{$prefix}push-4of10           { @extend #{$prefix}push-2of5; }
+    #{$prefix}push-5of10           { @extend #{$prefix}push-1of2; }
+    #{$prefix}push-6of10           { @extend #{$prefix}push-3of5; }
+    #{$prefix}push-7of10           { position:relative; left:70%; }
+    #{$prefix}push-8of10           { @extend #{$prefix}push-4of5; }
+    #{$prefix}push-9of10           { position:relative; left:90%; }
 
-    #{$class-type}#{$namespace}push-1of12           { position:relative; left:8.333%; }
-    #{$class-type}#{$namespace}push-2of12           { @extend #{$class-type}#{$namespace}push-1of6; }
-    #{$class-type}#{$namespace}push-3of12           { @extend #{$class-type}#{$namespace}push-1of4; }
-    #{$class-type}#{$namespace}push-4of12           { @extend #{$class-type}#{$namespace}push-1of3; }
-    #{$class-type}#{$namespace}push-5of12           { position:relative; left:41.666% }
-    #{$class-type}#{$namespace}push-6of12           { @extend #{$class-type}#{$namespace}push-1of2; }
-    #{$class-type}#{$namespace}push-7of12           { position:relative; left:58.333%; }
-    #{$class-type}#{$namespace}push-8of12           { @extend #{$class-type}#{$namespace}push-2of3; }
-    #{$class-type}#{$namespace}push-9of12           { @extend #{$class-type}#{$namespace}push-3of4; }
-    #{$class-type}#{$namespace}push-10of12          { @extend #{$class-type}#{$namespace}push-5of6; }
-    #{$class-type}#{$namespace}push-11of12          { position:relative; left:91.666%; }
+    #{$prefix}push-1of12           { position:relative; left:8.333%; }
+    #{$prefix}push-2of12           { @extend #{$prefix}push-1of6; }
+    #{$prefix}push-3of12           { @extend #{$prefix}push-1of4; }
+    #{$prefix}push-4of12           { @extend #{$prefix}push-1of3; }
+    #{$prefix}push-5of12           { position:relative; left:41.666% }
+    #{$prefix}push-6of12           { @extend #{$prefix}push-1of2; }
+    #{$prefix}push-7of12           { position:relative; left:58.333%; }
+    #{$prefix}push-8of12           { @extend #{$prefix}push-2of3; }
+    #{$prefix}push-9of12           { @extend #{$prefix}push-3of4; }
+    #{$prefix}push-10of12          { @extend #{$prefix}push-5of6; }
+    #{$prefix}push-11of12          { position:relative; left:91.666%; }
 }
 
 
@@ -204,60 +277,60 @@ $class-type:unquote(".");
 {
     @if ($namespace != "")
     {
-        $namespace: "#{$namespace}-";
+        $prefix: $class-type + $namespace + "-";
     }
 
-    #{$class-type}#{$namespace}pull-full            { position:relative; right:100%; }
+    #{$prefix}pull-full            { position:relative; right:100%; }
 
-    #{$class-type}#{$namespace}pull-1of2            { position:relative; right:50%; }
+    #{$prefix}pull-1of2            { position:relative; right:50%; }
 
-    #{$class-type}#{$namespace}pull-1of3            { position:relative; right:33.333%; }
-    #{$class-type}#{$namespace}pull-2of3            { position:relative; right:66.666%; }
+    #{$prefix}pull-1of3            { position:relative; right:33.333%; }
+    #{$prefix}pull-2of3            { position:relative; right:66.666%; }
 
-    #{$class-type}#{$namespace}pull-1of4            { position:relative; right:25%; }
-    #{$class-type}#{$namespace}pull-2of4            { @extend #{$class-type}#{$namespace}pull-1of2; }
-    #{$class-type}#{$namespace}pull-3of4            { position:relative; right:75%; }
+    #{$prefix}pull-1of4            { position:relative; right:25%; }
+    #{$prefix}pull-2of4            { @extend #{$prefix}pull-1of2; }
+    #{$prefix}pull-3of4            { position:relative; right:75%; }
 
-    #{$class-type}#{$namespace}pull-1of5            { position:relative; right:20%; }
-    #{$class-type}#{$namespace}pull-2of5            { position:relative; right:40%; }
-    #{$class-type}#{$namespace}pull-3of5            { position:relative; right:60%; }
-    #{$class-type}#{$namespace}pull-4of5            { position:relative; right:80%; }
+    #{$prefix}pull-1of5            { position:relative; right:20%; }
+    #{$prefix}pull-2of5            { position:relative; right:40%; }
+    #{$prefix}pull-3of5            { position:relative; right:60%; }
+    #{$prefix}pull-4of5            { position:relative; right:80%; }
 
-    #{$class-type}#{$namespace}pull-1of6            { position:relative; right:16.666%; }
-    #{$class-type}#{$namespace}pull-2of6            { @extend #{$class-type}#{$namespace}pull-1of2; }
-    #{$class-type}#{$namespace}pull-3of6            { @extend #{$class-type}#{$namespace}pull-1of3; }
-    #{$class-type}#{$namespace}pull-4of6            { @extend #{$class-type}#{$namespace}pull-2of3; }
-    #{$class-type}#{$namespace}pull-5of6            { position:relative; right:83.333%; }
+    #{$prefix}pull-1of6            { position:relative; right:16.666%; }
+    #{$prefix}pull-2of6            { @extend #{$prefix}pull-1of2; }
+    #{$prefix}pull-3of6            { @extend #{$prefix}pull-1of3; }
+    #{$prefix}pull-4of6            { @extend #{$prefix}pull-2of3; }
+    #{$prefix}pull-5of6            { position:relative; right:83.333%; }
 
-    #{$class-type}#{$namespace}pull-1of8            { position:relative; right:12.5%; }
-    #{$class-type}#{$namespace}pull-2of8            { @extend #{$class-type}#{$namespace}pull-1of4; }
-    #{$class-type}#{$namespace}pull-3of8            { position:relative; right:37.5%; }
-    #{$class-type}#{$namespace}pull-4of8            { @extend #{$class-type}#{$namespace}pull-1of2; }
-    #{$class-type}#{$namespace}pull-5of8            { position:relative; right:62.5%; }
-    #{$class-type}#{$namespace}pull-6of8            { @extend #{$class-type}#{$namespace}pull-3of4; }
-    #{$class-type}#{$namespace}pull-7of8            { position:relative; right:87.5%; }
+    #{$prefix}pull-1of8            { position:relative; right:12.5%; }
+    #{$prefix}pull-2of8            { @extend #{$prefix}pull-1of4; }
+    #{$prefix}pull-3of8            { position:relative; right:37.5%; }
+    #{$prefix}pull-4of8            { @extend #{$prefix}pull-1of2; }
+    #{$prefix}pull-5of8            { position:relative; right:62.5%; }
+    #{$prefix}pull-6of8            { @extend #{$prefix}pull-3of4; }
+    #{$prefix}pull-7of8            { position:relative; right:87.5%; }
 
-    #{$class-type}#{$namespace}pull-1of10           { position:relative; right:10%; }
-    #{$class-type}#{$namespace}pull-2of10           { @extend #{$class-type}#{$namespace}pull-1of5; }
-    #{$class-type}#{$namespace}pull-3of10           { position:relative; right:30%; }
-    #{$class-type}#{$namespace}pull-4of10           { @extend #{$class-type}#{$namespace}pull-2of5; }
-    #{$class-type}#{$namespace}pull-5of10           { @extend #{$class-type}#{$namespace}pull-1of2; }
-    #{$class-type}#{$namespace}pull-6of10           { @extend #{$class-type}#{$namespace}pull-3of5; }
-    #{$class-type}#{$namespace}pull-7of10           { position:relative; right:70%; }
-    #{$class-type}#{$namespace}pull-8of10           { @extend #{$class-type}#{$namespace}pull-4of5; }
-    #{$class-type}#{$namespace}pull-9of10           { position:relative; right:90%; }
+    #{$prefix}pull-1of10           { position:relative; right:10%; }
+    #{$prefix}pull-2of10           { @extend #{$prefix}pull-1of5; }
+    #{$prefix}pull-3of10           { position:relative; right:30%; }
+    #{$prefix}pull-4of10           { @extend #{$prefix}pull-2of5; }
+    #{$prefix}pull-5of10           { @extend #{$prefix}pull-1of2; }
+    #{$prefix}pull-6of10           { @extend #{$prefix}pull-3of5; }
+    #{$prefix}pull-7of10           { position:relative; right:70%; }
+    #{$prefix}pull-8of10           { @extend #{$prefix}pull-4of5; }
+    #{$prefix}pull-9of10           { position:relative; right:90%; }
 
-    #{$class-type}#{$namespace}pull-1of12           { position:relative; right:8.333%; }
-    #{$class-type}#{$namespace}pull-2of12           { @extend #{$class-type}#{$namespace}pull-1of6; }
-    #{$class-type}#{$namespace}pull-3of12           { @extend #{$class-type}#{$namespace}pull-1of4; }
-    #{$class-type}#{$namespace}pull-4of12           { @extend #{$class-type}#{$namespace}pull-1of3; }
-    #{$class-type}#{$namespace}pull-5of12           { position:relative; right:41.666% }
-    #{$class-type}#{$namespace}pull-6of12           { @extend #{$class-type}#{$namespace}pull-1of2; }
-    #{$class-type}#{$namespace}pull-7of12           { position:relative; right:58.333%; }
-    #{$class-type}#{$namespace}pull-8of12           { @extend #{$class-type}#{$namespace}pull-2of3; }
-    #{$class-type}#{$namespace}pull-9of12           { @extend #{$class-type}#{$namespace}pull-3of4; }
-    #{$class-type}#{$namespace}pull-10of12          { @extend #{$class-type}#{$namespace}pull-5of6; }
-    #{$class-type}#{$namespace}pull-11of12          { position:relative; right:91.666%; }
+    #{$prefix}pull-1of12           { position:relative; right:8.333%; }
+    #{$prefix}pull-2of12           { @extend #{$prefix}pull-1of6; }
+    #{$prefix}pull-3of12           { @extend #{$prefix}pull-1of4; }
+    #{$prefix}pull-4of12           { @extend #{$prefix}pull-1of3; }
+    #{$prefix}pull-5of12           { position:relative; right:41.666% }
+    #{$prefix}pull-6of12           { @extend #{$prefix}pull-1of2; }
+    #{$prefix}pull-7of12           { position:relative; right:58.333%; }
+    #{$prefix}pull-8of12           { @extend #{$prefix}pull-2of3; }
+    #{$prefix}pull-9of12           { @extend #{$prefix}pull-3of4; }
+    #{$prefix}pull-10of12          { @extend #{$prefix}pull-5of6; }
+    #{$prefix}pull-11of12          { position:relative; right:91.666%; }
 }
 
 
@@ -278,8 +351,8 @@ $class-type:unquote(".");
 */
 
 @include maingrid();
-@if ($grid-push-classes == true) { @include pushclasses(); }
-@if ($grid-pull-classes == true) { @include pullclasses(); }
+@if $grid-push-classes { @include pushclasses(); }
+@if $grid-pull-classes { @include pullclasses(); }
 
 
 /*
@@ -294,13 +367,13 @@ $class-type:unquote(".");
     $grid-mq: nth($breakpoint, 3);
 
     //check that the "use for grids" parameter is set to true
-    @if ($grid-mq == true)
+    @if $grid-mq
     {
         @include mq($namespace)
         {
             @include maingrid("#{$namespace}");
-            @if ($grid-push-classes == true) { @include pushclasses("#{$namespace}"); }
-            @if ($grid-pull-classes == true) { @include pullclasses("#{$namespace}"); }
+            @if $grid-push-classes { @include pushclasses("#{$namespace}"); }
+            @if $grid-pull-classes { @include pullclasses("#{$namespace}"); }
         }
     }
 }

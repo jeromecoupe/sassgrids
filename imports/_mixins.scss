@@ -4,6 +4,8 @@
 
 /*
  * Allows you to use named media queries based on breakpoints list in _variables.scss
+ *
+ * [1] using "only all" in order to have ready made print stylesheets as per https://coderwall.com/p/n4vdmq
 */
 
 @mixin mq($media-query)
@@ -13,16 +15,16 @@
 	@each $breakpoint in $breakpoints
 	{
 		$mq-name:	nth($breakpoint, 1);
-		$mq-param: 	nth($breakpoint, 2);
+		$mq-param: nth($breakpoint, 2);
 
 		@if ( (unquote($media-query) == $mq-name) and ($mq-param != "") )
 		{
-			@media only screen and #{$mq-param} { @content; }
+			@media only all and #{$mq-param} { @content; } // [1]
 			$isdefined:true;
 		}
 	}
 
-	@if ($isdefined == false)
+	@if not $isdefined
 	{
 		@warn "Breakpoint ‘#{$media-query}’ is not defined";
 	}
