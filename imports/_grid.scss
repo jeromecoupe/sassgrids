@@ -53,7 +53,7 @@ $grid-silent-classes: false !default;
  * Use silent classes or not
 */
 
-$class-type: if($use-silent-classes, unquote("%"), unquote("."));
+$class-type: if($grid-silent-classes, unquote("%"), unquote("."));
 
 
 /*
@@ -129,11 +129,8 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
 
 @mixin maingrid($namespace:"")
 {
-    // add dash at the end of namespace to construct classnames
-    @if ($namespace != "")
-    {
-        $prefix: $class-type + $namespace + "-";
-    }
+    //build prefix
+    $prefix: $class-type + $namespace;
 
     #{$prefix}span-full            { width:100%; }
 
@@ -202,11 +199,8 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
 
 @mixin pushclasses($namespace:"")
 {
-    // add dash at the end of namespace to construct classnames
-    @if ($namespace != "")
-    {
-        $prefix: $class-type + $namespace + "-";
-    }
+    //build prefix
+    $prefix: $class-type + $namespace;
 
     #{$prefix}push-full            { position:relative; left:100%; }
 
@@ -275,10 +269,8 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
 
 @mixin pullclasses($namespace:"")
 {
-    @if ($namespace != "")
-    {
-        $prefix: $class-type + $namespace + "-";
-    }
+    //build prefix
+    $prefix: $class-type + $namespace;
 
     #{$prefix}pull-full            { position:relative; right:100%; }
 
@@ -371,9 +363,9 @@ $class-type: if($use-silent-classes, unquote("%"), unquote("."));
     {
         @include mq($namespace)
         {
-            @include maingrid("#{$namespace}");
-            @if $grid-push-classes { @include pushclasses("#{$namespace}"); }
-            @if $grid-pull-classes { @include pullclasses("#{$namespace}"); }
+            @include maingrid("#{$namespace}-");
+            @if $grid-push-classes { @include pushclasses("#{$namespace}-"); }
+            @if $grid-pull-classes { @include pullclasses("#{$namespace}-"); }
         }
     }
 }
