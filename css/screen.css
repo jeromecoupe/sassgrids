@@ -1,4 +1,11 @@
 /*
+ * override any configuration specified in _grid.scss here
+ *
+*/
+/*
+ * Allows you to use named media queries based on breakpoints list in _variables.scss
+*/
+/*
  * Gutter between grid units
  *
  * Use only fixed value (em, rem, px)
@@ -22,21 +29,30 @@
  * switch to "true" if you want to use @extend and silent classes
 */
 /*
- * Allows you to use named media queries based on breakpoints list in _variables.scss
-*/
-/*
  * Use silent classes or not
 */
 /*
  * Define grid
  *
- * compensating left and right margins of left and rightmost grid_modules in grid
+ * [1] grid usable on lists
+ * [2] kill default padding and margin
+ * [3] compensating left and right margins of left and rightmost grid_modules in grid
 */
 .grid {
   list-style: none;
   margin: 0;
   padding: 0;
   margin-left: -40px; }
+
+.grid--center {
+  text-align: center; }
+  .grid--center > .grid__module {
+    text-align: left; }
+
+.grid--center {
+  text-align: right; }
+  .grid--center > .grid__module {
+    text-align: left; }
 
 /*
  * Grid units
@@ -55,6 +71,9 @@
   padding-left: 40px;
   display: inline-block;
   vertical-align: top; }
+
+.grid__module--mb {
+  margin-bottom: 40px; }
 
 /*
  * proportionnaly nudge things to the left

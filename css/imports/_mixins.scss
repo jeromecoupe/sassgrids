@@ -13,7 +13,7 @@
 	@each $breakpoint in $breakpoints
 	{
 		$mq-name:	nth($breakpoint, 1);
-		$mq-param: 	nth($breakpoint, 2);
+		$mq-param: nth($breakpoint, 2);
 
 		@if ( (unquote($media-query) == $mq-name) and ($mq-param != "") )
 		{
@@ -22,7 +22,7 @@
 		}
 	}
 
-	@if ($isdefined == false)
+	@if not $isdefined
 	{
 		@warn "Breakpoint ‘#{$media-query}’ is not defined";
 	}
