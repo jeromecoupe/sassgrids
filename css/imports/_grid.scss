@@ -84,7 +84,7 @@ $class-type: if($grid-silent-classes, unquote("%"), unquote("."));
     }
 
     // variation: right aligned grid
-    #{$class-type}grid--center
+    #{$class-type}grid--right
     {
         text-align:right;
 
@@ -116,7 +116,7 @@ $class-type: if($grid-silent-classes, unquote("%"), unquote("."));
     vertical-align:top;                 // [5]
 }
 
-    //variabtion to add bottom margin equals to grid gutter
+    //variation to add bottom margin equals to grid gutter
     #{$class-type}grid__module--mb
     {
         margin-bottom:$grid-gutter;
