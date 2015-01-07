@@ -84,7 +84,7 @@ $class-type: if($grid-silent-classes, unquote("%"), unquote("."));
     }
 
     // variation: right aligned grid
-    #{$class-type}grid--center
+    #{$class-type}grid--right
     {
         text-align:right;
 
