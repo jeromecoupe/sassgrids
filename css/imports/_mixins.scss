@@ -17,7 +17,7 @@
 
 		@if ( (unquote($media-query) == $mq-name) and ($mq-param != "") )
 		{
-			@media only screen and #{$mq-param} { @content; }
+			@media all and #{$mq-param} { @content; }
 			$isdefined:true;
 		}
 	}

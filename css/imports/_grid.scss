@@ -20,11 +20,8 @@ $grid-gutter: 40px !default;
  *   (you might want to define media queries but not use them for grids)
 */
 
-$breakpoints:(
-    "medium"    "(min-width:46.875em)"  true,
-    "large"     "(min-width:71.25em)"   true
-)!default;
-
+$breakpoints: "medium"    "(min-width:46.875em)"  true,
+              "large"     "(min-width:71.25em)"   true !default;
 
 /*
  * Push and Pull classes
@@ -32,8 +29,8 @@ $breakpoints:(
  * switch to "false" if you don't need them
 */
 
-$grid-push-classes: true !default;
-$grid-pull-classes: true !default;
+$grid-push-classes: false !default;
+$grid-pull-classes: false !default;
 
 
 /*
@@ -53,7 +50,12 @@ $grid-silent-classes: false !default;
  * Use silent classes or not
 */
 
-$class-type: if($grid-silent-classes, unquote("%"), unquote("."));
+$grid-class-type:unquote(".");
+
+@if ($grid-silent-classes == true)
+{
+  $grid-class-type:unquote("%");
+}
 
 
 /*
@@ -64,7 +66,7 @@ $class-type: if($grid-silent-classes, unquote("%"), unquote("."));
  * [3] compensating left and right margins of left and rightmost grid_modules in grid
 */
 
-#{$class-type}grid
+#{$grid-class-type}grid
 {
     list-style:none;                    // [1]
     margin:0;                           // [2]
@@ -72,27 +74,70 @@ $class-type: if($grid-silent-classes, unquote("%"), unquote("."));
     margin-left:($grid-gutter * -1);
 }
 
-    // variation: centered grid
-    #{$class-type}grid--center
-    {
-        text-align:center;
+/**
+*
+* grid aligned center
+*
+*/
 
-        & > #{$class-type}grid__module
-        {
-            text-align:left;
-        }
-    }
+#{$grid-class-type}grid--center
+{
+  text-align:center;
 
-    // variation: right aligned grid
-    #{$class-type}grid--right
-    {
-        text-align:right;
+  & > #{$grid-class-type}grid__module
+  {
+    text-align:left;
+  }
+}
 
-        & > #{$class-type}grid__module
-        {
-            text-align:left;
-        }
-    }
+
+/**
+*
+* grid aligned right
+*
+*/
+
+#{$grid-class-type}grid--right
+{
+  text-align:right;
+
+  & > #{$grid-class-type}grid__module
+  {
+    text-align:left;
+  }
+}
+
+/**
+*
+* grid gutterless
+*
+*/
+
+#{$grid-class-type}grid--gutterless
+{
+  margin-left:0;
+
+  & > #{$grid-class-type}grid__module
+  {
+    padding-left:0;
+  }
+}
+
+/**
+*
+* grid spaced (module with bottom margin equal to gutter)
+*
+*/
+
+#{$grid-class-type}grid--spaced
+{
+  margin-left:0;
+
+  & > #{$grid-class-type}grid__module
+  {
+    margin-bottom:$grid-gutter;
+  }
+}
 
 
 /*
@@ -105,22 +150,18 @@ $class-type: if($grid-silent-classes, unquote("%"), unquote("."));
  * - 5. align top of modules
 */
 
-#{$class-type}grid__module
+#{$grid-class-type}grid__module
 {
-    width:100%;                         // [1]
-    -webkit-box-sizing:border-box;      // [2]
-       -moz-box-sizing:border-box;
-            box-sizing:border-box;
-    padding-left:$grid-gutter;          // [3]
-    display:inline-block;               // [4]
-    vertical-align:top;                 // [5]
+  margin:0;
+  padding:0;
+  width:100%;                         // [1]
+  -webkit-box-sizing:border-box;      // [2]
+     -moz-box-sizing:border-box;
+          box-sizing:border-box;
+  padding-left:$grid-gutter;          // [3]
+  display:inline-block;               // [4]
+  vertical-align:top;                 // [5]
 }
-
-    //variation to add bottom margin equals to grid gutter
-    #{$class-type}grid__module--mb
-    {
-        margin-bottom:$grid-gutter;
-    }
 
 
 // -------------------------------------
@@ -129,60 +170,60 @@ $class-type: if($grid-silent-classes, unquote("%"), unquote("."));
 
 @mixin maingrid($namespace:"")
 {
-    //build prefix
-    $prefix: $class-type + $namespace;
+  //build prefix
+  $prefix: $grid-class-type + $namespace;
 
-    #{$prefix}span-full            { width:100%; }
+  #{$prefix}span-full    { width:100%; }
 
-    #{$prefix}span-1of2            { width:50%; }
+  #{$prefix}span-1of2    { width:50%; }
 
-    #{$prefix}span-1of3            { width:33.333%; }
-    #{$prefix}span-2of3            { width:66.666%; }
+  #{$prefix}span-1of3    { width:33.333%; }
+  #{$prefix}span-2of3    { width:66.666%; }
 
-    #{$prefix}span-1of4            { width:25%; }
-    #{$prefix}span-2of4            { @extend #{$prefix}span-1of2; }
-    #{$prefix}span-3of4            { width:75%; }
+  #{$prefix}span-1of4    { width:25%; }
+  #{$prefix}span-2of4    { @extend #{$prefix}span-1of2; }
+  #{$prefix}span-3of4    { width:75%; }
 
-    #{$prefix}span-1of5            { width:20%; }
-    #{$prefix}span-2of5            { width:40%; }
-    #{$prefix}span-3of5            { width:60%; }
-    #{$prefix}span-4of5            { width:80%; }
+  #{$prefix}span-1of5    { width:20%; }
+  #{$prefix}span-2of5    { width:40%; }
+  #{$prefix}span-3of5    { width:60%; }
+  #{$prefix}span-4of5    { width:80%; }
 
-    #{$prefix}span-1of6            { width:16.666%; }
-    #{$prefix}span-2of6            { @extend #{$prefix}span-1of2; }
-    #{$prefix}span-3of6            { @extend #{$prefix}span-1of3; }
-    #{$prefix}span-4of6            { @extend #{$prefix}span-2of3; }
-    #{$prefix}span-5of6            { width:83.333%; }
+  #{$prefix}span-1of6    { width:16.666%; }
+  #{$prefix}span-2of6    { @extend #{$prefix}span-1of2; }
+  #{$prefix}span-3of6    { @extend #{$prefix}span-1of3; }
+  #{$prefix}span-4of6    { @extend #{$prefix}span-2of3; }
+  #{$prefix}span-5of6    { width:83.333%; }
 
-    #{$prefix}span-1of8            { width:12.5%; }
-    #{$prefix}span-2of8            { @extend #{$prefix}span-1of4; }
-    #{$prefix}span-3of8            { width:37.5%; }
-    #{$prefix}span-4of8            { @extend #{$prefix}span-1of2; }
-    #{$prefix}span-5of8            { width:62.5%; }
-    #{$prefix}span-6of8            { @extend #{$prefix}span-3of4; }
-    #{$prefix}span-7of8            { width:87.5%; }
+  #{$prefix}span-1of8    { width:12.5%; }
+  #{$prefix}span-2of8    { @extend #{$prefix}span-1of4; }
+  #{$prefix}span-3of8    { width:37.5%; }
+  #{$prefix}span-4of8    { @extend #{$prefix}span-1of2; }
+  #{$prefix}span-5of8    { width:62.5%; }
+  #{$prefix}span-6of8    { @extend #{$prefix}span-3of4; }
+  #{$prefix}span-7of8    { width:87.5%; }
 
-    #{$prefix}span-1of10           { width:10%; }
-    #{$prefix}span-2of10           { @extend #{$prefix}span-1of5; }
-    #{$prefix}span-3of10           { width:30%; }
-    #{$prefix}span-4of10           { @extend #{$prefix}span-2of5; }
-    #{$prefix}span-5of10           { @extend #{$prefix}span-1of2; }
-    #{$prefix}span-6of10           { @extend #{$prefix}span-3of5; }
-    #{$prefix}span-7of10           { width:70%; }
-    #{$prefix}span-8of10           { @extend #{$prefix}span-4of5; }
-    #{$prefix}span-9of10           { width:90%; }
+  #{$prefix}span-1of10   { width:10%; }
+  #{$prefix}span-2of10   { @extend #{$prefix}span-1of5; }
+  #{$prefix}span-3of10   { width:30%; }
+  #{$prefix}span-4of10   { @extend #{$prefix}span-2of5; }
+  #{$prefix}span-5of10   { @extend #{$prefix}span-1of2; }
+  #{$prefix}span-6of10   { @extend #{$prefix}span-3of5; }
+  #{$prefix}span-7of10   { width:70%; }
+  #{$prefix}span-8of10   { @extend #{$prefix}span-4of5; }
+  #{$prefix}span-9of10   { width:90%; }
 
-    #{$prefix}span-1of12           { width:8.333%; }
-    #{$prefix}span-2of12           { @extend #{$prefix}span-1of6; }
-    #{$prefix}span-3of12           { @extend #{$prefix}span-1of4; }
-    #{$prefix}span-4of12           { @extend #{$prefix}span-1of3; }
-    #{$prefix}span-5of12           { width:41.666% }
-    #{$prefix}span-6of12           { @extend #{$prefix}span-1of2; }
-    #{$prefix}span-7of12           { width:58.333%; }
-    #{$prefix}span-8of12           { @extend #{$prefix}span-2of3; }
-    #{$prefix}span-9of12           { @extend #{$prefix}span-3of4; }
-    #{$prefix}span-10of12          { @extend #{$prefix}span-5of6; }
-    #{$prefix}span-11of12          { width:91.666%; }
+  #{$prefix}span-1of12   { width:8.333%; }
+  #{$prefix}span-2of12   { @extend #{$prefix}span-1of6; }
+  #{$prefix}span-3of12   { @extend #{$prefix}span-1of4; }
+  #{$prefix}span-4of12   { @extend #{$prefix}span-1of3; }
+  #{$prefix}span-5of12   { width:41.666% }
+  #{$prefix}span-6of12   { @extend #{$prefix}span-1of2; }
+  #{$prefix}span-7of12   { width:58.333%; }
+  #{$prefix}span-8of12   { @extend #{$prefix}span-2of3; }
+  #{$prefix}span-9of12   { @extend #{$prefix}span-3of4; }
+  #{$prefix}span-10of12  { @extend #{$prefix}span-5of6; }
+  #{$prefix}span-11of12  { width:91.666%; }
 }
 
 
@@ -199,60 +240,61 @@ $class-type: if($grid-silent-classes, unquote("%"), unquote("."));
 
 @mixin pushclasses($namespace:"")
 {
-    //build prefix
-    $prefix: $class-type + $namespace;
+  //build prefix
+  $prefix: $grid-class-type + $namespace;
 
-    #{$prefix}push-full            { position:relative; left:100%; }
+  //build classes
+  #{$prefix}push-full    { position:relative; left:100%; }
 
-    #{$prefix}push-1of2            { position:relative; left:50%; }
+  #{$prefix}push-1of2    { position:relative; left:50%; }
 
-    #{$prefix}push-1of3            { position:relative; left:33.333%; }
-    #{$prefix}push-2of3            { position:relative; left:66.666%; }
+  #{$prefix}push-1of3    { position:relative; left:33.333%; }
+  #{$prefix}push-2of3    { position:relative; left:66.666%; }
 
-    #{$prefix}push-1of4            { position:relative; left:25%; }
-    #{$prefix}push-2of4            { @extend #{$prefix}push-1of2; }
-    #{$prefix}push-3of4            { position:relative; left:75%; }
+  #{$prefix}push-1of4    { position:relative; left:25%; }
+  #{$prefix}push-2of4    { @extend #{$prefix}push-1of2; }
+  #{$prefix}push-3of4    { position:relative; left:75%; }
 
-    #{$prefix}push-1of5            { position:relative; left:20%; }
-    #{$prefix}push-2of5            { position:relative; left:40%; }
-    #{$prefix}push-3of5            { position:relative; left:60%; }
-    #{$prefix}push-4of5            { position:relative; left:80%; }
+  #{$prefix}push-1of5    { position:relative; left:20%; }
+  #{$prefix}push-2of5    { position:relative; left:40%; }
+  #{$prefix}push-3of5    { position:relative; left:60%; }
+  #{$prefix}push-4of5    { position:relative; left:80%; }
 
-    #{$prefix}push-1of6            { position:relative; left:16.666%; }
-    #{$prefix}push-2of6            { @extend #{$prefix}push-1of2; }
-    #{$prefix}push-3of6            { @extend #{$prefix}push-1of3; }
-    #{$prefix}push-4of6            { @extend #{$prefix}push-2of3; }
-    #{$prefix}push-5of6            { position:relative; left:83.333%; }
+  #{$prefix}push-1of6    { position:relative; left:16.666%; }
+  #{$prefix}push-2of6    { @extend #{$prefix}push-1of2; }
+  #{$prefix}push-3of6    { @extend #{$prefix}push-1of3; }
+  #{$prefix}push-4of6    { @extend #{$prefix}push-2of3; }
+  #{$prefix}push-5of6    { position:relative; left:83.333%; }
 
-    #{$prefix}push-1of8            { position:relative; left:12.5%; }
-    #{$prefix}push-2of8            { @extend #{$prefix}push-1of4; }
-    #{$prefix}push-3of8            { position:relative; left:37.5%; }
-    #{$prefix}push-4of8            { @extend #{$prefix}push-1of2; }
-    #{$prefix}push-5of8            { position:relative; left:62.5%; }
-    #{$prefix}push-6of8            { @extend #{$prefix}push-3of4; }
-    #{$prefix}push-7of8            { position:relative; left:87.5%; }
+  #{$prefix}push-1of8    { position:relative; left:12.5%; }
+  #{$prefix}push-2of8    { @extend #{$prefix}push-1of4; }
+  #{$prefix}push-3of8    { position:relative; left:37.5%; }
+  #{$prefix}push-4of8    { @extend #{$prefix}push-1of2; }
+  #{$prefix}push-5of8    { position:relative; left:62.5%; }
+  #{$prefix}push-6of8    { @extend #{$prefix}push-3of4; }
+  #{$prefix}push-7of8    { position:relative; left:87.5%; }
 
-    #{$prefix}push-1of10           { position:relative; left:10%; }
-    #{$prefix}push-2of10           { @extend #{$prefix}push-1of5; }
-    #{$prefix}push-3of10           { position:relative; left:30%; }
-    #{$prefix}push-4of10           { @extend #{$prefix}push-2of5; }
-    #{$prefix}push-5of10           { @extend #{$prefix}push-1of2; }
-    #{$prefix}push-6of10           { @extend #{$prefix}push-3of5; }
-    #{$prefix}push-7of10           { position:relative; left:70%; }
-    #{$prefix}push-8of10           { @extend #{$prefix}push-4of5; }
-    #{$prefix}push-9of10           { position:relative; left:90%; }
+  #{$prefix}push-1of10   { position:relative; left:10%; }
+  #{$prefix}push-2of10   { @extend #{$prefix}push-1of5; }
+  #{$prefix}push-3of10   { position:relative; left:30%; }
+  #{$prefix}push-4of10   { @extend #{$prefix}push-2of5; }
+  #{$prefix}push-5of10   { @extend #{$prefix}push-1of2; }
+  #{$prefix}push-6of10   { @extend #{$prefix}push-3of5; }
+  #{$prefix}push-7of10   { position:relative; left:70%; }
+  #{$prefix}push-8of10   { @extend #{$prefix}push-4of5; }
+  #{$prefix}push-9of10   { position:relative; left:90%; }
 
-    #{$prefix}push-1of12           { position:relative; left:8.333%; }
-    #{$prefix}push-2of12           { @extend #{$prefix}push-1of6; }
-    #{$prefix}push-3of12           { @extend #{$prefix}push-1of4; }
-    #{$prefix}push-4of12           { @extend #{$prefix}push-1of3; }
-    #{$prefix}push-5of12           { position:relative; left:41.666% }
-    #{$prefix}push-6of12           { @extend #{$prefix}push-1of2; }
-    #{$prefix}push-7of12           { position:relative; left:58.333%; }
-    #{$prefix}push-8of12           { @extend #{$prefix}push-2of3; }
-    #{$prefix}push-9of12           { @extend #{$prefix}push-3of4; }
-    #{$prefix}push-10of12          { @extend #{$prefix}push-5of6; }
-    #{$prefix}push-11of12          { position:relative; left:91.666%; }
+  #{$prefix}push-1of12   { position:relative; left:8.333%; }
+  #{$prefix}push-2of12   { @extend #{$prefix}push-1of6; }
+  #{$prefix}push-3of12   { @extend #{$prefix}push-1of4; }
+  #{$prefix}push-4of12   { @extend #{$prefix}push-1of3; }
+  #{$prefix}push-5of12   { position:relative; left:41.666% }
+  #{$prefix}push-6of12   { @extend #{$prefix}push-1of2; }
+  #{$prefix}push-7of12   { position:relative; left:58.333%; }
+  #{$prefix}push-8of12   { @extend #{$prefix}push-2of3; }
+  #{$prefix}push-9of12   { @extend #{$prefix}push-3of4; }
+  #{$prefix}push-10of12  { @extend #{$prefix}push-5of6; }
+  #{$prefix}push-11of12  { position:relative; left:91.666%; }
 }
 
 
@@ -269,60 +311,61 @@ $class-type: if($grid-silent-classes, unquote("%"), unquote("."));
 
 @mixin pullclasses($namespace:"")
 {
-    //build prefix
-    $prefix: $class-type + $namespace;
+  //build prefix
+  $prefix: $grid-class-type + $namespace;
 
-    #{$prefix}pull-full            { position:relative; right:100%; }
+  //build classes
+  #{$prefix}pull-full    { position:relative; right:100%; }
 
-    #{$prefix}pull-1of2            { position:relative; right:50%; }
+  #{$prefix}pull-1of2    { position:relative; right:50%; }
 
-    #{$prefix}pull-1of3            { position:relative; right:33.333%; }
-    #{$prefix}pull-2of3            { position:relative; right:66.666%; }
+  #{$prefix}pull-1of3    { position:relative; right:33.333%; }
+  #{$prefix}pull-2of3    { position:relative; right:66.666%; }
 
-    #{$prefix}pull-1of4            { position:relative; right:25%; }
-    #{$prefix}pull-2of4            { @extend #{$prefix}pull-1of2; }
-    #{$prefix}pull-3of4            { position:relative; right:75%; }
+  #{$prefix}pull-1of4    { position:relative; right:25%; }
+  #{$prefix}pull-2of4    { @extend #{$prefix}pull-1of2; }
+  #{$prefix}pull-3of4    { position:relative; right:75%; }
 
-    #{$prefix}pull-1of5            { position:relative; right:20%; }
-    #{$prefix}pull-2of5            { position:relative; right:40%; }
-    #{$prefix}pull-3of5            { position:relative; right:60%; }
-    #{$prefix}pull-4of5            { position:relative; right:80%; }
+  #{$prefix}pull-1of5    { position:relative; right:20%; }
+  #{$prefix}pull-2of5    { position:relative; right:40%; }
+  #{$prefix}pull-3of5    { position:relative; right:60%; }
+  #{$prefix}pull-4of5    { position:relative; right:80%; }
 
-    #{$prefix}pull-1of6            { position:relative; right:16.666%; }
-    #{$prefix}pull-2of6            { @extend #{$prefix}pull-1of2; }
-    #{$prefix}pull-3of6            { @extend #{$prefix}pull-1of3; }
-    #{$prefix}pull-4of6            { @extend #{$prefix}pull-2of3; }
-    #{$prefix}pull-5of6            { position:relative; right:83.333%; }
+  #{$prefix}pull-1of6    { position:relative; right:16.666%; }
+  #{$prefix}pull-2of6    { @extend #{$prefix}pull-1of2; }
+  #{$prefix}pull-3of6    { @extend #{$prefix}pull-1of3; }
+  #{$prefix}pull-4of6    { @extend #{$prefix}pull-2of3; }
+  #{$prefix}pull-5of6    { position:relative; right:83.333%; }
 
-    #{$prefix}pull-1of8            { position:relative; right:12.5%; }
-    #{$prefix}pull-2of8            { @extend #{$prefix}pull-1of4; }
-    #{$prefix}pull-3of8            { position:relative; right:37.5%; }
-    #{$prefix}pull-4of8            { @extend #{$prefix}pull-1of2; }
-    #{$prefix}pull-5of8            { position:relative; right:62.5%; }
-    #{$prefix}pull-6of8            { @extend #{$prefix}pull-3of4; }
-    #{$prefix}pull-7of8            { position:relative; right:87.5%; }
+  #{$prefix}pull-1of8    { position:relative; right:12.5%; }
+  #{$prefix}pull-2of8    { @extend #{$prefix}pull-1of4; }
+  #{$prefix}pull-3of8    { position:relative; right:37.5%; }
+  #{$prefix}pull-4of8    { @extend #{$prefix}pull-1of2; }
+  #{$prefix}pull-5of8    { position:relative; right:62.5%; }
+  #{$prefix}pull-6of8    { @extend #{$prefix}pull-3of4; }
+  #{$prefix}pull-7of8    { position:relative; right:87.5%; }
 
-    #{$prefix}pull-1of10           { position:relative; right:10%; }
-    #{$prefix}pull-2of10           { @extend #{$prefix}pull-1of5; }
-    #{$prefix}pull-3of10           { position:relative; right:30%; }
-    #{$prefix}pull-4of10           { @extend #{$prefix}pull-2of5; }
-    #{$prefix}pull-5of10           { @extend #{$prefix}pull-1of2; }
-    #{$prefix}pull-6of10           { @extend #{$prefix}pull-3of5; }
-    #{$prefix}pull-7of10           { position:relative; right:70%; }
-    #{$prefix}pull-8of10           { @extend #{$prefix}pull-4of5; }
-    #{$prefix}pull-9of10           { position:relative; right:90%; }
+  #{$prefix}pull-1of10   { position:relative; right:10%; }
+  #{$prefix}pull-2of10   { @extend #{$prefix}pull-1of5; }
+  #{$prefix}pull-3of10   { position:relative; right:30%; }
+  #{$prefix}pull-4of10   { @extend #{$prefix}pull-2of5; }
+  #{$prefix}pull-5of10   { @extend #{$prefix}pull-1of2; }
+  #{$prefix}pull-6of10   { @extend #{$prefix}pull-3of5; }
+  #{$prefix}pull-7of10   { position:relative; right:70%; }
+  #{$prefix}pull-8of10   { @extend #{$prefix}pull-4of5; }
+  #{$prefix}pull-9of10   { position:relative; right:90%; }
 
-    #{$prefix}pull-1of12           { position:relative; right:8.333%; }
-    #{$prefix}pull-2of12           { @extend #{$prefix}pull-1of6; }
-    #{$prefix}pull-3of12           { @extend #{$prefix}pull-1of4; }
-    #{$prefix}pull-4of12           { @extend #{$prefix}pull-1of3; }
-    #{$prefix}pull-5of12           { position:relative; right:41.666% }
-    #{$prefix}pull-6of12           { @extend #{$prefix}pull-1of2; }
-    #{$prefix}pull-7of12           { position:relative; right:58.333%; }
-    #{$prefix}pull-8of12           { @extend #{$prefix}pull-2of3; }
-    #{$prefix}pull-9of12           { @extend #{$prefix}pull-3of4; }
-    #{$prefix}pull-10of12          { @extend #{$prefix}pull-5of6; }
-    #{$prefix}pull-11of12          { position:relative; right:91.666%; }
+  #{$prefix}pull-1of12   { position:relative; right:8.333%; }
+  #{$prefix}pull-2of12   { @extend #{$prefix}pull-1of6; }
+  #{$prefix}pull-3of12   { @extend #{$prefix}pull-1of4; }
+  #{$prefix}pull-4of12   { @extend #{$prefix}pull-1of3; }
+  #{$prefix}pull-5of12   { position:relative; right:41.666% }
+  #{$prefix}pull-6of12   { @extend #{$prefix}pull-1of2; }
+  #{$prefix}pull-7of12   { position:relative; right:58.333%; }
+  #{$prefix}pull-8of12   { @extend #{$prefix}pull-2of3; }
+  #{$prefix}pull-9of12   { @extend #{$prefix}pull-3of4; }
+  #{$prefix}pull-10of12  { @extend #{$prefix}pull-5of6; }
+  #{$prefix}pull-11of12  { position:relative; right:91.666%; }
 }
 
 
@@ -334,7 +377,7 @@ $class-type: if($grid-silent-classes, unquote("%"), unquote("."));
  * In SASS, you cannot extend classes that are not in the same media queries / context
  *
  * - The code belows generate (silent) classes for all the defined media queries breakpoints
- * - This imply that you are using a mobile first approach
+ * - This implies that you are using a mobile first approach
 */
 
 
@@ -350,22 +393,28 @@ $class-type: if($grid-silent-classes, unquote("%"), unquote("."));
 /*
  * include namespaced (silent) classes for all media queries
  *
- * - the use "with grids" parameter must be set to true when defining breakpoints in variables.scss
+ * The third parameter must be set to true when defining breakpoints in variables.scss
 */
 
 @each $breakpoint in $breakpoints
 {
-    $namespace: nth($breakpoint, 1);
-    $grid-mq: nth($breakpoint, 3);
+  $breakpoint-name:   nth($breakpoint, 1);
+  $breakpoint-param:  nth($breakpoint, 2);
+  $breakpoint-grid:   nth($breakpoint, 3);
 
-    //check that the "use for grids" parameter is set to true
-    @if $grid-mq
+  @if ($breakpoint-grid == true)
+  {
+    @media all and #{$breakpoint-param}
     {
-        @include mq($namespace)
-        {
-            @include maingrid("#{$namespace}-");
-            @if $grid-push-classes { @include pushclasses("#{$namespace}-"); }
-            @if $grid-pull-classes { @include pullclasses("#{$namespace}-"); }
-        }
+      @include maingrid("#{$breakpoint-name}-");
+      @if ($grid-push-classes == true)
+      {
+        @include pushclasses("#{$breakpoint-name}-");
+      }
+      @if ($grid-pull-classes == true)
+      {
+        @include pullclasses("#{$breakpoint-name}-");
+      }
     }
+  }
 }

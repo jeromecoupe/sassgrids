@@ -44,26 +44,58 @@
   padding: 0;
   margin-left: -40px; }
 
+/**
+*
+* grid aligned center
+*
+*/
 .grid--center {
   text-align: center; }
   .grid--center > .grid__module {
     text-align: left; }
 
-.grid--center {
+/**
+*
+* grid aligned right
+*
+*/
+.grid--right {
   text-align: right; }
-  .grid--center > .grid__module {
+  .grid--right > .grid__module {
     text-align: left; }
+
+/**
+*
+* grid gutterless
+*
+*/
+.grid--gutterless {
+  margin-left: 0; }
+  .grid--gutterless > .grid__module {
+    padding-left: 0; }
+
+/**
+*
+* grid spaced (module with bottom margin equal to gutter)
+*
+*/
+.grid--spaced {
+  margin-left: 0; }
+  .grid--spaced > .grid__module {
+    margin-bottom: 40px; }
 
 /*
  * Grid units
  *
- * - 1. grid modules are 100% by default
+ * - 1. grid units are 100% by default
  * - 2. allows for padding without modifying the box width
  * - 3. gutters created using padding
  * - 4. using inline-block to stack the modules side by side (comment out white space in html)
  * - 5. align top of modules
 */
 .grid__module {
+  margin: 0;
+  padding: 0;
   width: 100%;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -71,9 +103,6 @@
   padding-left: 40px;
   display: inline-block;
   vertical-align: top; }
-
-.grid__module--mb {
-  margin-bottom: 40px; }
 
 /*
  * proportionnaly nudge things to the left
@@ -91,7 +120,7 @@
  * In SASS, you cannot extend classes that are not in the same media queries / context
  *
  * - The code belows generate (silent) classes for all the defined media queries breakpoints
- * - This imply that you are using a mobile first approach
+ * - This implies that you are using a mobile first approach
 */
 /*
  * include basic non-namespaced (silent) classes without any media queries
@@ -363,9 +392,9 @@
 /*
  * include namespaced (silent) classes for all media queries
  *
- * - the use "with grids" parameter must be set to true when defining breakpoints in variables.scss
+ * The third parameter must be set to true when defining breakpoints in variables.scss
 */
-@media only screen and (min-width: 46.875em) {
+@media all and (min-width: 46.875em) {
   .medium-span-full {
     width: 100%; }
 
@@ -629,7 +658,7 @@
   .medium-pull-11of12 {
     position: relative;
     right: 91.666%; } }
-@media only screen and (min-width: 71.25em) {
+@media all and (min-width: 71.25em) {
   .large-span-full {
     width: 100%; }
 
@@ -896,7 +925,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: #ccc;
+  background: #c4c4c4;
   color: #000; }
 
 html {
@@ -906,7 +935,7 @@ html {
   max-width: 1140px;
   margin: 0 auto;
   padding: 0; }
-  @media only screen and (min-width: 71.25em) {
+  @media all and (min-width: 71.25em) {
     .l-page {
       margin-top: 1em;
       margin-bottom: 1em; } }
@@ -926,7 +955,6 @@ html {
   color: #ccc; }
 
 .island {
-  margin: 0;
+  margin: 0 0 1em;
   padding: 1em;
-  background: #ccc;
-  margin-bottom: 1em; }
+  background: #ccc; }
