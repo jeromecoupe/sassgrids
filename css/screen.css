@@ -87,7 +87,7 @@
 /*
  * Grid units
  *
- * - 1. grid units are 100% by default
+ * - 1. grid modules are 100% by default
  * - 2. allows for padding without modifying the box width
  * - 3. gutters created using padding
  * - 4. using inline-block to stack the modules side by side (comment out white space in html)
