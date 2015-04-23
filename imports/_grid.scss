@@ -107,6 +107,7 @@ $grid-class-type:unquote(".");
   }
 }
 
+
 /**
 *
 * grid gutterless
@@ -120,20 +121,6 @@ $grid-class-type:unquote(".");
   & > #{$grid-class-type}grid__module
   {
     padding-left:0;
-  }
-}
-
-/**
-*
-* grid spaced (module with vertical margins between units equal to gutter)
-*
-*/
-
-#{$grid-class-type}grid--spaced
-{
-  & > #{$grid-class-type}grid__module + #{$grid-class-type}grid__module
-  {
-    margin-top:$grid-gutter;
   }
 }
 
