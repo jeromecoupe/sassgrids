@@ -125,17 +125,15 @@ $grid-class-type:unquote(".");
 
 /**
 *
-* grid spaced (module with bottom margin equal to gutter)
+* grid spaced (module with vertical margins between units equal to gutter)
 *
 */
 
 #{$grid-class-type}grid--spaced
 {
-  margin-left:0;
-
-  & > #{$grid-class-type}grid__module
+  & > #{$grid-class-type}grid__module + #{$grid-class-type}grid__module
   {
-    margin-bottom:$grid-gutter;
+    margin-top:$grid-gutter;
   }
 }
 
