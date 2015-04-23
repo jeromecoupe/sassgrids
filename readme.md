@@ -168,7 +168,8 @@ Grid modules have a default width of 100%. The `.span-full` class is also availa
 
 ## Proportional "push" and "pull" classes
 
-Proportional "push" and "pull" classes are availble.
+Proportional "push" and "pull" classes are available:
+
 - Push classes nudge grid modules to the left by a certain proportion
 - Pull classes nudge grid modules to the right by a certain proportion
 
@@ -189,11 +190,9 @@ You can also use defined breakpoints and media-queries in your SCSS files for so
 
 When defining a breakpoint, you can prevent it from beeing used to generate grids and namespaced (silent) grid classes. Just set the third parameter in the sass list defintion in `_variables.scss` to `false`
 
-    $breakpoints:(
-        "below-medium"   "(min-width:1em) and (max-width:46.875em)"   false,
-        "medium"         "(min-width:46.875em)"                       true,
-        "large"          "(min-width:71.25em)"                        true
-    )!default;
+    $breakpoints: "below-medium"   "(min-width:1em) and (max-width:46.874em)"   false,
+                  "medium"         "(min-width:46.875em)"                       true,
+                  "large"          "(min-width:71.25em)"                        true;
 
 ## Browser Support
 
@@ -224,4 +223,4 @@ Using box-sizing:border-box; on elements [allows you to use percentage width cou
 
 ### Trent Walton
 
-The concept of [content choreography](http://trentwalton.com/2011/07/14/content-choreography/) is important with RWD projects. The demo includes a small example in the footer, with the first module beeing above the five others at large screen sizes.
+The concept of [content choreography](http://trentwalton.com/2011/07/14/content-choreography/) is important with RWD projects. The demo includes a small example in the footer, with the first module beeing above the five others at large screen sizes. Switching the visual order of main and secondary content is done using push and pull classes.
