@@ -123,6 +123,22 @@ $grid-class-type:unquote(".");
   }
 }
 
+/**
+*
+* grid half gutters
+*
+*/
+
+#{$grid-class-type}grid--halfgutters
+{
+  margin-left:(($grid-gutter / 2) * -1);
+
+  & > #{$grid-class-type}grid__module
+  {
+    padding-left:$grid-gutter / 2;
+  }
+}
+
 
 /*
  * Grid units
