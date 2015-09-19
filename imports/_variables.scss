@@ -4,11 +4,29 @@
 
 /*
  * override any configuration specified in _grid.scss here
- *
 */
 
-$grid-push-classes: true;
-$grid-pull-classes: true;
+$grid-pushclasses: true;
+$grid-pullclasses: true;
+
+$breakpoints-list: (
+  "small": (
+    query: "all and (min-width: 31.25em)",
+    generate-grid-classes: true
+  ),
+  "medium": (
+    query: "all and (min-width: 47.5em)",
+    generate-grid-classes: true
+  ),
+  "large": (
+    query: "all and (min-width: 64em)",
+    generate-grid-classes: true
+  ),
+  "xlarge": (
+    query: "all and (min-width: 71.25em)",
+    generate-grid-classes: false
+  )
+);
 
 // -------------------------------------
 // =Other variables

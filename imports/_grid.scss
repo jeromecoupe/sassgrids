@@ -12,16 +12,39 @@ $grid-gutter: 40px !default;
 
 
 /*
- * Breakpoints using nested SASS list
+ * Breakpoints defined using a nested Sass map
  *
- * - First parameter: name of the breakpoint (also used to namespace grid classes)
- * - Second parameter: content of media query for defined breakpoint
- * - Third parameter: generate namespaced grid classes based on breakpoint or not
- *   (you might want to define media queries but not use them for grids)
+ * - name: name of the breakpoint (also used to namespace grid classes)
+ * - query: media query for the named breakpoint
+ * - generate-grid-classes: generate namespaced grid classes based on breakpoint or not
+ *
+ * Default sizes
+ *
+ * - small:    500px    31.25em
+ * - medium:   760px    47.5em
+ * - large:    1024px   64em
+ * - xlarge:   1140px   71.25em
+ *
 */
 
-$breakpoints: "medium"    "(min-width:46.875em)"  true,
-              "large"     "(min-width:71.25em)"   true !default;
+$breakpoints-list: (
+  "small": (
+    query: "all and (min-width: 31.25em)",
+    generate-grid-classes: true
+  ),
+  "medium": (
+    query: "all and (min-width: 47.5em)",
+    generate-grid-classes: true
+  ),
+  "large": (
+    query: "all and (min-width: 64em)",
+    generate-grid-classes: true
+  ),
+  "xlarge": (
+    query: "all and (min-width: 71.25em)",
+    generate-grid-classes: false
+  )
+) !default;
 
 /*
  * Push and Pull classes
@@ -29,8 +52,8 @@ $breakpoints: "medium"    "(min-width:46.875em)"  true,
  * switch to "false" if you don't need them
 */
 
-$grid-push-classes: false !default;
-$grid-pull-classes: false !default;
+$grid-pushclasses: false !default;
+$grid-pullclasses: false !default;
 
 
 /*
@@ -50,11 +73,11 @@ $grid-silent-classes: false !default;
  * Use silent classes or not
 */
 
-$grid-class-type:unquote(".");
+$grid-class-type: unquote(".");
 
 @if ($grid-silent-classes == true)
 {
-  $grid-class-type:unquote("%");
+  $grid-class-type: unquote("%");
 }
 
 
@@ -63,15 +86,15 @@ $grid-class-type:unquote(".");
  *
  * [1] grid usable on lists
  * [2] kill default padding and margin
- * [3] compensating left and right margins of left and rightmost grid_modules in grid
+ * [3] compensating left padding of leftmost .grid__unit in .grid
 */
 
 #{$grid-class-type}grid
 {
-    list-style:none;                    // [1]
-    margin:0;                           // [2]
-    padding:0;                          // [2]
-    margin-left:($grid-gutter * -1);
+    list-style: none;                    // [1]
+    margin: 0;                           // [2]
+    padding: 0;                          // [2]
+    margin-left: ($grid-gutter * -1);    // [3]
 }
 
 /**
@@ -82,11 +105,11 @@ $grid-class-type:unquote(".");
 
 #{$grid-class-type}grid--center
 {
-  text-align:center;
+  text-align: center;
 
-  & > #{$grid-class-type}grid__module
+  & > #{$grid-class-type}grid__unit
   {
-    text-align:left;
+    text-align: left;
   }
 }
 
@@ -99,11 +122,11 @@ $grid-class-type:unquote(".");
 
 #{$grid-class-type}grid--right
 {
-  text-align:right;
+  text-align: right;
 
-  & > #{$grid-class-type}grid__module
+  & > #{$grid-class-type}grid__unit
   {
-    text-align:left;
+    text-align: left;
   }
 }
 
@@ -116,31 +139,13 @@ $grid-class-type:unquote(".");
 
 #{$grid-class-type}grid--gutterless
 {
-  margin-left:0;
+  margin-left: 0;
 
-  & > #{$grid-class-type}grid__module
+  & > #{$grid-class-type}grid__unit
   {
-    padding-left:0;
+    padding-left: 0;
   }
 }
-
-
-/**
-*
-* grid half gutters
-*
-*/
-
-#{$grid-class-type}grid--halfgutters
-{
-  margin-left:(($grid-gutter / 2) * -1);
-
-  & > #{$grid-class-type}grid__module
-  {
-    padding-left:$grid-gutter / 2;
-  }
-}
-
 
 /*
  * Grid units
@@ -152,80 +157,49 @@ $grid-class-type:unquote(".");
  * - 5. align top of modules
 */
 
-#{$grid-class-type}grid__module
+#{$grid-class-type}grid__unit
 {
-  margin:0;
-  padding:0;
-  width:100%;                         // [1]
-  -webkit-box-sizing:border-box;      // [2]
-     -moz-box-sizing:border-box;
-          box-sizing:border-box;
-  padding-left:$grid-gutter;          // [3]
-  display:inline-block;               // [4]
-  vertical-align:top;                 // [5]
+  margin: 0;
+  padding: 0;
+  width: 100%;                         // [1]
+  -webkit-box-sizing: border-box;      // [2]
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-left: $grid-gutter;          // [3]
+  display: inline-block;               // [4]
+  vertical-align: top;                 // [5]
 }
 
 
 // -------------------------------------
-// =Default proportional grid
+// =Default proportional grid classes
 // -------------------------------------
 
-@mixin maingrid($namespace:"")
+@mixin mainclasses($namespace:"")
 {
-  //build prefix
-  $prefix: $grid-class-type + $namespace;
+  #{$grid-class-type}grid__unit--#{$namespace}full    { width: 100%; }
 
-  #{$prefix}span-full    { width:100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}1of10   { width: 1/10 * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}2of10   { width: 2/10 * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}3of10   { width: 3/10 * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}4of10   { width: 4/10 * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}5of10   { width: 5/10 * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}6of10   { width: 6/10 * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}7of10   { width: 7/10 * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}8of10   { width: 8/10 * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}9of10   { width: 9/10 * 100%; }
 
-  #{$prefix}span-1of2    { width:50%; }
-
-  #{$prefix}span-1of3    { width:33.333%; }
-  #{$prefix}span-2of3    { width:66.666%; }
-
-  #{$prefix}span-1of4    { width:25%; }
-  #{$prefix}span-2of4    { @extend #{$prefix}span-1of2; }
-  #{$prefix}span-3of4    { width:75%; }
-
-  #{$prefix}span-1of5    { width:20%; }
-  #{$prefix}span-2of5    { width:40%; }
-  #{$prefix}span-3of5    { width:60%; }
-  #{$prefix}span-4of5    { width:80%; }
-
-  #{$prefix}span-1of6    { width:16.666%; }
-  #{$prefix}span-2of6    { @extend #{$prefix}span-1of2; }
-  #{$prefix}span-3of6    { @extend #{$prefix}span-1of3; }
-  #{$prefix}span-4of6    { @extend #{$prefix}span-2of3; }
-  #{$prefix}span-5of6    { width:83.333%; }
-
-  #{$prefix}span-1of8    { width:12.5%; }
-  #{$prefix}span-2of8    { @extend #{$prefix}span-1of4; }
-  #{$prefix}span-3of8    { width:37.5%; }
-  #{$prefix}span-4of8    { @extend #{$prefix}span-1of2; }
-  #{$prefix}span-5of8    { width:62.5%; }
-  #{$prefix}span-6of8    { @extend #{$prefix}span-3of4; }
-  #{$prefix}span-7of8    { width:87.5%; }
-
-  #{$prefix}span-1of10   { width:10%; }
-  #{$prefix}span-2of10   { @extend #{$prefix}span-1of5; }
-  #{$prefix}span-3of10   { width:30%; }
-  #{$prefix}span-4of10   { @extend #{$prefix}span-2of5; }
-  #{$prefix}span-5of10   { @extend #{$prefix}span-1of2; }
-  #{$prefix}span-6of10   { @extend #{$prefix}span-3of5; }
-  #{$prefix}span-7of10   { width:70%; }
-  #{$prefix}span-8of10   { @extend #{$prefix}span-4of5; }
-  #{$prefix}span-9of10   { width:90%; }
-
-  #{$prefix}span-1of12   { width:8.333%; }
-  #{$prefix}span-2of12   { @extend #{$prefix}span-1of6; }
-  #{$prefix}span-3of12   { @extend #{$prefix}span-1of4; }
-  #{$prefix}span-4of12   { @extend #{$prefix}span-1of3; }
-  #{$prefix}span-5of12   { width:41.666% }
-  #{$prefix}span-6of12   { @extend #{$prefix}span-1of2; }
-  #{$prefix}span-7of12   { width:58.333%; }
-  #{$prefix}span-8of12   { @extend #{$prefix}span-2of3; }
-  #{$prefix}span-9of12   { @extend #{$prefix}span-3of4; }
-  #{$prefix}span-10of12  { @extend #{$prefix}span-5of6; }
-  #{$prefix}span-11of12  { width:91.666%; }
+  #{$grid-class-type}grid__unit--#{$namespace}1of12   { width: 1/12  * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}2of12   { width: 2/12  * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}3of12   { width: 3/12  * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}4of12   { width: 4/12  * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}5of12   { width: 5/12  * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}6of12   { width: 6/12  * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}7of12   { width: 7/12  * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}8of12   { width: 8/12  * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}9of12   { width: 9/12  * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}10of12  { width: 10/12 * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}11of12  { width: 11/12 * 100%; }
 }
 
 
@@ -242,61 +216,29 @@ $grid-class-type:unquote(".");
 
 @mixin pushclasses($namespace:"")
 {
-  //build prefix
-  $prefix: $grid-class-type + $namespace;
+  #{$grid-class-type}grid__unit--#{$namespace}push-full    { position: relative; left: 100%; }
 
-  //build classes
-  #{$prefix}push-full    { position:relative; left:100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}push-1of10   { position: relative; left: 1/10 * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}push-2of10   { position: relative; left: 2/10 * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}push-3of10   { position: relative; left: 3/10 * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}push-4of10   { position: relative; left: 4/10 * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}push-5of10   { position: relative; left: 5/10 * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}push-6of10   { position: relative; left: 6/10 * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}push-7of10   { position: relative; left: 7/10 * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}push-8of10   { position: relative; left: 8/10 * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}push-9of10   { position: relative; left: 9/10 * 100%; }
 
-  #{$prefix}push-1of2    { position:relative; left:50%; }
-
-  #{$prefix}push-1of3    { position:relative; left:33.333%; }
-  #{$prefix}push-2of3    { position:relative; left:66.666%; }
-
-  #{$prefix}push-1of4    { position:relative; left:25%; }
-  #{$prefix}push-2of4    { @extend #{$prefix}push-1of2; }
-  #{$prefix}push-3of4    { position:relative; left:75%; }
-
-  #{$prefix}push-1of5    { position:relative; left:20%; }
-  #{$prefix}push-2of5    { position:relative; left:40%; }
-  #{$prefix}push-3of5    { position:relative; left:60%; }
-  #{$prefix}push-4of5    { position:relative; left:80%; }
-
-  #{$prefix}push-1of6    { position:relative; left:16.666%; }
-  #{$prefix}push-2of6    { @extend #{$prefix}push-1of2; }
-  #{$prefix}push-3of6    { @extend #{$prefix}push-1of3; }
-  #{$prefix}push-4of6    { @extend #{$prefix}push-2of3; }
-  #{$prefix}push-5of6    { position:relative; left:83.333%; }
-
-  #{$prefix}push-1of8    { position:relative; left:12.5%; }
-  #{$prefix}push-2of8    { @extend #{$prefix}push-1of4; }
-  #{$prefix}push-3of8    { position:relative; left:37.5%; }
-  #{$prefix}push-4of8    { @extend #{$prefix}push-1of2; }
-  #{$prefix}push-5of8    { position:relative; left:62.5%; }
-  #{$prefix}push-6of8    { @extend #{$prefix}push-3of4; }
-  #{$prefix}push-7of8    { position:relative; left:87.5%; }
-
-  #{$prefix}push-1of10   { position:relative; left:10%; }
-  #{$prefix}push-2of10   { @extend #{$prefix}push-1of5; }
-  #{$prefix}push-3of10   { position:relative; left:30%; }
-  #{$prefix}push-4of10   { @extend #{$prefix}push-2of5; }
-  #{$prefix}push-5of10   { @extend #{$prefix}push-1of2; }
-  #{$prefix}push-6of10   { @extend #{$prefix}push-3of5; }
-  #{$prefix}push-7of10   { position:relative; left:70%; }
-  #{$prefix}push-8of10   { @extend #{$prefix}push-4of5; }
-  #{$prefix}push-9of10   { position:relative; left:90%; }
-
-  #{$prefix}push-1of12   { position:relative; left:8.333%; }
-  #{$prefix}push-2of12   { @extend #{$prefix}push-1of6; }
-  #{$prefix}push-3of12   { @extend #{$prefix}push-1of4; }
-  #{$prefix}push-4of12   { @extend #{$prefix}push-1of3; }
-  #{$prefix}push-5of12   { position:relative; left:41.666% }
-  #{$prefix}push-6of12   { @extend #{$prefix}push-1of2; }
-  #{$prefix}push-7of12   { position:relative; left:58.333%; }
-  #{$prefix}push-8of12   { @extend #{$prefix}push-2of3; }
-  #{$prefix}push-9of12   { @extend #{$prefix}push-3of4; }
-  #{$prefix}push-10of12  { @extend #{$prefix}push-5of6; }
-  #{$prefix}push-11of12  { position:relative; left:91.666%; }
+  #{$grid-class-type}grid__unit--#{$namespace}push-1of12   { position: relative; left: 1/12  * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}push-2of12   { position: relative; left: 2/12  * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}push-3of12   { position: relative; left: 3/12  * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}push-4of12   { position: relative; left: 4/12  * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}push-5of12   { position: relative; left: 5/12  * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}push-6of12   { position: relative; left: 6/12  * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}push-7of12   { position: relative; left: 7/12  * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}push-8of12   { position: relative; left: 8/12  * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}push-9of12   { position: relative; left: 9/12  * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}push-10of12  { position: relative; left: 10/12 * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}push-11of12  { position: relative; left: 11/12 * 100%; }
 }
 
 
@@ -313,61 +255,29 @@ $grid-class-type:unquote(".");
 
 @mixin pullclasses($namespace:"")
 {
-  //build prefix
-  $prefix: $grid-class-type + $namespace;
+  #{$grid-class-type}grid__unit--#{$namespace}pull-full    { position: relative; right: 100%; }
 
-  //build classes
-  #{$prefix}pull-full    { position:relative; right:100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}pull-1of10   { position: relative; right: 1/10 * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}pull-2of10   { position: relative; right: 2/10 * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}pull-3of10   { position: relative; right: 3/10 * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}pull-4of10   { position: relative; right: 4/10 * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}pull-5of10   { position: relative; right: 5/10 * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}pull-6of10   { position: relative; right: 6/10 * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}pull-7of10   { position: relative; right: 7/10 * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}pull-8of10   { position: relative; right: 8/10 * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}pull-9of10   { position: relative; right: 9/10 * 100%; }
 
-  #{$prefix}pull-1of2    { position:relative; right:50%; }
-
-  #{$prefix}pull-1of3    { position:relative; right:33.333%; }
-  #{$prefix}pull-2of3    { position:relative; right:66.666%; }
-
-  #{$prefix}pull-1of4    { position:relative; right:25%; }
-  #{$prefix}pull-2of4    { @extend #{$prefix}pull-1of2; }
-  #{$prefix}pull-3of4    { position:relative; right:75%; }
-
-  #{$prefix}pull-1of5    { position:relative; right:20%; }
-  #{$prefix}pull-2of5    { position:relative; right:40%; }
-  #{$prefix}pull-3of5    { position:relative; right:60%; }
-  #{$prefix}pull-4of5    { position:relative; right:80%; }
-
-  #{$prefix}pull-1of6    { position:relative; right:16.666%; }
-  #{$prefix}pull-2of6    { @extend #{$prefix}pull-1of2; }
-  #{$prefix}pull-3of6    { @extend #{$prefix}pull-1of3; }
-  #{$prefix}pull-4of6    { @extend #{$prefix}pull-2of3; }
-  #{$prefix}pull-5of6    { position:relative; right:83.333%; }
-
-  #{$prefix}pull-1of8    { position:relative; right:12.5%; }
-  #{$prefix}pull-2of8    { @extend #{$prefix}pull-1of4; }
-  #{$prefix}pull-3of8    { position:relative; right:37.5%; }
-  #{$prefix}pull-4of8    { @extend #{$prefix}pull-1of2; }
-  #{$prefix}pull-5of8    { position:relative; right:62.5%; }
-  #{$prefix}pull-6of8    { @extend #{$prefix}pull-3of4; }
-  #{$prefix}pull-7of8    { position:relative; right:87.5%; }
-
-  #{$prefix}pull-1of10   { position:relative; right:10%; }
-  #{$prefix}pull-2of10   { @extend #{$prefix}pull-1of5; }
-  #{$prefix}pull-3of10   { position:relative; right:30%; }
-  #{$prefix}pull-4of10   { @extend #{$prefix}pull-2of5; }
-  #{$prefix}pull-5of10   { @extend #{$prefix}pull-1of2; }
-  #{$prefix}pull-6of10   { @extend #{$prefix}pull-3of5; }
-  #{$prefix}pull-7of10   { position:relative; right:70%; }
-  #{$prefix}pull-8of10   { @extend #{$prefix}pull-4of5; }
-  #{$prefix}pull-9of10   { position:relative; right:90%; }
-
-  #{$prefix}pull-1of12   { position:relative; right:8.333%; }
-  #{$prefix}pull-2of12   { @extend #{$prefix}pull-1of6; }
-  #{$prefix}pull-3of12   { @extend #{$prefix}pull-1of4; }
-  #{$prefix}pull-4of12   { @extend #{$prefix}pull-1of3; }
-  #{$prefix}pull-5of12   { position:relative; right:41.666% }
-  #{$prefix}pull-6of12   { @extend #{$prefix}pull-1of2; }
-  #{$prefix}pull-7of12   { position:relative; right:58.333%; }
-  #{$prefix}pull-8of12   { @extend #{$prefix}pull-2of3; }
-  #{$prefix}pull-9of12   { @extend #{$prefix}pull-3of4; }
-  #{$prefix}pull-10of12  { @extend #{$prefix}pull-5of6; }
-  #{$prefix}pull-11of12  { position:relative; right:91.666%; }
+  #{$grid-class-type}grid__unit--#{$namespace}pull-1of12   { position: relative; right: 1/12  * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}pull-2of12   { position: relative; right: 2/12  * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}pull-3of12   { position: relative; right: 3/12  * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}pull-4of12   { position: relative; right: 4/12  * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}pull-5of12   { position: relative; right: 5/12  * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}pull-6of12   { position: relative; right: 6/12  * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}pull-7of12   { position: relative; right: 7/12  * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}pull-8of12   { position: relative; right: 8/12  * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}pull-9of12   { position: relative; right: 9/12  * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}pull-10of12  { position: relative; right: 10/12 * 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}pull-11of12  { position: relative; right: 11/12 * 100%; }
 }
 
 
@@ -387,36 +297,38 @@ $grid-class-type:unquote(".");
  * include basic non-namespaced (silent) classes without any media queries
 */
 
-@include maingrid();
-@if $grid-push-classes { @include pushclasses(); }
-@if $grid-pull-classes { @include pullclasses(); }
+@include mainclasses();
+@if $grid-pushclasses { @include pushclasses(); }
+@if $grid-pullclasses { @include pullclasses(); }
 
 
 /*
- * include namespaced (silent) classes for all media queries
- *
- * The third parameter must be set to true when defining breakpoints in variables.scss
+ * include namespaced (silent) classes for all defined breakpoints
 */
 
-@each $breakpoint in $breakpoints
+@each $breakpoint-name, $breakpoint-params in $breakpoints-list
 {
-  $breakpoint-name:   nth($breakpoint, 1);
-  $breakpoint-param:  nth($breakpoint, 2);
-  $breakpoint-grid:   nth($breakpoint, 3);
+  $breakpoint-query: map-get($breakpoint-params, query);
+  $breakpoint-grid: map-get($breakpoint-params, generate-grid-classes);
 
   @if ($breakpoint-grid == true)
   {
-    @media all and #{$breakpoint-param}
-    {
-      @include maingrid("#{$breakpoint-name}-");
-      @if ($grid-push-classes == true)
-      {
-        @include pushclasses("#{$breakpoint-name}-");
-      }
-      @if ($grid-pull-classes == true)
-      {
-        @include pullclasses("#{$breakpoint-name}-");
-      }
+    @media #{$breakpoint-query} {
+
+      // generate default grid classes for all media queries
+      @include mainclasses("#{$breakpoint-name}-");
+
+      // generate push grid classes for all media queries
+      @if ($grid-pushclasses == true)
+			{
+				@include pushclasses("#{$breakpoint-name}-");
+			}
+
+      // generate pull grid classes for all media queries
+			@if ($grid-pullclasses == true)
+			{
+				@include pullclasses("#{$breakpoint-name}-");
+			}
     }
   }
 }

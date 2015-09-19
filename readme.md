@@ -21,6 +21,38 @@ I wanted a simple and quick way to design responsive grids in Sass so I built th
 - The grid in the demo uses a nested grid along with "push" and "pull" classes
 - The demo makes use of [modernizr.js](http://www.modernizr.com) / [respond.js](https://github.com/scottjehl/Respond) / [selectivizr.js](https://github.com/keithclark/selectivizr) to support IE8
 
+## Available classes and proportions
+
+We are talking about proportional grids so these classes mean "spanning [proportion] of its parent's width". The default configuration allows you to combine 2 grids (10 and 12 units) but you can easily create your own grid or combination of grids.
+
+    .grid__unit--full
+
+    .grid__unit--#{$breakpoint}-1of10
+    .grid__unit--#{$breakpoint}-2of10
+    .grid__unit--#{$breakpoint}-3of10
+    .grid__unit--#{$breakpoint}-4of10
+    .grid__unit--#{$breakpoint}-5of10
+    .grid__unit--#{$breakpoint}-6of10
+    .grid__unit--#{$breakpoint}-7of10
+    .grid__unit--#{$breakpoint}-8of10
+    .grid__unit--#{$breakpoint}-9of10
+
+    .grid__unit--#{$breakpoint}-1of12
+    .grid__unit--#{$breakpoint}-2of12
+    .grid__unit--#{$breakpoint}-3of12
+    .grid__unit--#{$breakpoint}-4of12
+    .grid__unit--#{$breakpoint}-5of12
+    .grid__unit--#{$breakpoint}-6of12
+    .grid__unit--#{$breakpoint}-7of12
+    .grid__unit--#{$breakpoint}-8of12
+    .grid__unit--#{$breakpoint}-9of12
+    .grid__unit--#{$breakpoint}-10of12
+    .grid__unit--#{$breakpoint}-11of12
+
+Grid modules have a default width of 100%. The `.span-full` class is also available should you need a grid module to span the full width of your grid at any given breakpoint
+
+	.grid__unit--#{$breakpoint}-full
+
 ## Use classes in HTML
 
 Since this is using inline-block and not floats, comments must be in there to alleviate the fact that [many browsers account for white-space between inline-block elements](http://css-tricks.com/fighting-the-space-between-inline-block-elements/).
@@ -31,14 +63,14 @@ Benefits of using inline-block
 - no clearing to worry about
 - no float drops
 
-Every `.grid__module` has to live within a `.grid`.
+Every `.grid__unit` has to live within a `.grid`.
 
     <div class="grid">
-        <div class="grid__module  medium-span-1of2  large-span-2of3">
+        <div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-2of3">
             <p>Content</p>
         </div><!--
 
-     --><div class="grid__module  medium-span-1of2  large-span-1of3">
+     --><div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-1of3">
             <p>Content</p>
         </div>
     </div>
@@ -46,25 +78,25 @@ Every `.grid__module` has to live within a `.grid`.
 You can nest those grids to your heart's content.
 
     <div class="grid">
-        <div class="grid__module  medium-span-1of2  large-span-2of3">
+        <div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-2of3">
 
             <div class="grid">
-                <div class="grid__module  medium-span-1of3">
+                <div class="grid__unit  grid__unit--medium-1of3">
                     <p>Content</p>
                 </div><!--
 
-             --><div class="grid__module  medium-span-1of3">
+             --><div class="grid__unit  grid__unit--medium-1of3">
                     <p>Content</p>
                 </div><!--
 
-             --><div class="grid__module  medium-span-1of3">
+             --><div class="grid__unit  grid__unit--medium-1of3">
                     <p>Content</p>
                 </div>
             </div>
 
         </div><!--
 
-     --><div class="grid__module  medium-span-1of2  large-span-1of3">
+     --><div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-1of3">
             <p>Content</p>
         </div>
     </div>
@@ -96,84 +128,36 @@ Provided that you have defined `medium` and `large` breakpoints
 
     .content__primary
     {
-        @extend %grid__module;
-        @extend %medium-span-1of2;
-        @extend %large-span-2of3;
+        @extend %grid__unit;
+        @extend %grid__unit--medium-1of2;
+        @extend %grid__unit--large-2of3;
     }
 
     .content__secondary
     {
-        @extend %grid__module;
-        @extend %medium-span-1of2;
-        @extend %large-span-1of3;
+        @extend %grid__unit;
+        @extend %grid__unit--medium-1of2;
+        @extend %grid__unit--large-1of3;
     }
-
-## Available classes and proportions
-
-We are talking about proportional grids so these classes mean "spanning [proportion] of its parent's width".
-
-    .#{$namespace}span-1of2
-
-    .#{$namespace}span-1of3
-    .#{$namespace}span-2of3
-
-    .#{$namespace}span-1of4
-    .#{$namespace}span-2of4
-    .#{$namespace}span-3of4
-
-    .#{$namespace}span-1of5
-    .#{$namespace}span-2of5
-    .#{$namespace}span-3of5
-    .#{$namespace}span-4of5
-
-    .#{$namespace}span-1of6
-    .#{$namespace}span-2of6
-    .#{$namespace}span-3of6
-    .#{$namespace}span-4of6
-    .#{$namespace}span-5of6
-
-    .#{$namespace}span-1of8
-    .#{$namespace}span-2of8
-    .#{$namespace}span-3of8
-    .#{$namespace}span-4of8
-    .#{$namespace}span-5of8
-    .#{$namespace}span-6of8
-    .#{$namespace}span-7of8
-
-    .#{$namespace}span-1of10
-    .#{$namespace}span-2of10
-    .#{$namespace}span-3of10
-    .#{$namespace}span-4of10
-    .#{$namespace}span-5of10
-    .#{$namespace}span-6of10
-    .#{$namespace}span-7of10
-    .#{$namespace}span-8of10
-    .#{$namespace}span-9of10
-
-    .#{$namespace}span-1of12
-    .#{$namespace}span-2of12
-    .#{$namespace}span-3of12
-    .#{$namespace}span-4of12
-    .#{$namespace}span-5of12
-    .#{$namespace}span-6of12
-    .#{$namespace}span-7of12
-    .#{$namespace}span-8of12
-    .#{$namespace}span-9of12
-    .#{$namespace}span-10of12
-    .#{$namespace}span-11of12
-
-Grid modules have a default width of 100%. The `.span-full` class is also available should you need a grid module to span the full width of your grid at any given breakpoint
-
-	.{$namespace}-span-full
 
 ## Proportional "push" and "pull" classes
 
 Proportional "push" and "pull" classes are available:
 
-- Push classes nudge grid modules to the left by a certain proportion
-- Pull classes nudge grid modules to the right by a certain proportion
+- Push classes nudge grid units to the left by a certain proportion
+- Pull classes nudge grid units to the right by a certain proportion
 
-Used in conjuction with grid classes, these allow for more complex content choreography. Your layout can diverge a little bit more from source order at non default screen sizes. The demo uses "push" an "pull" classes in conjucntion with one another.
+Used in conjunction with grid classes, these allow for more complex content choreography. Your layout can diverge a little bit more from source order at non default screen sizes. The demo uses "push" an "pull" classes.
+
+    <div class="grid">
+        <div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-2of3  grid__unit--large-push-1of3">
+            <p>Content</p>
+        </div><!--
+
+     --><div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-1of3  grid__unit--large-pull-2of3">
+            <p>Content</p>
+        </div>
+    </div>
 
 ## Using defined breakpoints and media-queries for something else than grids
 
@@ -188,11 +172,26 @@ You can also use defined breakpoints and media-queries in your SCSS files for so
         }
     }
 
-When defining a breakpoint, you can prevent it from beeing used to generate grids and namespaced (silent) grid classes. Just set the third parameter in the sass list defintion in `_variables.scss` to `false`
+When defining a breakpoint, you can prevent it from being used to generate grids and namespaced (silent) grid classes. Just set the `generate-grid-classes` parameter in the sass maps in `_variables.scss` to `false`
 
-    $breakpoints: "below-medium"   "(min-width:1em) and (max-width:46.874em)"   false,
-                  "medium"         "(min-width:46.875em)"                       true,
-                  "large"          "(min-width:71.25em)"                        true;
+    $breakpoints-list: (
+      "small": (
+        query: "all and (min-width: 31.25em)",
+        generate-grid-classes: true
+      ),
+      "medium": (
+        query: "all and (min-width: 47.5em)",
+        generate-grid-classes: true
+      ),
+      "large": (
+        query: "all and (min-width: 64em)",
+        generate-grid-classes: true
+      ),
+      "xlarge": (
+        query: "all and (min-width: 71.25em)",
+        generate-grid-classes: false
+      )
+    ) !default;
 
 ## Browser Support
 
