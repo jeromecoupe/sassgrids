@@ -25,33 +25,31 @@ I wanted a simple and quick way to design responsive grids in Sass so I built th
 
 We are talking about proportional grids so these classes mean "spanning [proportion] of its parent's width". The default configuration allows you to combine 2 grids (10 and 12 units) but you can easily create your own grid or combination of grids.
 
-    .grid__unit--full
+    .grid__unit--#{$namespace}full
 
-    .grid__unit--#{$breakpoint}-1of10
-    .grid__unit--#{$breakpoint}-2of10
-    .grid__unit--#{$breakpoint}-3of10
-    .grid__unit--#{$breakpoint}-4of10
-    .grid__unit--#{$breakpoint}-5of10
-    .grid__unit--#{$breakpoint}-6of10
-    .grid__unit--#{$breakpoint}-7of10
-    .grid__unit--#{$breakpoint}-8of10
-    .grid__unit--#{$breakpoint}-9of10
+    .grid__unit--#{$namespace}1of10
+    .grid__unit--#{$namespace}2of10
+    .grid__unit--#{$namespace}3of10
+    .grid__unit--#{$namespace}4of10
+    .grid__unit--#{$namespace}5of10
+    .grid__unit--#{$namespace}6of10
+    .grid__unit--#{$namespace}7of10
+    .grid__unit--#{$namespace}8of10
+    .grid__unit--#{$namespace}9of10
 
-    .grid__unit--#{$breakpoint}-1of12
-    .grid__unit--#{$breakpoint}-2of12
-    .grid__unit--#{$breakpoint}-3of12
-    .grid__unit--#{$breakpoint}-4of12
-    .grid__unit--#{$breakpoint}-5of12
-    .grid__unit--#{$breakpoint}-6of12
-    .grid__unit--#{$breakpoint}-7of12
-    .grid__unit--#{$breakpoint}-8of12
-    .grid__unit--#{$breakpoint}-9of12
-    .grid__unit--#{$breakpoint}-10of12
-    .grid__unit--#{$breakpoint}-11of12
+    .grid__unit--#{$namespace}1of12
+    .grid__unit--#{$namespace}2of12
+    .grid__unit--#{$namespace}3of12
+    .grid__unit--#{$namespace}4of12
+    .grid__unit--#{$namespace}5of12
+    .grid__unit--#{$namespace}6of12
+    .grid__unit--#{$namespace}7of12
+    .grid__unit--#{$namespace}8of12
+    .grid__unit--#{$namespace}9of12
+    .grid__unit--#{$namespace}10of12
+    .grid__unit--#{$namespace}11of12
 
-Grid modules have a default width of 100%. The `.span-full` class is also available should you need a grid module to span the full width of your grid at any given breakpoint
-
-	.grid__unit--#{$breakpoint}-full
+Grid modules have a default width of 100%. The `.grid__unit--#{$namespace}full` classes are also available should you need a grid module to span the full width of your grid at any given breakpoint
 
 ## Use classes in HTML
 
@@ -63,7 +61,7 @@ Benefits of using inline-block
 - no clearing to worry about
 - no float drops
 
-Every `.grid__unit` has to live within a `.grid`.
+Every `.grid__unit` has to live within a `.grid`. Provided you have defined `medium` and `large` breakpoints, here is a simple grid.
 
     <div class="grid">
         <div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-2of3">
@@ -75,7 +73,7 @@ Every `.grid__unit` has to live within a `.grid`.
         </div>
     </div>
 
-You can nest those grids to your heart's content.
+You can nest grids to your heart's content.
 
     <div class="grid">
         <div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-2of3">
@@ -101,9 +99,9 @@ You can nest those grids to your heart's content.
         </div>
     </div>
 
-## Use Sass silent classes
+## Use Sass placeholder classes
 
-If you don't like classes in your HTML and want to use Sass silent classes and `@extend`, there is a simple true or false switch in the variables you can turn on or off.
+If you don't like grid classes in your HTML and want to use Sass placeholder classes and `@extend`, there is a simple true or false switch in the `_variables.scss` allowing you to use placeholder classes.
 
 ### HTML
 
@@ -191,7 +189,7 @@ When defining a breakpoint, you can prevent it from being used to generate grids
         query: "all and (min-width: 71.25em)",
         generate-grid-classes: false
       )
-    ) !default;
+    );
 
 ## Browser Support
 
