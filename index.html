@@ -1,19 +1,14 @@
 <!DOCTYPE html>
-
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]> <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<html class="no-js" lang="en">
 
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width" />
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
 
 	<title>Grid Test</title>
 
 	<!-- CSS -->
-	<link rel="stylesheet" media="screen" href="css/screen.css" />
+	<link rel="stylesheet" media="screen" href="css/screen.css">
 
 	<!-- Modernizr (all other scripts at the end of <body>) -->
 	<script src="js/libs/modernizr.custom.262.js"></script>
@@ -40,7 +35,7 @@
 		<main role="maincontent" class="l-pagecontent">
 			<div class="grid">
 
-				<div class="grid__module  medium-span-6of10  large-span-7of12  large-push-5of12">
+				<div class="grid__unit  grid__unit--medium-6of10  grid__unit--large-7of12  grid__unit--large-push-5of12">
 
 					<h1>Primary Content</h1>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae, sapiente maiores voluptate porro aut inventore incidunt! Deleniti, veniam, error laborum eos modi illo tenetur! Ipsa, atque aliquam excepturi expedita iste.</p>
@@ -48,33 +43,33 @@
 					<p><a href="http://github.com/jeromecoupe/sassgrids">View on Github</a></p>
 
 					<ul class="grid">
-				 		<li class="grid__module  medium-span-1of2  large-span-1of4">
+				 		<li class="grid__unit  grid__unit--medium-6of12  grid__unit--large-3of12">
 					 		<p class="island">List item as grid unit</p>
 				 		</li><!--
-				 	 --><li class="grid__module  medium-span-1of2  large-span-1of4">
+				 	 --><li class="grid__unit  grid__unit--medium-6of12  grid__unit--large-3of12">
 				 			<p class="island">List item as grid unit</p>
 				 		</li><!--
-				 	 --><li class="grid__module  medium-span-1of2  large-span-1of4">
+				 	 --><li class="grid__unit  grid__unit--medium-6of12  grid__unit--large-3of12">
 				 			<p class="island">List item as grid unit</p>
 				 		</li><!--
-				 	 --><li class="grid__module  medium-span-1of2  large-span-1of4">
+				 	 --><li class="grid__unit  grid__unit--medium-6of12  grid__unit--large-3of12">
 				 			<p class="island">List item as grid unit</p>
 				 		</li>
 			 		</ul>
 
 				</div><!--
 
-			 --><div class="grid__module  medium-span-4of10  large-span-5of12  large-pull-7of12">
+			 --><div class="grid__unit  grid__unit--medium-4of10  grid__unit--large-5of12  grid__unit--large-pull-7of12">
 
 					<h2>Secondary Content</h2>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae, sapiente maiores voluptate porro aut inventore incidunt! Deleniti, veniam, error laborum eos modi illo tenetur! Ipsa, atque aliquam excepturi expedita iste.</p>
 
 			 		<div class="grid">
-				 		<div class="grid__module  large-span-1of2">
+				 		<div class="grid__unit  grid__unit--large-6of12">
 					 		<p class="island">Nested Grid</p>
 				 		</div><!--
 
-				 	 --><div class="grid__module  large-span-1of2">
+				 	 --><div class="grid__unit  grid__unit--large-6of12">
 				 			<p class="island">Nested Grid</p>
 				 		</div>
 			 		</div>
@@ -88,27 +83,27 @@
 
 			<div class="grid">
 
-				<div class="grid__module  medium-span-1of3  large-span-full">
+				<div class="grid__unit  grid__unit--medium-4of12  grid__unit--large-full">
 					<p>Example of content choreography made possible by using inline block and a namespaced classes grid approach. This div is in a 1 by 3 grid at medium screen sizes and occupies the full with above the 5 others at large screen sizes</p>
 				</div><!--
 
-			 --><div class="grid__module  medium-span-1of3  large-span-1of5">
+			 --><div class="grid__unit  grid__unit--medium-4of12  grid__unit--large-2of10">
 			 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium sed magnam quo necessitatibus alias consequuntur officia veritatis tempore recusandae saepe impedit itaque ab illum.</p>
 			 	</div><!--
 
-			 --><div class="grid__module  medium-span-1of3  large-span-1of5">
+			 --><div class="grid__unit  grid__unit--medium-4of12  grid__unit--large-2of10">
 					<p >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium sed magnam quo necessitatibus alias consequuntur officia veritatis tempore recusandae saepe impedit itaque ab illum.</p>
 				</div><!--
 
-			 --><div class="grid__module  medium-span-1of3  large-span-1of5">
+			 --><div class="grid__unit  grid__unit--medium-4of12  grid__unit--large-2of10">
 			 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium sed magnam quo necessitatibus alias consequuntur officia veritatis tempore recusandae saepe impedit itaque ab illum.</p>
 			 	</div><!--
 
-			 --><div class="grid__module  medium-span-1of3  large-span-1of5">
+			 --><div class="grid__unit  grid__unit--medium-4of12  grid__unit--large-2of10">
 			 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium sed magnam quo necessitatibus alias consequuntur officia veritatis tempore recusandae saepe impedit itaque ab illum.</p>
 			 	</div><!--
 
-			 --><div class="grid__module  medium-span-1of3  large-span-1of5">
+			 --><div class="grid__unit  grid__unit--medium-4of12  grid__unit--large-2of10">
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium sed magnam quo necessitatibus alias consequuntur officia veritatis tempore recusandae saepe impedit itaque ab illum.</p>
 				</div>
 
