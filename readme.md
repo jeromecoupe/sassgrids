@@ -232,4 +232,4 @@ Using box-sizing:border-box; on elements [allows you to use percentage width cou
 
 ### Trent Walton
 
-The concept of [content choreography](http://trentwalton.com/2011/07/14/content-choreography/) is important with RWD projects. The demo includes a small example in the footer, with the first module beeing above the five others at large screen sizes. Switching the visual order of main and secondary content is done using push and pull classes.
+The concept of [content choreography](http://trentwalton.com/2011/07/14/content-choreography/) is important with RWD projects. The demo includes a small example in the footer, with the first module being above the five others at large screen sizes. Switching the visual order of main and secondary content is done using push and pull classes.
