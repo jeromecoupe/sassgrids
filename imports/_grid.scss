@@ -64,13 +64,8 @@ $grid-pullclasses: false !default;
 
 $grid-silent-classes: false !default;
 
-
-// -------------------------------------
-// =grid building
-// -------------------------------------
-
 /*
- * Use silent classes or not
+ * Build class prefixes (silent or not)
 */
 
 $grid-class-type: unquote(".");
@@ -80,6 +75,10 @@ $grid-class-type: unquote(".");
   $grid-class-type: unquote("%");
 }
 
+
+// -------------------------------------
+// =grid building
+// -------------------------------------
 
 /*
  * Define grid
@@ -96,6 +95,31 @@ $grid-class-type: unquote(".");
     padding: 0;                          // [2]
     margin-left: ($grid-gutter * -1);    // [3]
 }
+
+
+/*
+ * Grid units
+ *
+ * - 1. grid modules are 100% by default
+ * - 2. allows for padding without modifying the box width
+ * - 3. gutters created using padding
+ * - 4. using inline-block to stack the modules side by side (comment out white space in html)
+ * - 5. align top of modules
+*/
+
+#{$grid-class-type}grid__unit
+{
+  margin: 0;
+  padding: 0;
+  width: 100%;                         // [1]
+  -webkit-box-sizing: border-box;      // [2]
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-left: $grid-gutter;          // [3]
+  display: inline-block;               // [4]
+  vertical-align: top;                 // [5]
+}
+
 
 /**
 *
@@ -130,6 +154,34 @@ $grid-class-type: unquote(".");
   }
 }
 
+/**
+*
+* grid vertical aligned middle
+*
+*/
+
+#{$grid-class-type}grid--middle
+{
+  & > #{$grid-class-type}grid__unit
+  {
+    vertical-align: middle;
+  }
+}
+
+/**
+*
+* grid vertical aligned bottom
+*
+*/
+
+#{$grid-class-type}grid--bottom
+{
+  & > #{$grid-class-type}grid__unit
+  {
+    vertical-align: middle;
+  }
+}
+
 
 /**
 *
@@ -145,29 +197,6 @@ $grid-class-type: unquote(".");
   {
     padding-left: 0;
   }
-}
-
-/*
- * Grid units
- *
- * - 1. grid modules are 100% by default
- * - 2. allows for padding without modifying the box width
- * - 3. gutters created using padding
- * - 4. using inline-block to stack the modules side by side (comment out white space in html)
- * - 5. align top of modules
-*/
-
-#{$grid-class-type}grid__unit
-{
-  margin: 0;
-  padding: 0;
-  width: 100%;                         // [1]
-  -webkit-box-sizing: border-box;      // [2]
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-  padding-left: $grid-gutter;          // [3]
-  display: inline-block;               // [4]
-  vertical-align: top;                 // [5]
 }
 
 
