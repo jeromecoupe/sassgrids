@@ -51,6 +51,18 @@ We are talking about proportional grids so these classes mean "spanning [proport
 
 Grid modules have a default width of 100%. The `.grid__unit--#{$namespace}full` classes are also available should you need a grid module to span the full width of your grid at any given breakpoint
 
+## Grid variants
+
+Grid variants are available:
+
+- `.grid--gutterless`: no gutters
+- `.grid--right`: right aligned grid units
+- `.grid--left`: left aligned grid units
+- `.grid--center`: center aligned grid units
+- `.grid--middle`: grid units aligned vertically to the middle
+- `.grid--bottom`: grid units aligned vertically to the bottom
+
+
 ## Use classes in HTML
 
 Since this is using inline-block and not floats, comments must be in there to alleviate the fact that [many browsers account for white-space between inline-block elements](http://css-tricks.com/fighting-the-space-between-inline-block-elements/).
