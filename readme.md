@@ -1,6 +1,6 @@
 # Sass grids
 
-Simple experiment to create grids in Sass
+Simple grid framework I use on client projects
 
 ## Goals
 
@@ -14,12 +14,12 @@ I wanted a simple and quick way to design responsive grids in Sass so I built th
 - Mix a fluid grid with fixed gutters
 - Allow both normal classes in the HTML or silent classes and @extend
 
-## Demo
+## Browser Support
 
-[Here is a small demo](http://jeromecoupe.github.io/sassgrids/) of a grid in action.
+This version uses [Flexbox](http://caniuse.com/#feat=flexbox). Provided you install [Autoprefixer](https://github.com/postcss/autoprefixer), it will give you a [fairly good support across modern browsers](http://caniuse.com/#feat=flexbox).
 
-- The grid in the demo uses a nested grid along with "push" and "pull" classes
-- The demo makes use of [modernizr.js](http://www.modernizr.com) / [respond.js](https://github.com/scottjehl/Respond) / [selectivizr.js](https://github.com/keithclark/selectivizr) to support IE8
+- latest versions of Opera / Firefox / Chrome / Safari
+- IE10 and above
 
 ## Available classes and proportions
 
@@ -49,7 +49,9 @@ We are talking about proportional grids so these classes mean "spanning [proport
     .grid__unit--#{$namespace}10of12
     .grid__unit--#{$namespace}11of12
 
-Grid modules have a default width of 100%. The `.grid__unit--#{$namespace}full` classes are also available should you need a grid module to span the full width of your grid at any given breakpoint
+Grid units have a default width of 100%. The `.grid__unit--#{$namespace}full` classes are also available should you need a grid module to span the full width of your grid at any given breakpoint.
+
+By default `.grid__unit` will wrap on different lines. You can change that behaviour using the `.grid--nowrap` variation. When using that variant, `.grid__unit` have equal proportions on the same row and that proportion will change depending on the number of `.grid__unit` in the row.
 
 ## Grid variants
 
@@ -150,21 +152,18 @@ Provided that you have defined `medium` and `large` breakpoints
         @extend %grid__unit--large-1of3;
     }
 
-## Proportional "push" and "pull" classes
+## Order classes
 
-Proportional "push" and "pull" classes are available:
+Flexbox allows you to change the order of flexbox-items independently from source order using the `order` property. This framework provides namespaced order classes allowing you to change the order in which grid units are displayed at various breakpoints.
 
-- Push classes nudge grid units to the left by a certain proportion
-- Pull classes nudge grid units to the right by a certain proportion
-
-Used in conjunction with grid classes, these allow for more complex content choreography. Your layout can diverge a little bit more from source order at non default screen sizes. The demo uses "push" an "pull" classes.
+Used in conjunction with grid classes, these allow for more complex content choreography. Your layout can diverge from source order.
 
     <div class="grid">
-        <div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-2of3  grid__unit--large-push-1of3">
+        <div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-2of3  grid__unit--large-order2">
             <p>Content</p>
         </div><!--
 
-     --><div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-1of3  grid__unit--large-pull-2of3">
+     --><div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-1of3  grid__unit--large-order1">
             <p>Content</p>
         </div>
     </div>
@@ -203,14 +202,6 @@ When defining a breakpoint, you can prevent it from being used to generate grids
       )
     );
 
-## Browser Support
-
-Tested with:
-
-- latest versions of Opera / Firefox / Chrome / Safari
-- IE8 and above
-- IE7 does not support box-sizing nor display:inline-block. I generally serve a linearised version of the page to IE7 and IE6 users.
-
 ## Shoutouts
 
 ### Harry Roberts
@@ -225,6 +216,8 @@ However, there were a few things that prompted me to create my own thing:
 ### Chris Coyier
 
 Nice article on [how to handle white-space when using inline-block](http://css-tricks.com/fighting-the-space-between-inline-block-elements/) over at CSS-tricks
+
+Chris is also the author of [one of the most comprehensive article on flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
 
 ### Paul Irish
 
