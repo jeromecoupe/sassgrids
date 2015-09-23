@@ -5,7 +5,7 @@
 /*
  * Gutter between grid units
  *
- * Use only fixed value (em, rem, px)
+ * Use only fixed units (em, rem, px)
 */
 
 $grid-gutter: 40px !default;
@@ -47,9 +47,11 @@ $breakpoints-list: (
 ) !default;
 
 /*
- * Push and Pull classes
+ * Order classes
  *
- * switch to "false" if you don't need them
+ * Flexbox has an order property allowing you to diversge from source order
+ * Order classes are using that order property
+ * switch to "false" if you don't need those classes
 */
 
 $grid-orderclasses: false !default;
@@ -64,7 +66,7 @@ $grid-orderclasses: false !default;
 $grid-silent-classes: false !default;
 
 /*
- * Build class prefixes (silent or not)
+ * Build class types (silent or not)
 */
 
 $grid-class-type: unquote(".");
@@ -76,7 +78,7 @@ $grid-class-type: unquote(".");
 
 
 // -------------------------------------
-// =grid building
+// =grid
 // -------------------------------------
 
 /*
@@ -85,6 +87,7 @@ $grid-class-type: unquote(".");
  * [1] grid usable on lists
  * [2] kill default padding and margin
  * [3] display flex
+ *     - default direction is row
  *     - children wrap on multiple lines by default
  *     - children jutified left on main axis
  *     - children streched on cross-axis
@@ -108,9 +111,12 @@ $grid-class-type: unquote(".");
 /*
  * Grid units
  *
- * - 1. allows for padding without modifying the box width
- * - 2. gutters created using padding
- * - 3. Items take up all available space on main axis
+ * [1] allows for padding without modifying the box width
+ * [2] gutters created using padding
+ * [3] Items take up all available space on main axis by default
+ *   - if the .grid--nowrap modifer is used, items will shrink,
+ *     be on the same line and have identical sizes
+ *
 */
 
 #{$grid-class-type}grid__unit
@@ -119,9 +125,13 @@ $grid-class-type: unquote(".");
   padding: 0;
   box-sizing: border-box;              // [1]
   padding-left: $grid-gutter;          // [2]
-  flex: 0 0 100%;                      // [3]
+  flex: 0 1 100%;                      // [3]
 }
 
+
+// -------------------------------------
+// =grid modifiers
+// -------------------------------------
 
 /**
 *
@@ -194,11 +204,6 @@ $grid-class-type: unquote(".");
 #{$grid-class-type}grid--nowrap
 {
   flex-wrap: nowrap;
-
-  & > #{$grid-class-type}grid__unit
-  {
-    flex: 0 1 100%;
-  }
 }
 
 

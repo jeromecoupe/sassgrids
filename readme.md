@@ -51,7 +51,7 @@ We are talking about proportional grids so these classes mean "spanning [proport
 
 Grid units have a default width of 100%. The `.grid__unit--#{$namespace}full` classes are also available should you need a grid module to span the full width of your grid at any given breakpoint.
 
-By default `.grid__unit` will wrap on different lines. You can change that behaviour using the `.grid--nowrap` variation. When using that variant, `.grid__unit` have equal proportions on the same row and that proportion will change depending on the number of `.grid__unit` in the row.
+By default `.grid__unit` will wrap on different lines. You can change that behaviour using the `.grid--nowrap` variation. When using that variant, `.grid__unit` have equal proportions on the same row and that proportion will automatically change depending on the number of `.grid__unit` in the row.
 
 ## Grid variants
 
@@ -64,99 +64,11 @@ Grid variants are available:
 - `.grid--middle`: grid units aligned vertically to the middle
 - `.grid--bottom`: grid units aligned vertically to the bottom
 
-
-## Use classes in HTML
-
-Since this is using inline-block and not floats, comments must be in there to alleviate the fact that [many browsers account for white-space between inline-block elements](http://css-tricks.com/fighting-the-space-between-inline-block-elements/).
-
-Benefits of using inline-block
-
-- more flexible than floats in a responsive grid context
-- no clearing to worry about
-- no float drops
-
-Every `.grid__unit` has to live within a `.grid`. Provided you have defined `medium` and `large` breakpoints, here is a simple grid.
-
-    <div class="grid">
-        <div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-2of3">
-            <p>Content</p>
-        </div><!--
-
-     --><div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-1of3">
-            <p>Content</p>
-        </div>
-    </div>
-
-You can nest grids to your heart's content.
-
-    <div class="grid">
-        <div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-2of3">
-
-            <div class="grid">
-                <div class="grid__unit  grid__unit--medium-1of3">
-                    <p>Content</p>
-                </div><!--
-
-             --><div class="grid__unit  grid__unit--medium-1of3">
-                    <p>Content</p>
-                </div><!--
-
-             --><div class="grid__unit  grid__unit--medium-1of3">
-                    <p>Content</p>
-                </div>
-            </div>
-
-        </div><!--
-
-     --><div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-1of3">
-            <p>Content</p>
-        </div>
-    </div>
-
-## Use Sass placeholder classes
-
-If you don't like grid classes in your HTML and want to use Sass placeholder classes and `@extend`, there is a simple true or false switch in the `_variables.scss` allowing you to use placeholder classes.
-
-### HTML
-
-    <div class="content">
-        <div class="content__primary">
-            <p>Content</p>
-        </div><!--
-
-     --><div class="content__secondary">
-            <p>Content</p>
-        </div>
-    </div>
-
-### Sass
-
-Provided that you have defined `medium` and `large` breakpoints
-
-    .content
-    {
-        @extend %grid;
-    }
-
-    .content__primary
-    {
-        @extend %grid__unit;
-        @extend %grid__unit--medium-1of2;
-        @extend %grid__unit--large-2of3;
-    }
-
-    .content__secondary
-    {
-        @extend %grid__unit;
-        @extend %grid__unit--medium-1of2;
-        @extend %grid__unit--large-1of3;
-    }
-
 ## Order classes
 
 Flexbox allows you to change the order of flexbox-items independently from source order using the `order` property. This framework provides namespaced order classes allowing you to change the order in which grid units are displayed at various breakpoints.
 
-Used in conjunction with grid classes, these allow for more complex content choreography. Your layout can diverge from source order.
+Used in conjunction with grid classes, these allow for more complex content choreography. Your layout can diverge from source order. To avoid any clashes between your custom order and source order, when you use `.grid__unit--#{namespace}-orderx` classes on one grid unit, you hould use them on all of them.
 
     <div class="grid">
         <div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-2of3  grid__unit--large-order2">
@@ -167,6 +79,85 @@ Used in conjunction with grid classes, these allow for more complex content chor
             <p>Content</p>
         </div>
     </div>
+
+    ## Use classes in HTML
+
+    Every `.grid__unit` has to live within a `.grid`. Provided you have defined `medium` and `large` breakpoints, here is a simple grid.
+
+        <div class="grid">
+            <div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-2of3">
+                <p>Content</p>
+            </div><!--
+
+         --><div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-1of3">
+                <p>Content</p>
+            </div>
+        </div>
+
+    You can nest grids to your heart's content.
+
+        <div class="grid">
+            <div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-2of3">
+
+                <div class="grid">
+                    <div class="grid__unit  grid__unit--medium-1of3">
+                        <p>Content</p>
+                    </div><!--
+
+                 --><div class="grid__unit  grid__unit--medium-1of3">
+                        <p>Content</p>
+                    </div><!--
+
+                 --><div class="grid__unit  grid__unit--medium-1of3">
+                        <p>Content</p>
+                    </div>
+                </div>
+
+            </div><!--
+
+         --><div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-1of3">
+                <p>Content</p>
+            </div>
+        </div>
+
+## Use Sass placeholder classes
+
+If you don't like grid classes in your HTML and want to use Sass placeholder classes and `@extend`, there is a simple true or false switch in the `_variables.scss` allowing you to use placeholder classes.
+
+### HTML
+
+        <div class="content">
+            <div class="content__primary">
+                <p>Content</p>
+            </div><!--
+
+         --><div class="content__secondary">
+                <p>Content</p>
+            </div>
+        </div>
+
+### Sass
+
+Provided that you have defined `medium` and `large` breakpoints
+
+        .content
+        {
+            @extend %grid;
+        }
+
+        .content__primary
+        {
+            @extend %grid__unit;
+            @extend %grid__unit--medium-1of2;
+            @extend %grid__unit--large-2of3;
+        }
+
+        .content__secondary
+        {
+            @extend %grid__unit;
+            @extend %grid__unit--medium-1of2;
+            @extend %grid__unit--large-1of3;
+        }
 
 ## Using defined breakpoints and media-queries for something else than grids
 
