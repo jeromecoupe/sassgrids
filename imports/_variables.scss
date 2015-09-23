@@ -6,8 +6,12 @@
  * override any configuration specified in _grid.scss here
 */
 
-$grid-pushclasses: true;
-$grid-pullclasses: true;
+$grid-orderclasses: true;
+
+
+// -------------------------------------
+// =breakpoints
+// -------------------------------------
 
 $breakpoints-list: (
   "small": (
