@@ -1,10 +1,12 @@
 # Sass grids
 
-Simple grid framework I use on client projects
+Simple grid framework I use on client projects. This is the `Flexbox` based version.
 
 ## Goals
 
-I wanted a simple and quick way to design responsive grids in Sass so I built this micro grid framework. It allows you to use namespaced (silent) classes to create a mobile first grid very rapidly. Set goals:
+I wanted a simple and quick way to design responsive grids in Sass so I built this micro grid framework. It allows you to use namespaced (silent) classes to create a mobile first grid very rapidly.
+
+Set goals:
 
 - Responsive
 - Mobile First
@@ -71,54 +73,65 @@ Flexbox allows you to change the order of flexbox-items independently from sourc
 Used in conjunction with grid classes, these allow for more complex content choreography. Your layout can diverge from source order. To avoid any clashes between your custom order and source order, when you use `.grid__unit--#{namespace}-orderx` classes on one grid unit, you should use them on all of them.
 
     <div class="grid">
-        <div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-2of3  grid__unit--large-order2">
-            <p>Content</p>
-        </div><!--
+      <div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-2of3  grid__unit--large-order2">
 
-     --><div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-1of3  grid__unit--large-order1">
+          <p>Content</p>
+
+      </div>
+      <div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-1of3  grid__unit--large-order1">
+
+          <p>Content</p>
+
+      </div>
+    </div>
+
+## Use classes in HTML
+
+Every `.grid__unit` has to live within a `.grid`. Provided you have defined `medium` and `large` breakpoints, here is a simple grid.
+
+    <div class="grid">
+        <div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-2of3">
+
             <p>Content</p>
+
+        </div>
+        <div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-1of3">
+
+            <p>Content</p>
+
         </div>
     </div>
 
-    ## Use classes in HTML
+You can nest grids to your heart's content.
 
-    Every `.grid__unit` has to live within a `.grid`. Provided you have defined `medium` and `large` breakpoints, here is a simple grid.
+    <div class="grid">
+        <div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-2of3">
 
-        <div class="grid">
-            <div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-2of3">
-                <p>Content</p>
-            </div><!--
+            <div class="grid">
+                <div class="grid__unit  grid__unit--medium-1of3">
 
-         --><div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-1of3">
-                <p>Content</p>
-            </div>
-        </div>
+                    <p>Content</p>
 
-    You can nest grids to your heart's content.
-
-        <div class="grid">
-            <div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-2of3">
-
-                <div class="grid">
-                    <div class="grid__unit  grid__unit--medium-1of3">
-                        <p>Content</p>
-                    </div><!--
-
-                 --><div class="grid__unit  grid__unit--medium-1of3">
-                        <p>Content</p>
-                    </div><!--
-
-                 --><div class="grid__unit  grid__unit--medium-1of3">
-                        <p>Content</p>
-                    </div>
                 </div>
+                <div class="grid__unit  grid__unit--medium-1of3">
 
-            </div><!--
+                    <p>Content</p>
 
-         --><div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-1of3">
-                <p>Content</p>
+                </div>
+                <div class="grid__unit  grid__unit--medium-1of3">
+
+                    <p>Content</p>
+
+                </div>
             </div>
+
         </div>
+        <div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-1of3">
+
+            <p>Content</p>
+
+        </div>
+    </div>
 
 ## Use Sass placeholder classes
 
@@ -126,38 +139,41 @@ If you don't like grid classes in your HTML and want to use Sass placeholder cla
 
 ### HTML
 
-        <div class="content">
-            <div class="content__primary">
-                <p>Content</p>
-            </div><!--
+    <div class="content">
+        <div class="content__primary">
 
-         --><div class="content__secondary">
-                <p>Content</p>
-            </div>
+            <p>Content</p>
+
         </div>
+        <div class="content__secondary">
+
+            <p>Content</p>
+
+        </div>
+    </div>
 
 ### Sass
 
 Provided that you have defined `medium` and `large` breakpoints
 
-        .content
-        {
-            @extend %grid;
-        }
+    .content
+    {
+        @extend %grid;
+    }
 
-        .content__primary
-        {
-            @extend %grid__unit;
-            @extend %grid__unit--medium-1of2;
-            @extend %grid__unit--large-2of3;
-        }
+    .content__primary
+    {
+        @extend %grid__unit;
+        @extend %grid__unit--medium-1of2;
+        @extend %grid__unit--large-2of3;
+    }
 
-        .content__secondary
-        {
-            @extend %grid__unit;
-            @extend %grid__unit--medium-1of2;
-            @extend %grid__unit--large-1of3;
-        }
+    .content__secondary
+    {
+        @extend %grid__unit;
+        @extend %grid__unit--medium-1of2;
+        @extend %grid__unit--large-1of3;
+    }
 
 ## Using defined breakpoints and media-queries for something else than grids
 
@@ -165,11 +181,11 @@ You can also use defined breakpoints and media-queries in your SCSS files for so
 
     body
     {
-        background:#fff;
-        @include mq(large)
-        {
-            background:#ccc;
-        }
+      background:#fff;
+      @include mq(large)
+      {
+        background:#ccc;
+      }
     }
 
 When defining a breakpoint, you can prevent it from being used to generate grids and namespaced (silent) grid classes. Just set the `generate-grid-classes` parameter in the sass maps in `_variables.scss` to `false`
