@@ -68,7 +68,7 @@ Grid variants are available:
 
 Flexbox allows you to change the order of flexbox-items independently from source order using the `order` property. This framework provides namespaced order classes allowing you to change the order in which grid units are displayed at various breakpoints.
 
-Used in conjunction with grid classes, these allow for more complex content choreography. Your layout can diverge from source order. To avoid any clashes between your custom order and source order, when you use `.grid__unit--#{namespace}-orderx` classes on one grid unit, you hould use them on all of them.
+Used in conjunction with grid classes, these allow for more complex content choreography. Your layout can diverge from source order. To avoid any clashes between your custom order and source order, when you use `.grid__unit--#{namespace}-orderx` classes on one grid unit, you should use them on all of them.
 
     <div class="grid">
         <div class="grid__unit  grid__unit--medium-1of2  grid__unit--large-2of3  grid__unit--large-order2">
