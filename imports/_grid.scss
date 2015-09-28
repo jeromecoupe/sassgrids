@@ -2,16 +2,16 @@
 // =grid configuration
 // -------------------------------------
 
-/*
+/**
  * Gutter between grid units
  *
  * Use only fixed value (em, rem, px)
-*/
+ */
 
 $grid-gutter: 40px !default;
 
 
-/*
+/**
  * Breakpoints defined using a nested Sass map
  *
  * - name: name of the breakpoint (also used to namespace grid classes)
@@ -25,7 +25,7 @@ $grid-gutter: 40px !default;
  * - large:    1024px   64em
  * - xlarge:   1140px   71.25em
  *
-*/
+ */
 
 $breakpoints-list: (
   "small": (
@@ -46,27 +46,27 @@ $breakpoints-list: (
   )
 ) !default;
 
-/*
+/**
  * Push and Pull classes
  *
  * switch to "false" if you don't need them
-*/
+ */
 
 $grid-pushclasses: false !default;
 $grid-pullclasses: false !default;
 
 
-/*
+/**
  * Use silent classes
  *
  * switch to "true" if you want to use @extend and silent classes
-*/
+ */
 
 $grid-silent-classes: false !default;
 
-/*
+/**
  * Build class prefixes (silent or not)
-*/
+ */
 
 $grid-class-type: unquote(".");
 
@@ -80,13 +80,13 @@ $grid-class-type: unquote(".");
 // =grid building
 // -------------------------------------
 
-/*
+/**
  * Define grid
  *
  * [1] grid usable on lists
  * [2] kill default padding and margin
  * [3] compensating left padding of leftmost .grid__unit in .grid
-*/
+ */
 
 #{$grid-class-type}grid
 {
@@ -97,7 +97,7 @@ $grid-class-type: unquote(".");
 }
 
 
-/*
+/**
  * Grid units
  *
  * - 1. grid modules are 100% by default
@@ -105,7 +105,7 @@ $grid-class-type: unquote(".");
  * - 3. gutters created using padding
  * - 4. using inline-block to stack the modules side by side (comment out white space in html)
  * - 5. align top of modules
-*/
+ */
 
 #{$grid-class-type}grid__unit
 {
@@ -122,10 +122,8 @@ $grid-class-type: unquote(".");
 
 
 /**
-*
-* grid aligned center
-*
-*/
+ * grid aligned center
+ */
 
 #{$grid-class-type}grid--center
 {
@@ -139,10 +137,8 @@ $grid-class-type: unquote(".");
 
 
 /**
-*
-* grid aligned right
-*
-*/
+ * grid aligned right
+ */
 
 #{$grid-class-type}grid--right
 {
@@ -154,11 +150,10 @@ $grid-class-type: unquote(".");
   }
 }
 
+
 /**
-*
-* grid vertical aligned middle
-*
-*/
+ * grid vertical aligned middle
+ */
 
 #{$grid-class-type}grid--middle
 {
@@ -168,11 +163,10 @@ $grid-class-type: unquote(".");
   }
 }
 
+
 /**
-*
-* grid vertical aligned bottom
-*
-*/
+ * grid vertical aligned bottom
+ */
 
 #{$grid-class-type}grid--bottom
 {
@@ -184,10 +178,8 @@ $grid-class-type: unquote(".");
 
 
 /**
-*
-* grid gutterless
-*
-*/
+ * grid gutterless
+ */
 
 #{$grid-class-type}grid--gutterless
 {
@@ -236,12 +228,12 @@ $grid-class-type: unquote(".");
 // =Add push classes
 // -------------------------------------
 
-/*
+/**
  * proportionnaly nudge things to the left
  *
  * - using relative positioning and left positions
  * - combined with pull classes, this allows for more complex content choreography
-*/
+ */
 
 @mixin pushclasses($namespace:"")
 {
@@ -275,12 +267,12 @@ $grid-class-type: unquote(".");
 // =add pull classes
 // -------------------------------------
 
-/*
+/**
  * proportionnaly nudge things to the right
  *
  * - using relative positioning and right positions
  * - combined with pull classes, this allows for more complex content choreography
-*/
+ */
 
 @mixin pullclasses($namespace:"")
 {
@@ -314,50 +306,50 @@ $grid-class-type: unquote(".");
 // =export grid in all media-queries
 // -------------------------------------
 
-/*
+/**
  * In SASS, you cannot extend classes that are not in the same media queries / context
  *
  * - The code belows generate (silent) classes for all the defined media queries breakpoints
  * - This implies that you are using a mobile first approach
-*/
+ */
 
 
-/*
+/**
  * include basic non-namespaced (silent) classes without any media queries
-*/
+ */
 
 @include mainclasses();
 @if $grid-pushclasses { @include pushclasses(); }
 @if $grid-pullclasses { @include pullclasses(); }
 
 
-/*
+/**
  * include namespaced (silent) classes for all defined breakpoints
-*/
+ */
 
 @each $breakpoint-name, $breakpoint-params in $breakpoints-list
 {
-  $breakpoint-query: map-get($breakpoint-params, query);
-  $breakpoint-grid: map-get($breakpoint-params, generate-grid-classes);
+$breakpoint-query: map-get($breakpoint-params, query);
+$breakpoint-grid: map-get($breakpoint-params, generate-grid-classes);
 
-  @if ($breakpoint-grid == true)
-  {
-    @media #{$breakpoint-query} {
+@if ($breakpoint-grid == true)
+{
+  @media #{$breakpoint-query} {
 
-      // generate default grid classes for all media queries
-      @include mainclasses("#{$breakpoint-name}-");
+    // generate default grid classes for all media queries
+    @include mainclasses("#{$breakpoint-name}-");
 
-      // generate push grid classes for all media queries
-      @if ($grid-pushclasses == true)
-			{
-				@include pushclasses("#{$breakpoint-name}-");
-			}
+    // generate push grid classes for all media queries
+    @if ($grid-pushclasses == true)
+    {
+      @include pushclasses("#{$breakpoint-name}-");
+    }
 
-      // generate pull grid classes for all media queries
-			@if ($grid-pullclasses == true)
-			{
-				@include pullclasses("#{$breakpoint-name}-");
-			}
+    // generate pull grid classes for all media queries
+    @if ($grid-pullclasses == true)
+    {
+      @include pullclasses("#{$breakpoint-name}-");
     }
   }
+}
 }

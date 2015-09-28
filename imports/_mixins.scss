@@ -2,10 +2,10 @@
 // =media-queries
 // -------------------------------------
 
-/*
+/**
  * Allows you to use named media queries based on breakpoints list in _variables.scss
  * The "generate-grid-classes" value is ignored here
-*/
+ */
 
 @mixin mq($breakpoint)
 {
