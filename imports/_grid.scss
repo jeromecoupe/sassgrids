@@ -2,16 +2,16 @@
 // =grid configuration
 // -------------------------------------
 
-/*
+/**
  * Gutter between grid units
  *
  * Use only fixed units (em, rem, px)
-*/
+ */
 
 $grid-gutter: 40px !default;
 
 
-/*
+/**
  * Breakpoints defined using a nested Sass map
  *
  * - name: name of the breakpoint (also used to namespace grid classes)
@@ -24,8 +24,7 @@ $grid-gutter: 40px !default;
  * - medium:   760px    47.5em
  * - large:    1024px   64em
  * - xlarge:   1140px   71.25em
- *
-*/
+ */
 
 $breakpoints-list: (
   "small": (
@@ -46,28 +45,28 @@ $breakpoints-list: (
   )
 ) !default;
 
-/*
- * Order classes
+/**
+ * Use Order classes
  *
- * Flexbox has an order property allowing you to diversge from source order
- * Order classes are using that order property
- * switch to "false" if you don't need those classes
-*/
+ * - Flexbox has an order property allowing you to diversge from source order
+ * - Order classes are using that order property
+ * - switch to "false" if you don't need those classes
+ */
 
 $grid-orderclasses: false !default;
 
 
-/*
+/**
  * Use silent classes
  *
- * switch to "true" if you want to use @extend and silent classes
-*/
+ * - switch to "true" if you want to use @extend and silent classes
+ */
 
 $grid-silent-classes: false !default;
 
 /*
  * Build class types (silent or not)
-*/
+ */
 
 $grid-class-type: unquote(".");
 
@@ -81,7 +80,7 @@ $grid-class-type: unquote(".");
 // =grid
 // -------------------------------------
 
-/*
+/**
  * Define grid
  *
  * [1] grid usable on lists
@@ -92,7 +91,7 @@ $grid-class-type: unquote(".");
  *     - children jutified left on main axis
  *     - children streched on cross-axis
  * [4] compensating left padding of leftmost .grid__unit in .grid
-*/
+ */
 
 #{$grid-class-type}grid
 {
@@ -108,7 +107,7 @@ $grid-class-type: unquote(".");
 }
 
 
-/*
+/**
  * Grid units
  *
  * [1] allows for padding without modifying the box width
@@ -116,8 +115,7 @@ $grid-class-type: unquote(".");
  * [3] Items take up all available space on main axis by default
  *   - if the .grid--nowrap modifer is used, items will shrink,
  *     be on the same line and have identical sizes
- *
-*/
+ */
 
 #{$grid-class-type}grid__unit
 {
@@ -134,10 +132,8 @@ $grid-class-type: unquote(".");
 // -------------------------------------
 
 /**
-*
-* grid aligned center
-*
-*/
+ * grid aligned center
+ */
 
 #{$grid-class-type}grid--center
 {
@@ -146,32 +142,28 @@ $grid-class-type: unquote(".");
 
 
 /**
-*
-* grid aligned right
-*
-*/
+ * grid aligned right
+ */
 
 #{$grid-class-type}grid--right
 {
   justify-content: flex-end;
 }
 
+
 /**
-*
-* grid vertical aligned middle
-*
-*/
+ * grid vertical aligned middle
+ */
 
 #{$grid-class-type}grid--middle
 {
   align-items: center;
 }
 
+
 /**
-*
-* grid vertical aligned bottom
-*
-*/
+ * grid vertical aligned bottom
+ */
 
 #{$grid-class-type}grid--bottom
 {
@@ -180,10 +172,8 @@ $grid-class-type: unquote(".");
 
 
 /**
-*
-* grid gutterless
-*
-*/
+ * grid gutterless
+ */
 
 #{$grid-class-type}grid--gutterless
 {
@@ -195,11 +185,11 @@ $grid-class-type: unquote(".");
   }
 }
 
+
 /**
-*
-* grid nowrap
-*
-*/
+ * grid nowrap
+ * when switched on, grid__unit do not wrap anymore and all share the same proportions
+ */
 
 #{$grid-class-type}grid--nowrap
 {
@@ -243,10 +233,10 @@ $grid-class-type: unquote(".");
 // =Add order classes
 // -------------------------------------
 
-/*
+/**
  * Change the order of grid__item compared to source order
  *
-*/
+ */
 
 @mixin orderclasses($namespace:"")
 {
@@ -268,25 +258,25 @@ $grid-class-type: unquote(".");
 // =export grid in all media-queries
 // -------------------------------------
 
-/*
+/**
  * In SASS, you cannot extend classes that are not in the same media queries / context
  *
  * - The code belows generate (silent) classes for all the defined media queries breakpoints
  * - This implies that you are using a mobile first approach
-*/
+ */
 
 
-/*
+/**
  * include basic non-namespaced (silent) classes without any media queries
-*/
+ */
 
 @include mainclasses();
 @if $grid-orderclasses { @include orderclasses(); }
 
 
-/*
+/**
  * include namespaced (silent) classes for all defined breakpoints
-*/
+ */
 
 @each $breakpoint-name, $breakpoint-params in $breakpoints-list
 {
