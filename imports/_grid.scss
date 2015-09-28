@@ -125,7 +125,7 @@ $grid-class-type: unquote(".");
   padding: 0;
   box-sizing: border-box;              // [1]
   padding-left: $grid-gutter;          // [2]
-  flex: 0 1 100%;                      // [3]
+  flex: 1 1 100%;                      // [3]
 }
 
 
@@ -213,29 +213,29 @@ $grid-class-type: unquote(".");
 
 @mixin mainclasses($namespace:"")
 {
-  #{$grid-class-type}grid__unit--#{$namespace}full    { flex: 0 1 100%; }
+  #{$grid-class-type}grid__unit--#{$namespace}full    { flex: 0 0 100%; }
 
-  #{$grid-class-type}grid__unit--#{$namespace}1of10   { flex: 0 1 (1/10 * 100%); }
-  #{$grid-class-type}grid__unit--#{$namespace}2of10   { flex: 0 1 (2/10 * 100%); }
-  #{$grid-class-type}grid__unit--#{$namespace}3of10   { flex: 0 1 (3/10 * 100%); }
-  #{$grid-class-type}grid__unit--#{$namespace}4of10   { flex: 0 1 (4/10 * 100%); }
-  #{$grid-class-type}grid__unit--#{$namespace}5of10   { flex: 0 1 (5/10 * 100%); }
-  #{$grid-class-type}grid__unit--#{$namespace}6of10   { flex: 0 1 (6/10 * 100%); }
-  #{$grid-class-type}grid__unit--#{$namespace}7of10   { flex: 0 1 (7/10 * 100%); }
-  #{$grid-class-type}grid__unit--#{$namespace}8of10   { flex: 0 1 (8/10 * 100%); }
-  #{$grid-class-type}grid__unit--#{$namespace}9of10   { flex: 0 1 (9/10 * 100%); }
+  #{$grid-class-type}grid__unit--#{$namespace}1of10   { flex: 0 0 (1/10 * 100%); }
+  #{$grid-class-type}grid__unit--#{$namespace}2of10   { flex: 0 0 (2/10 * 100%); }
+  #{$grid-class-type}grid__unit--#{$namespace}3of10   { flex: 0 0 (3/10 * 100%); }
+  #{$grid-class-type}grid__unit--#{$namespace}4of10   { flex: 0 0 (4/10 * 100%); }
+  #{$grid-class-type}grid__unit--#{$namespace}5of10   { flex: 0 0 (5/10 * 100%); }
+  #{$grid-class-type}grid__unit--#{$namespace}6of10   { flex: 0 0 (6/10 * 100%); }
+  #{$grid-class-type}grid__unit--#{$namespace}7of10   { flex: 0 0 (7/10 * 100%); }
+  #{$grid-class-type}grid__unit--#{$namespace}8of10   { flex: 0 0 (8/10 * 100%); }
+  #{$grid-class-type}grid__unit--#{$namespace}9of10   { flex: 0 0 (9/10 * 100%); }
 
-  #{$grid-class-type}grid__unit--#{$namespace}1of12   { flex: 0 1 (1/12 * 100%); }
-  #{$grid-class-type}grid__unit--#{$namespace}2of12   { flex: 0 1 (2/12 * 100%); }
-  #{$grid-class-type}grid__unit--#{$namespace}3of12   { flex: 0 1 (3/12 * 100%); }
-  #{$grid-class-type}grid__unit--#{$namespace}4of12   { flex: 0 1 (4/12 * 100%); }
-  #{$grid-class-type}grid__unit--#{$namespace}5of12   { flex: 0 1 (5/12 * 100%); }
-  #{$grid-class-type}grid__unit--#{$namespace}6of12   { flex: 0 1 (6/12 * 100%); }
-  #{$grid-class-type}grid__unit--#{$namespace}7of12   { flex: 0 1 (7/12 * 100%); }
-  #{$grid-class-type}grid__unit--#{$namespace}8of12   { flex: 0 1 (8/12 * 100%); }
-  #{$grid-class-type}grid__unit--#{$namespace}9of12   { flex: 0 1 (9/12 * 100%); }
-  #{$grid-class-type}grid__unit--#{$namespace}10of12  { flex: 0 1 (10/12 * 100%); }
-  #{$grid-class-type}grid__unit--#{$namespace}11of12  { flex: 0 1 (11/12 * 100%); }
+  #{$grid-class-type}grid__unit--#{$namespace}1of12   { flex: 0 0 (1/12 * 100%); }
+  #{$grid-class-type}grid__unit--#{$namespace}2of12   { flex: 0 0 (2/12 * 100%); }
+  #{$grid-class-type}grid__unit--#{$namespace}3of12   { flex: 0 0 (3/12 * 100%); }
+  #{$grid-class-type}grid__unit--#{$namespace}4of12   { flex: 0 0 (4/12 * 100%); }
+  #{$grid-class-type}grid__unit--#{$namespace}5of12   { flex: 0 0 (5/12 * 100%); }
+  #{$grid-class-type}grid__unit--#{$namespace}6of12   { flex: 0 0 (6/12 * 100%); }
+  #{$grid-class-type}grid__unit--#{$namespace}7of12   { flex: 0 0 (7/12 * 100%); }
+  #{$grid-class-type}grid__unit--#{$namespace}8of12   { flex: 0 0 (8/12 * 100%); }
+  #{$grid-class-type}grid__unit--#{$namespace}9of12   { flex: 0 0 (9/12 * 100%); }
+  #{$grid-class-type}grid__unit--#{$namespace}10of12  { flex: 0 0 (10/12 * 100%); }
+  #{$grid-class-type}grid__unit--#{$namespace}11of12  { flex: 0 0 (11/12 * 100%); }
 }
 
 
