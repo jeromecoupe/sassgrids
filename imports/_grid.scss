@@ -2,16 +2,26 @@
 // =grid configuration
 // -------------------------------------
 
-/*
+/**
  * Gutter between grid units
  *
  * Use only fixed value (em, rem, px)
-*/
+ */
 
 $grid-gutter: 40px !default;
 
+/**
+ * Number of columns
+ *
+ * Always use a number or a list of numbers
+ * You can combine two or more grids
+ * Be careful with this, it generates quite a few classes per item in the list
+ * combined with many breakpoints, it can generate a lot of classes
+ */
 
-/*
+$grid-columns: (10, 12) !default;
+
+/**
  * Breakpoints defined using a nested Sass map
  *
  * - name: name of the breakpoint (also used to namespace grid classes)
@@ -25,7 +35,7 @@ $grid-gutter: 40px !default;
  * - large:    1024px   64em
  * - xlarge:   1140px   71.25em
  *
-*/
+ */
 
 $breakpoints-list: (
   "small": (
@@ -46,27 +56,27 @@ $breakpoints-list: (
   )
 ) !default;
 
-/*
+/**
  * Push and Pull classes
  *
  * switch to "false" if you don't need them
-*/
+ */
 
 $grid-pushclasses: false !default;
 $grid-pullclasses: false !default;
 
 
-/*
+/**
  * Use silent classes
  *
  * switch to "true" if you want to use @extend and silent classes
-*/
+ */
 
 $grid-silent-classes: false !default;
 
-/*
+/**
  * Build class prefixes (silent or not)
-*/
+ */
 
 $grid-class-type: unquote(".");
 
@@ -80,13 +90,13 @@ $grid-class-type: unquote(".");
 // =grid building
 // -------------------------------------
 
-/*
+/**
  * Define grid
  *
  * [1] grid usable on lists
  * [2] kill default padding and margin
  * [3] compensating left padding of leftmost .grid__unit in .grid
-*/
+ */
 
 #{$grid-class-type}grid
 {
@@ -97,7 +107,7 @@ $grid-class-type: unquote(".");
 }
 
 
-/*
+/**
  * Grid units
  *
  * - 1. grid modules are 100% by default
@@ -105,7 +115,7 @@ $grid-class-type: unquote(".");
  * - 3. gutters created using padding
  * - 4. using inline-block to stack the modules side by side (comment out white space in html)
  * - 5. align top of modules
-*/
+ */
 
 #{$grid-class-type}grid__unit
 {
@@ -122,10 +132,8 @@ $grid-class-type: unquote(".");
 
 
 /**
-*
-* grid aligned center
-*
-*/
+ * grid aligned center
+ */
 
 #{$grid-class-type}grid--center
 {
@@ -139,10 +147,8 @@ $grid-class-type: unquote(".");
 
 
 /**
-*
-* grid aligned right
-*
-*/
+ * grid aligned right
+ */
 
 #{$grid-class-type}grid--right
 {
@@ -154,11 +160,10 @@ $grid-class-type: unquote(".");
   }
 }
 
+
 /**
-*
-* grid vertical aligned middle
-*
-*/
+ * grid vertical aligned middle
+ */
 
 #{$grid-class-type}grid--middle
 {
@@ -168,11 +173,10 @@ $grid-class-type: unquote(".");
   }
 }
 
+
 /**
-*
-* grid vertical aligned bottom
-*
-*/
+ * grid vertical aligned bottom
+ */
 
 #{$grid-class-type}grid--bottom
 {
@@ -184,10 +188,8 @@ $grid-class-type: unquote(".");
 
 
 /**
-*
-* grid gutterless
-*
-*/
+ * grid gutterless
+ */
 
 #{$grid-class-type}grid--gutterless
 {
@@ -201,112 +203,60 @@ $grid-class-type: unquote(".");
 
 
 // -------------------------------------
-// =Default proportional grid classes
+// =Create proportional grid classes
 // -------------------------------------
 
-@mixin mainclasses($namespace:"")
+/**
+ * - Loop through each value in the list
+ * - Create corresponding columns classes
+ * - Using "to" here since the "full" classes are created separately
+ */
+
+@mixin make-classes($namespace:"")
 {
-  #{$grid-class-type}grid__unit--#{$namespace}full    { width: 100%; }
+  // Create main "full" grid classes
+  #{$grid-class-type}grid__unit--#{$namespace}full { width: 100%};
 
-  #{$grid-class-type}grid__unit--#{$namespace}1of10   { width: 1/10 * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}2of10   { width: 2/10 * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}3of10   { width: 3/10 * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}4of10   { width: 4/10 * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}5of10   { width: 5/10 * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}6of10   { width: 6/10 * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}7of10   { width: 7/10 * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}8of10   { width: 8/10 * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}9of10   { width: 9/10 * 100%; }
+  // Create push "full" grid classes if needed
+  @if $grid-pushclasses
+  {
+    #{$grid-class-type}grid__unit--#{$namespace}push-full   { position: relative; left: 100%; }
+  }
 
-  #{$grid-class-type}grid__unit--#{$namespace}1of12   { width: 1/12  * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}2of12   { width: 2/12  * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}3of12   { width: 3/12  * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}4of12   { width: 4/12  * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}5of12   { width: 5/12  * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}6of12   { width: 6/12  * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}7of12   { width: 7/12  * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}8of12   { width: 8/12  * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}9of12   { width: 9/12  * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}10of12  { width: 10/12 * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}11of12  { width: 11/12 * 100%; }
-}
+  // Create pull "full" grid classes if needed
+  @if $grid-pullclasses
+  {
+    #{$grid-class-type}grid__unit--#{$namespace}pull-full   { position: relative; right: 100%; }
+  }
 
+  /**
+   * Create main grid classes for each column in the grids
+   */
+  @each $columns in $grid-columns
+  {
+    @if type-of($columns) != 'number'
+    {
+      @error "$grid-columns must be a number or a list of numbers";
+    }
 
-// -------------------------------------
-// =Add push classes
-// -------------------------------------
+    @for $i from 1 to $columns
+    {
+      // Create main grid classes
+      #{$grid-class-type}grid__unit--#{$namespace}#{$i}of#{$columns} { width: percentage($i / $columns); }
 
-/*
- * proportionnaly nudge things to the left
- *
- * - using relative positioning and left positions
- * - combined with pull classes, this allows for more complex content choreography
-*/
+      // Create push grid classes if needed
+      @if $grid-pushclasses
+      {
+        #{$grid-class-type}grid__unit--#{$namespace}push-#{$i}of#{$columns}   { position: relative; left: percentage($i / $columns) }
+      }
 
-@mixin pushclasses($namespace:"")
-{
-  #{$grid-class-type}grid__unit--#{$namespace}push-full    { position: relative; left: 100%; }
-
-  #{$grid-class-type}grid__unit--#{$namespace}push-1of10   { position: relative; left: 1/10 * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}push-2of10   { position: relative; left: 2/10 * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}push-3of10   { position: relative; left: 3/10 * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}push-4of10   { position: relative; left: 4/10 * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}push-5of10   { position: relative; left: 5/10 * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}push-6of10   { position: relative; left: 6/10 * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}push-7of10   { position: relative; left: 7/10 * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}push-8of10   { position: relative; left: 8/10 * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}push-9of10   { position: relative; left: 9/10 * 100%; }
-
-  #{$grid-class-type}grid__unit--#{$namespace}push-1of12   { position: relative; left: 1/12  * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}push-2of12   { position: relative; left: 2/12  * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}push-3of12   { position: relative; left: 3/12  * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}push-4of12   { position: relative; left: 4/12  * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}push-5of12   { position: relative; left: 5/12  * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}push-6of12   { position: relative; left: 6/12  * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}push-7of12   { position: relative; left: 7/12  * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}push-8of12   { position: relative; left: 8/12  * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}push-9of12   { position: relative; left: 9/12  * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}push-10of12  { position: relative; left: 10/12 * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}push-11of12  { position: relative; left: 11/12 * 100%; }
-}
-
-
-// -------------------------------------
-// =add pull classes
-// -------------------------------------
-
-/*
- * proportionnaly nudge things to the right
- *
- * - using relative positioning and right positions
- * - combined with pull classes, this allows for more complex content choreography
-*/
-
-@mixin pullclasses($namespace:"")
-{
-  #{$grid-class-type}grid__unit--#{$namespace}pull-full    { position: relative; right: 100%; }
-
-  #{$grid-class-type}grid__unit--#{$namespace}pull-1of10   { position: relative; right: 1/10 * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}pull-2of10   { position: relative; right: 2/10 * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}pull-3of10   { position: relative; right: 3/10 * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}pull-4of10   { position: relative; right: 4/10 * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}pull-5of10   { position: relative; right: 5/10 * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}pull-6of10   { position: relative; right: 6/10 * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}pull-7of10   { position: relative; right: 7/10 * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}pull-8of10   { position: relative; right: 8/10 * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}pull-9of10   { position: relative; right: 9/10 * 100%; }
-
-  #{$grid-class-type}grid__unit--#{$namespace}pull-1of12   { position: relative; right: 1/12  * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}pull-2of12   { position: relative; right: 2/12  * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}pull-3of12   { position: relative; right: 3/12  * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}pull-4of12   { position: relative; right: 4/12  * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}pull-5of12   { position: relative; right: 5/12  * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}pull-6of12   { position: relative; right: 6/12  * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}pull-7of12   { position: relative; right: 7/12  * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}pull-8of12   { position: relative; right: 8/12  * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}pull-9of12   { position: relative; right: 9/12  * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}pull-10of12  { position: relative; right: 10/12 * 100%; }
-  #{$grid-class-type}grid__unit--#{$namespace}pull-11of12  { position: relative; right: 11/12 * 100%; }
+      // Create pull grid classes if needed
+      @if $grid-pullclasses
+      {
+        #{$grid-class-type}grid__unit--#{$namespace}pull-#{$i}of#{$columns}   { position: relative; right: percentage($i / $columns) }
+      }
+    }
+  }
 }
 
 
@@ -314,50 +264,34 @@ $grid-class-type: unquote(".");
 // =export grid in all media-queries
 // -------------------------------------
 
-/*
+/**
  * In SASS, you cannot extend classes that are not in the same media queries / context
  *
  * - The code belows generate (silent) classes for all the defined media queries breakpoints
  * - This implies that you are using a mobile first approach
-*/
+ */
 
 
-/*
+/**
  * include basic non-namespaced (silent) classes without any media queries
-*/
+ */
 
-@include mainclasses();
-@if $grid-pushclasses { @include pushclasses(); }
-@if $grid-pullclasses { @include pullclasses(); }
+@include make-classes();
 
 
-/*
- * include namespaced (silent) classes for all defined breakpoints
-*/
+/**
+ * generate namespaced (silent) classes for all defined breakpoints
+ */
 
 @each $breakpoint-name, $breakpoint-params in $breakpoints-list
 {
   $breakpoint-query: map-get($breakpoint-params, query);
-  $breakpoint-grid: map-get($breakpoint-params, generate-grid-classes);
+  $breakpoint-grid:  map-get($breakpoint-params, generate-grid-classes);
 
   @if ($breakpoint-grid == true)
   {
     @media #{$breakpoint-query} {
-
-      // generate default grid classes for all media queries
-      @include mainclasses("#{$breakpoint-name}-");
-
-      // generate push grid classes for all media queries
-      @if ($grid-pushclasses == true)
-			{
-				@include pushclasses("#{$breakpoint-name}-");
-			}
-
-      // generate pull grid classes for all media queries
-			@if ($grid-pullclasses == true)
-			{
-				@include pullclasses("#{$breakpoint-name}-");
-			}
+      @include make-classes("#{$breakpoint-name}-");
     }
   }
 }
