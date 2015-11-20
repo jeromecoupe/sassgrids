@@ -23,7 +23,7 @@ I wanted a simple and quick way to design responsive grids in Sass so I built th
 
 ## Available classes and proportions
 
-We are talking about proportional grids so these classes mean "spanning [proportion] of its parent's width". The default configuration allows you to combine 2 grids (10 and 12 units) but you can easily create your own grid or combination of grids.
+We are talking about proportional grids so these classes mean "spanning [proportion] of its parent's width". The default configuration allows you to combine 2 grids (10 and 12 units) but you can easily create your own grid or combination of grids using the $grid-columns parameter.
 
     .grid__unit--#{$namespace}full
 
