@@ -25,7 +25,7 @@ This version uses [Flexbox](http://caniuse.com/#feat=flexbox). Provided you inst
 
 ## Available classes and proportions
 
-We are talking about proportional grids so these classes mean "spanning [proportion] of its parent's width". The default configuration allows you to combine 2 grids (10 and 12 units) but you can easily create your own grid or combination of grids.
+We are talking about proportional grids so these classes mean "spanning [proportion] of its parent's width". The default configuration allows you to combine 2 grids (10 and 12 units) but you can easily create your own grid or combination of grids using the $grid-columns parameter.
 
     .grid__unit--#{$namespace}full
 
@@ -219,6 +219,7 @@ However, there were a few things that prompted me to create my own thing:
 
 - Harry's system, albeit simpler than many others I have seen, caters for many use cases that I don't need. By developing my own thing, I could make it simpler and adapt it more easily to each project.
 - I wanted to understand this fully and it was a good excuse to learn some Sass
+- I wanted a flexbox based approach
 
 ### Chris Coyier
 
