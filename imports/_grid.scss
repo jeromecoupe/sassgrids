@@ -182,7 +182,7 @@ $grid-class-type: unquote(".");
 {
   & > #{$grid-class-type}grid__unit
   {
-    vertical-align: middle;
+    vertical-align: bottom;
   }
 }
 
