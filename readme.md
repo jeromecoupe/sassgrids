@@ -51,6 +51,15 @@ We are talking about proportional grids so these classes mean "spanning [proport
 
 Grid modules have a default width of 100%. The `.grid__unit--#{$namespace}full` classes are also available should you need a grid module to span the full width of your grid at any given breakpoint
 
+## Choose your own class names
+
+You can choose you own class names for the grid and for grid units. Maybe you work at scale and want to [namespace those classes](http://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/), or you simple do not like the classnames I used.
+
+- `$grid-mainclass` defaults to `.grid` or `%grid`
+- `$grid-unitclass` defaults to `.grid__unit` or `%grid__unit`
+
+BEM notation is enforced because that's what I use. Feel free to modify the code and change that too if you want.
+
 ## Grid variants
 
 Grid variants are available:

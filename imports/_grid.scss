@@ -22,6 +22,19 @@ $grid-gutter: 40px !default;
 $grid-columns: (10, 12) !default;
 
 /**
+ * Desired grid classes
+ *
+ * Use whatever class names you like (namespaced or not, etc.)
+ * $grid-mainclass: is used to define the grid iteself, defaults to '.grid' or '%grid'
+ * $grid-unitclass: is used to define the grid iteself, defaults to '.grid__unit' or '%grid__unit'
+ *
+ * BEM notation is enforced for grid and grid unit modifier classes ('.grid--center' or '.grid__unit--5of10')
+ */
+
+$grid-mainclass: "grid" !default;
+$grid-unitclass: "grid__unit" !default;
+
+/**
  * Breakpoints defined using a nested Sass map
  *
  * - name: name of the breakpoint (also used to namespace grid classes)
@@ -98,7 +111,7 @@ $grid-class-type: unquote(".");
  * [3] compensating left padding of leftmost .grid__unit in .grid
  */
 
-#{$grid-class-type}grid
+#{$grid-class-type}#{$grid-mainclass}
 {
     list-style: none;                    // [1]
     margin: 0;                           // [2]
@@ -117,7 +130,7 @@ $grid-class-type: unquote(".");
  * - 5. align top of modules
  */
 
-#{$grid-class-type}grid__unit
+#{$grid-class-type}#{$grid-unitclass}
 {
   margin: 0;
   padding: 0;
@@ -135,11 +148,11 @@ $grid-class-type: unquote(".");
  * grid aligned center
  */
 
-#{$grid-class-type}grid--center
+#{$grid-class-type}#{$grid-mainclass}--center
 {
   text-align: center;
 
-  & > #{$grid-class-type}grid__unit
+  & > #{$grid-class-type}#{$grid-unitclass}
   {
     text-align: left;
   }
@@ -150,11 +163,11 @@ $grid-class-type: unquote(".");
  * grid aligned right
  */
 
-#{$grid-class-type}grid--right
+#{$grid-class-type}#{$grid-mainclass}--right
 {
   text-align: right;
 
-  & > #{$grid-class-type}grid__unit
+  & > #{$grid-class-type}#{$grid-unitclass}
   {
     text-align: left;
   }
@@ -165,9 +178,9 @@ $grid-class-type: unquote(".");
  * grid vertical aligned middle
  */
 
-#{$grid-class-type}grid--middle
+#{$grid-class-type}#{$grid-mainclass}--middle
 {
-  & > #{$grid-class-type}grid__unit
+  & > #{$grid-class-type}#{$grid-unitclass}
   {
     vertical-align: middle;
   }
@@ -178,9 +191,9 @@ $grid-class-type: unquote(".");
  * grid vertical aligned bottom
  */
 
-#{$grid-class-type}grid--bottom
+#{$grid-class-type}#{$grid-mainclass}--bottom
 {
-  & > #{$grid-class-type}grid__unit
+  & > #{$grid-class-type}#{$grid-unitclass}
   {
     vertical-align: bottom;
   }
@@ -191,11 +204,11 @@ $grid-class-type: unquote(".");
  * grid gutterless
  */
 
-#{$grid-class-type}grid--gutterless
+#{$grid-class-type}#{$grid-mainclass}--gutterless
 {
   margin-left: 0;
 
-  & > #{$grid-class-type}grid__unit
+  & > #{$grid-class-type}#{$grid-unitclass}
   {
     padding-left: 0;
   }
@@ -208,30 +221,28 @@ $grid-class-type: unquote(".");
 
 /**
  * - Loop through each value in the list
- * - Create corresponding columns classes
+ * - Create corresponding classes
  * - Using "to" here since the "full" classes are created separately
  */
 
 @mixin make-classes($namespace:"")
 {
   // Create main "full" grid classes
-  #{$grid-class-type}grid__unit--#{$namespace}full { width: 100%};
+  #{$grid-class-type}#{$grid-unitclass}--#{$namespace}full { width: 100%};
 
   // Create push "full" grid classes if needed
   @if $grid-pushclasses
   {
-    #{$grid-class-type}grid__unit--#{$namespace}push-full   { position: relative; left: 100%; }
+    #{$grid-class-type}#{$grid-unitclass}--#{$namespace}push-full   { position: relative; left: 100%; }
   }
 
   // Create pull "full" grid classes if needed
   @if $grid-pullclasses
   {
-    #{$grid-class-type}grid__unit--#{$namespace}pull-full   { position: relative; right: 100%; }
+    #{$grid-class-type}#{$grid-unitclass}--#{$namespace}pull-full   { position: relative; right: 100%; }
   }
 
-  /**
-   * Create main grid classes for each column in the grids
-   */
+  // Create main grid classes for each column in the grids
   @each $columns in $grid-columns
   {
     @if type-of($columns) != 'number'
@@ -242,18 +253,18 @@ $grid-class-type: unquote(".");
     @for $i from 1 to $columns
     {
       // Create main grid classes
-      #{$grid-class-type}grid__unit--#{$namespace}#{$i}of#{$columns} { width: percentage($i / $columns); }
+      #{$grid-class-type}#{$grid-unitclass}--#{$namespace}#{$i}of#{$columns} { width: percentage($i / $columns); }
 
       // Create push grid classes if needed
       @if $grid-pushclasses
       {
-        #{$grid-class-type}grid__unit--#{$namespace}push-#{$i}of#{$columns}   { position: relative; left: percentage($i / $columns) }
+        #{$grid-class-type}#{$grid-unitclass}--#{$namespace}push-#{$i}of#{$columns}   { position: relative; left: percentage($i / $columns) }
       }
 
       // Create pull grid classes if needed
       @if $grid-pullclasses
       {
-        #{$grid-class-type}grid__unit--#{$namespace}pull-#{$i}of#{$columns}   { position: relative; right: percentage($i / $columns) }
+        #{$grid-class-type}#{$grid-unitclass}--#{$namespace}pull-#{$i}of#{$columns}   { position: relative; right: percentage($i / $columns) }
       }
     }
   }
