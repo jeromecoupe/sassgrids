@@ -18,8 +18,16 @@ I wanted a simple and quick way to design responsive grids in Sass so I built th
 
 [Here is a small demo](http://jeromecoupe.github.io/sassgrids/) of a grid in action.
 
-- The grid in the demo uses a nested grid along with "push" and "pull" classes
-- The demo makes use of [modernizr.js](http://www.modernizr.com) / [respond.js](https://github.com/scottjehl/Respond) / [selectivizr.js](https://github.com/keithclark/selectivizr) to support IE8
+The grid in the demo uses a nested grid along with "push" and "pull" classes
+
+## Choose your own class names
+
+You can choose you own class names for the grid and for grid units. Maybe you work at scale and want to [namespace those classes](http://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/), or you simple do not like the classnames I used.
+
+- `$grid-mainclass` defaults to `.grid` or `%grid`
+- `$grid-unitclass` defaults to `.grid__unit` or `%grid__unit`
+
+BEM notation is enforced because that's what I use. Feel free to modify the code and change that too if you want.
 
 ## Available classes and proportions
 
@@ -50,15 +58,6 @@ We are talking about proportional grids so these classes mean "spanning [proport
     .grid__unit--#{$namespace}11of12
 
 Grid modules have a default width of 100%. The `.grid__unit--#{$namespace}full` classes are also available should you need a grid module to span the full width of your grid at any given breakpoint
-
-## Choose your own class names
-
-You can choose you own class names for the grid and for grid units. Maybe you work at scale and want to [namespace those classes](http://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/), or you simple do not like the classnames I used.
-
-- `$grid-mainclass` defaults to `.grid` or `%grid`
-- `$grid-unitclass` defaults to `.grid__unit` or `%grid__unit`
-
-BEM notation is enforced because that's what I use. Feel free to modify the code and change that too if you want.
 
 ## Grid variants
 
@@ -217,8 +216,7 @@ When defining a breakpoint, you can prevent it from being used to generate grids
 Tested with:
 
 - latest versions of Opera / Firefox / Chrome / Safari
-- IE8 and above
-- IE7 does not support box-sizing nor display:inline-block. I generally serve a linearised version of the page to IE7 and IE6 users.
+- IE9 and above
 
 ## Shoutouts
 

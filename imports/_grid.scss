@@ -25,8 +25,8 @@ $grid-columns: (10, 12) !default;
  * Desired grid classes
  *
  * Use whatever class names you like (namespaced or not, etc.)
- * $grid-mainclass: is used to define the grid iteself, defaults to '.grid' or '%grid'
- * $grid-unitclass: is used to define the grid iteself, defaults to '.grid__unit' or '%grid__unit'
+ * $grid-mainclass: is used to define the grid itself, defaults to '.grid' or '%grid'
+ * $grid-unitclass: is used to define the grid itself, defaults to '.grid__unit' or '%grid__unit'
  *
  * BEM notation is enforced for grid and grid unit modifier classes ('.grid--center' or '.grid__unit--5of10')
  */
