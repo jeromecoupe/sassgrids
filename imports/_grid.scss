@@ -2,6 +2,13 @@
 // =grid configuration
 // -------------------------------------
 
+/**Namespace.
+*
+* Would you like sassgrids classes to be prepended with a namespace? If so,
+* define it here.
+*/
+$grid-namespace: null !default;
+
 /**
  * Gutter between grid units
  *
@@ -38,22 +45,22 @@ $grid-columns: (10, 12) !default;
  */
 
 $breakpoints-list: (
-  "small": (
-    query: "all and (min-width: 31.25em)",
-    generate-grid-classes: true
-  ),
-  "medium": (
-    query: "all and (min-width: 47.5em)",
-    generate-grid-classes: true
-  ),
-  "large": (
-    query: "all and (min-width: 64em)",
-    generate-grid-classes: true
-  ),
-  "xlarge": (
-    query: "all and (min-width: 71.25em)",
-    generate-grid-classes: false
-  )
+        "small": (
+                query: "all and (min-width: 31.25em)",
+                generate-grid-classes: true
+        ),
+        "medium": (
+                query: "all and (min-width: 47.5em)",
+                generate-grid-classes: true
+        ),
+        "large": (
+                query: "all and (min-width: 64em)",
+                generate-grid-classes: true
+        ),
+        "xlarge": (
+                query: "all and (min-width: 71.25em)",
+                generate-grid-classes: false
+        )
 ) !default;
 
 /**
@@ -98,12 +105,12 @@ $grid-class-type: unquote(".");
  * [3] compensating left padding of leftmost .grid__unit in .grid
  */
 
-#{$grid-class-type}grid
+#{$grid-class-type}#{$grid-namespace}grid
 {
-    list-style: none;                    // [1]
-    margin: 0;                           // [2]
-    padding: 0;                          // [2]
-    margin-left: ($grid-gutter * -1);    // [3]
+  list-style: none;                    // [1]
+  margin: 0;                           // [2]
+  padding: 0;                          // [2]
+  margin-left: ($grid-gutter * -1);    // [3]
 }
 
 
@@ -117,14 +124,14 @@ $grid-class-type: unquote(".");
  * - 5. align top of modules
  */
 
-#{$grid-class-type}grid__unit
+#{$grid-class-type}#{$grid-namespace}grid__unit
 {
   margin: 0;
   padding: 0;
   width: 100%;                         // [1]
   -webkit-box-sizing: border-box;      // [2]
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   padding-left: $grid-gutter;          // [3]
   display: inline-block;               // [4]
   vertical-align: top;                 // [5]
@@ -135,11 +142,11 @@ $grid-class-type: unquote(".");
  * grid aligned center
  */
 
-#{$grid-class-type}grid--center
+#{$grid-class-type}#{$grid-namespace}grid--center
 {
   text-align: center;
 
-  & > #{$grid-class-type}grid__unit
+  & > #{$grid-class-type}#{$grid-namespace}grid__unit
   {
     text-align: left;
   }
@@ -150,11 +157,11 @@ $grid-class-type: unquote(".");
  * grid aligned right
  */
 
-#{$grid-class-type}grid--right
+#{$grid-class-type}#{$grid-namespace}grid--right
 {
   text-align: right;
 
-  & > #{$grid-class-type}grid__unit
+  & > #{$grid-class-type}#{$grid-namespace}grid__unit
   {
     text-align: left;
   }
@@ -165,9 +172,9 @@ $grid-class-type: unquote(".");
  * grid vertical aligned middle
  */
 
-#{$grid-class-type}grid--middle
+#{$grid-class-type}#{$grid-namespace}grid--middle
 {
-  & > #{$grid-class-type}grid__unit
+  & > #{$grid-class-type}#{$grid-namespace}grid__unit
   {
     vertical-align: middle;
   }
@@ -178,9 +185,9 @@ $grid-class-type: unquote(".");
  * grid vertical aligned bottom
  */
 
-#{$grid-class-type}grid--bottom
+#{$grid-class-type}#{$grid-namespace}grid--bottom
 {
-  & > #{$grid-class-type}grid__unit
+  & > #{$grid-class-type}#{$grid-namespace}grid__unit
   {
     vertical-align: bottom;
   }
@@ -191,11 +198,11 @@ $grid-class-type: unquote(".");
  * grid gutterless
  */
 
-#{$grid-class-type}grid--gutterless
+#{$grid-class-type}#{$grid-namespace}grid--gutterless
 {
   margin-left: 0;
 
-  & > #{$grid-class-type}grid__unit
+  & > #{$grid-class-type}#{$grid-namespace}grid__unit
   {
     padding-left: 0;
   }
@@ -215,18 +222,18 @@ $grid-class-type: unquote(".");
 @mixin make-classes($namespace:"")
 {
   // Create main "full" grid classes
-  #{$grid-class-type}grid__unit--#{$namespace}full { width: 100%};
+  #{$grid-class-type}#{$grid-namespace}grid__unit--#{$namespace}full { width: 100%};
 
   // Create push "full" grid classes if needed
   @if $grid-pushclasses
   {
-    #{$grid-class-type}grid__unit--#{$namespace}push-full   { position: relative; left: 100%; }
+    #{$grid-class-type}#{$grid-namespace}grid__unit--#{$namespace}push-full   { position: relative; left: 100%; }
   }
 
   // Create pull "full" grid classes if needed
   @if $grid-pullclasses
   {
-    #{$grid-class-type}grid__unit--#{$namespace}pull-full   { position: relative; right: 100%; }
+    #{$grid-class-type}#{$grid-namespace}grid__unit--#{$namespace}pull-full   { position: relative; right: 100%; }
   }
 
   /**
@@ -242,18 +249,18 @@ $grid-class-type: unquote(".");
     @for $i from 1 to $columns
     {
       // Create main grid classes
-      #{$grid-class-type}grid__unit--#{$namespace}#{$i}of#{$columns} { width: percentage($i / $columns); }
+      #{$grid-class-type}#{$grid-namespace}grid__unit--#{$namespace}#{$i}of#{$columns} { width: percentage($i / $columns); }
 
       // Create push grid classes if needed
       @if $grid-pushclasses
       {
-        #{$grid-class-type}grid__unit--#{$namespace}push-#{$i}of#{$columns}   { position: relative; left: percentage($i / $columns) }
+        #{$grid-class-type}#{$grid-namespace}grid__unit--#{$namespace}push-#{$i}of#{$columns}   { position: relative; left: percentage($i / $columns) }
       }
 
       // Create pull grid classes if needed
       @if $grid-pullclasses
       {
-        #{$grid-class-type}grid__unit--#{$namespace}pull-#{$i}of#{$columns}   { position: relative; right: percentage($i / $columns) }
+        #{$grid-class-type}#{$grid-namespace}grid__unit--#{$namespace}pull-#{$i}of#{$columns}   { position: relative; right: percentage($i / $columns) }
       }
     }
   }
