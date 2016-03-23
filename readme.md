@@ -23,6 +23,15 @@ This version uses [Flexbox](http://caniuse.com/#feat=flexbox). Provided you inst
 - latest versions of Opera / Firefox / Chrome / Safari
 - IE10 and above
 
+## Choose your own class names
+
+You can choose you own class names for the grid and for grid units. Maybe you work at scale and want to [namespace those classes](http://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/), or you simple do not like the classnames I used.
+
+- `$grid-mainclass` defaults to `.grid` or `%grid`
+- `$grid-unitclass` defaults to `.grid__unit` or `%grid__unit`
+
+BEM notation is enforced because that's what I use. Feel free to modify the code and change that too if you want.
+
 ## Available classes and proportions
 
 We are talking about proportional grids so these classes mean "spanning [proportion] of its parent's width". The default configuration allows you to combine 2 grids (10 and 12 units) but you can easily create your own grid or combination of grids using the $grid-columns parameter.

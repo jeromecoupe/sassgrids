@@ -22,6 +22,19 @@ $grid-gutter: 40px !default;
 $grid-columns: (10, 12) !default;
 
 /**
+ * Desired grid classes
+ *
+ * Use whatever class names you like (namespaced or not, etc.)
+ * $grid-mainclass: is used to define the grid iteself, defaults to '.grid' or '%grid'
+ * $grid-unitclass: is used to define the grid iteself, defaults to '.grid__unit' or '%grid__unit'
+ *
+ * BEM notation is enforced for grid and grid unit modifier classes ('.grid--center' or '.grid__unit--5of10')
+ */
+
+$grid-mainclass: "grid" !default;
+$grid-unitclass: "grid__unit" !default;
+
+/**
  * Breakpoints defined using a nested Sass map
  *
  * - name: name of the breakpoint (also used to namespace grid classes)
@@ -104,7 +117,7 @@ $grid-class-type: unquote(".");
  * [4] compensating left padding of leftmost .grid__unit in .grid
  */
 
-#{$grid-class-type}grid
+#{$grid-class-type}#{$grid-mainclass}
 {
     list-style: none;                    // [1]
     margin: 0;                           // [2]
@@ -128,7 +141,7 @@ $grid-class-type: unquote(".");
  *     be on the same line and have identical sizes
  */
 
-#{$grid-class-type}grid__unit
+#{$grid-class-type}#{$grid-unitclass}
 {
   margin: 0;
   padding: 0;
@@ -146,7 +159,7 @@ $grid-class-type: unquote(".");
  * grid aligned center
  */
 
-#{$grid-class-type}grid--center
+#{$grid-class-type}#{$grid-mainclass}--center
 {
   justify-content: center;
 }
@@ -156,7 +169,7 @@ $grid-class-type: unquote(".");
  * grid aligned right
  */
 
-#{$grid-class-type}grid--right
+#{$grid-class-type}#{$grid-mainclass}--right
 {
   justify-content: flex-end;
 }
@@ -166,7 +179,7 @@ $grid-class-type: unquote(".");
  * grid vertical aligned middle
  */
 
-#{$grid-class-type}grid--middle
+#{$grid-class-type}#{$grid-mainclass}--middle
 {
   align-items: center;
 }
@@ -176,7 +189,7 @@ $grid-class-type: unquote(".");
  * grid vertical aligned bottom
  */
 
-#{$grid-class-type}grid--bottom
+#{$grid-class-type}#{$grid-mainclass}--bottom
 {
   align-items: flex-end;
 }
@@ -186,11 +199,11 @@ $grid-class-type: unquote(".");
  * grid gutterless
  */
 
-#{$grid-class-type}grid--gutterless
+#{$grid-class-type}#{$grid-mainclass}--gutterless
 {
   margin-left: 0;
 
-  & > #{$grid-class-type}grid__unit
+  & > #{$grid-class-type}#{$grid-unitclass}
   {
     padding-left: 0;
   }
@@ -202,7 +215,7 @@ $grid-class-type: unquote(".");
  * when switched on, grid__unit do not wrap anymore and all share the same proportions
  */
 
-#{$grid-class-type}grid--nowrap
+#{$grid-class-type}#{$grid-mainclass}--nowrap
 {
   flex-wrap: nowrap;
 }
@@ -219,7 +232,7 @@ $grid-class-type: unquote(".");
 @mixin make-classes($namespace:"")
 {
   // Create main "full" grid classes
-  #{$grid-class-type}grid__unit--#{$namespace}full { flex: 0 0 100%; }
+  #{$grid-class-type}#{$grid-unitclass}--#{$namespace}full { flex: 0 0 100%; }
 
   /**
    * Create main grid classes for each column in the grids
@@ -234,7 +247,7 @@ $grid-class-type: unquote(".");
     @for $i from 1 to $columns
     {
       // Create main grid classes
-      #{$grid-class-type}grid__unit--#{$namespace}#{$i}of#{$columns} { flex: 0 0 percentage( $i / $columns ); }
+      #{$grid-class-type}#{$grid-unitclass}--#{$namespace}#{$i}of#{$columns} { flex: 0 0 percentage( $i / $columns ); }
     }
 
     // Create order classes if needed
@@ -243,7 +256,7 @@ $grid-class-type: unquote(".");
       @for $i from 1 through $columns
       {
         // Create order classes
-        #{$grid-class-type}grid__unit--#{$namespace}order#{$i}   { order: $i; }
+        #{$grid-class-type}#{$grid-unitclass}--#{$namespace}order#{$i}   { order: $i; }
       }
     }
   }
